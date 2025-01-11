@@ -34,6 +34,7 @@ function M.config()
             },
             view = nil,         -- when nil, use defaults from documentation
         },
+        status = { "showcmd" }
     }
 end
 

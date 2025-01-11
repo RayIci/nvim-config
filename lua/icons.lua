@@ -69,6 +69,8 @@ return {
         BoldClose = "",
         BoldDividerLeft = "",
         BoldDividerRight = "",
+        BoldDividerRightCircle = "",
+        BoldDividerLeftCircle = "",
         BoldLineLeft = "▎",
         BoldLineMiddle = "┃",
         BoldLineDashedMiddle = "┋",

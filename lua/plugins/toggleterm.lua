@@ -13,7 +13,7 @@ function M.config()
                 return vim.o.columns * 0.4
             end
         end,
-        open_mapping = [[<c-\>]],
+        open_mapping = "<c-\\>",
         shade_filetypes = {},
         shade_terminals = true,
         shading_factor = 1,
@@ -37,8 +37,8 @@ function M.config()
         map("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
     end
 
-    -- -- if you only want these mappings for toggle term use term://*toggleterm#* instead
-    vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+    -- if you only want these mappings for toggle term use term://*toggleterm#* instead
+    vim.cmd("autocmd! TermOpen term://*toggleterm#* lua set_terminal_keymaps()")
 
     -- Keymaps for toggling terminals
     local Terminal = require("toggleterm.terminal").Terminal

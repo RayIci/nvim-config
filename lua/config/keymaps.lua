@@ -64,7 +64,7 @@ add({
     -- Close keys
     { "<leader>x",        group = "Close" },
     { "<leader>xw",       ":Bdelete<cr>",                                                                      desc = "Buffer close" },
-    { "<leader>Xf",       ":Bdelete!<cr>",                                                                     desc = "Buffer close force (no save)" },
+    { "<leader>xf",       ":Bdelete!<cr>",                                                                     desc = "Buffer close force (no save)" },
     { "<leader>xa",       ":bufdo :Bdelete<cr>",                                                               desc = "Buffer close all" },
     { "<leader>xs",       "<cmd>close<CR>",                                                                    desc = "Split close" },
     { "<leader>xj",       "<cmd>tabclose<cr>",                                                                 desc = "Tab close" },
@@ -144,12 +144,12 @@ add({
 ----------------------------------------------------------------------------------------
 -- TELESCOPE KEYMAPS
 add({
-    { "<leader><leader>", "<cmd>Telescope find_files<cr>", desc = "Files" },
+    { "<leader><leader>", "<cmd>Telescope find_files<cr>", desc = "Find File" },
 
     { "<leader>f",        group = "Find" },
     { "<leader>fg",       "<cmd>Telescope live_grep<cr>",  desc = "Live Grep" },
     { "<leader>fb",       "<cmd>Telescope buffers<cr>",    desc = "Buffers" },
-    { "<leader>ff",       "<cmd>Telescope help_tags<cr>",  desc = "Help Tags" },
+    { "<leader>fh",       "<cmd>Telescope help_tags<cr>",  desc = "Help Tags" },
     { "<leader>fn",       "<cmd>Telescope notify<cr>",     desc = "Notifications" },
     { "<leader>fm",       "<cmd>Telescope marks<cr>",      desc = "Marks" },
 })

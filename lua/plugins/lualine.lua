@@ -1,6 +1,9 @@
 local M = {
     'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' }
+    dependencies = {
+        { 'nvim-tree/nvim-web-devicons' },
+        { "yavorski/lualine-macro-recording.nvim" }
+    }
 }
 
 function M.config()
@@ -11,7 +14,7 @@ function M.config()
             icons_enabled = true,
             theme = 'auto',
             component_separators = { right = icons.ui.BoldLineMiddle, left = icons.ui.BoldLineMiddle },
-            section_separators = { right = icons.ui.BoldDividerLeft, left = icons.ui.BoldDividerRight },
+            section_separators = { right = icons.ui.BoldDividerLeftCircle, left = icons.ui.BoldDividerRightCircle },
             disabled_filetypes = {
                 statusline = {},
                 winbar = {},
@@ -29,7 +32,7 @@ function M.config()
         sections = {
             lualine_a = { 'mode' },
             lualine_b = { 'branch', 'diff', 'diagnostics' },
-            lualine_c = { 'filename' },
+            lualine_c = { 'filename', { "macro_recording", "%S" }, },
             lualine_x = { 'encoding', 'fileformat', 'filetype' },
             lualine_y = { 'progress' },
             lualine_z = { 'location' }

@@ -55,6 +55,55 @@ function M.config()
             row = 0,
             col = 1
         },
+        on_attach                    = function(bufnr)
+            local gitsigns = require('gitsigns')
+
+            local function map(mode, l, r, opts)
+                opts = opts or {}
+                opts.buffer = bufnr
+                vim.keymap.set(mode, l, r, opts)
+            end
+
+            -- Navigation
+            map('n', ']c', function()
+                if vim.wo.diff then
+                    vim.cmd.normal({ ']c', bang = true, desc = "Hunk next" })
+                else
+                    gitsigns.nav_hunk('next')
+                end
+            end)
+
+            map('n', '[c', function()
+                if vim.wo.diff then
+                    vim.cmd.normal({ '[c', bang = true, desc = "Hunk prev" })
+                else
+                    gitsigns.nav_hunk('prev')
+                end
+            end)
+
+            -- Actions
+            require "which-key".add({ { "<leader>H", group = "Git hunk" } })
+            require "which-key".add({ { "<leader>H", group = "Git hunk", mode = "v" } })
+            map('n', '<leader>Hs', gitsigns.stage_hunk, { desc = "Stage hunk" })
+            map('n', '<leader>Hr', gitsigns.reset_hunk, { desc = "Reset hunk" })
+            map('v', '<leader>Hs', function() gitsigns.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end,
+                { desc = "Stage selected lines" })
+            map('v', '<leader>Hr', function() gitsigns.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end,
+                { desc = "Reset selected lines" })
+            map('n', '<leader>HS', gitsigns.stage_buffer, { desc = "Stage buffer" })
+            map('n', '<leader>Hu', gitsigns.undo_stage_hunk, { desc = "Stage hunk undo" })
+            map('n', '<leader>HR', gitsigns.reset_buffer, { desc = "Reset buffer" })
+            map('n', '<leader>Hp', gitsigns.preview_hunk, { desc = "Hunk Preview" })
+            map('n', '<leader>HB', function() gitsigns.blame_line { full = true } end, { desc = "Hunk blame line" })
+            map('n', '<leader>Hb', gitsigns.toggle_current_line_blame, { desc = "Hunk toggle line blame" })
+            map('n', '<leader>Hd', gitsigns.diffthis, { desc = "Hunk diff" })
+            map('n', '<leader>HD', function() gitsigns.diffthis('~') end, { desc = "Hunk diff ~" })
+            map('n', '<leader>Hx', "<cmd>wincmd p | q<cr>", { desc = "Hunk diff exit" })
+            map('n', '<leader>HX', gitsigns.toggle_deleted, { desc = "Hunk toggle deleted" })
+
+            -- Text object
+            map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = "Hunk select" })
+        end
     }
 end
 
