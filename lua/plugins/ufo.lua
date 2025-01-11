@@ -7,20 +7,19 @@ local M = {
 }
 
 
-    -- vim.keymap.set("n", "zR", require("ufo").openAllFolds)
-    -- vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
-    -- vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds)
-    -- vim.keymap.set("n", "zm", require("ufo").closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
+-- vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+-- vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+-- vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds)
+-- vim.keymap.set("n", "zm", require("ufo").closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
 
 function M.config()
     local builtin = require "statuscol.builtin"
     local cfg = {
+        ft_ignore = { 'neo-tree', "neotree" },
         setopt = true,
         relculright = true,
         segments = {
-
             { text = { builtin.foldfunc, " " }, click = "v:lua.ScFa", hl = "Comment" },
-
             { text = { "%s" },                  click = "v:lua.ScSa" },
             { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
         },
