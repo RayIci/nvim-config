@@ -20,6 +20,7 @@ require("lazy").setup({
         { import = "code" },
         { import = "code.extra" },
         { import = "themes" },
+        { import = "git" },
     },
     defaults = {
         lazy = false,

@@ -63,9 +63,9 @@ add({
 
     -- Close keys
     { "<leader>x",        group = "Close" },
-    { "<leader>x",        "<cmd>Bdelete<cr>",                                                                  desc = "Buffer close" },
-    { "<leader>X",        "<cmd>Bdelete!<cr>",                                                                 desc = "Buffer close force (no save)" },
-    { "<leader>xa",       ":bufdo :bdelete<cr>",                                                               desc = "Buffer delete all" },
+    { "<leader>xw",       ":Bdelete<cr>",                                                                      desc = "Buffer close" },
+    { "<leader>Xf",       ":Bdelete!<cr>",                                                                     desc = "Buffer close force (no save)" },
+    { "<leader>xa",       ":bufdo :Bdelete<cr>",                                                               desc = "Buffer close all" },
     { "<leader>xs",       "<cmd>close<CR>",                                                                    desc = "Split close" },
     { "<leader>xj",       "<cmd>tabclose<cr>",                                                                 desc = "Tab close" },
 
@@ -106,10 +106,11 @@ add({
 })
 
 ----------------------------------------------------------------------------------------
--- BUFFERLINE
+-- BUFFERLINE KEYMAPS
 add({
-    { "<C-Left>",  "<cmd>BufferLineMovePrev<cr>", desc = "Buffer Move Previous" },
-    { "<C-Right>", "<cmd>BufferLineMoveNext<cr>", desc = "Buffer Move Next" },
+    { "<C-Left>",   "<cmd>BufferLineMovePrev<cr>", desc = "Buffer Move Previous" },
+    { "<C-Right>",  "<cmd>BufferLineMoveNext<cr>", desc = "Buffer Move Next" },
+    { "<leader>bp", "<cmd>BufferTogglePin<cr>",    desc = "Pin Toggle" },
 })
 
 ----------------------------------------------------------------------------------------
@@ -129,4 +130,68 @@ add({
 
     { "<leader>l",  group = "LSP",                                           mode = "v" },
     { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>",                desc = "Code Action",      mode = { "v" }, },
+})
+
+
+----------------------------------------------------------------------------------------
+-- ILLUMINATE KEYMAPS
+add({
+    { "<C-g>", require("illuminate").goto_next_reference, desc = "Prossima referenza" },
+    { "<C-p>", require("illuminate").goto_prev_reference, desc = "Referenza precedente" },
+})
+
+
+----------------------------------------------------------------------------------------
+-- TELESCOPE KEYMAPS
+add({
+    { "<leader><leader>", "<cmd>Telescope find_files<cr>", desc = "Files" },
+
+    { "<leader>f",        group = "Find" },
+    { "<leader>fg",       "<cmd>Telescope live_grep<cr>",  desc = "Live Grep" },
+    { "<leader>fb",       "<cmd>Telescope buffers<cr>",    desc = "Buffers" },
+    { "<leader>ff",       "<cmd>Telescope help_tags<cr>",  desc = "Help Tags" },
+    { "<leader>fn",       "<cmd>Telescope notify<cr>",     desc = "Notifications" },
+    { "<leader>fm",       "<cmd>Telescope marks<cr>",      desc = "Marks" },
+})
+
+
+----------------------------------------------------------------------------------------
+-- UNDOTREE KEYMAPS
+add({
+    { "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "Undotree toggle" },
+})
+
+
+----------------------------------------------------------------------------------------
+-- DODGE KEYMAPS
+add({
+    { "<leader>D", "<Plug>(doge-generate)", desc = "Docstring Generate" },
+})
+
+
+----------------------------------------------------------------------------------------
+-- TROUBLE KEYMAPS
+add({
+    { "<leader>k",  group = "Trouble" },
+    { "<leader>kw", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "All windows" },
+    { "<leader>ks", "<cmd>Trouble symbols toggle focus=false<cr>",                desc = "Symbols list" },
+    { "<leader>kl", "<cmd>Trouble loclist toggle<cr>",                            desc = "Location list" },
+    { "<leader>kq", "<cmd>Trouble qflist toggle<cr>",                             desc = "Quickfix list" },
+    { "<leader>kd", "<cmd>Trouble diagnostics toggle<cr>",                        desc = "Diagnostic toggle" },
+    { "<leader>kD", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",           desc = "Diagnostic buffer toggle" },
+})
+
+
+----------------------------------------------------------------------------------------
+-- GIT KEYMAPS
+add({
+    { "<leader>g",  group = "Git" },
+    { "<leader>gd", "<cmd>DiffviewOpen<cr>",          desc = "Diffview" },
+    { "<leader>gD", "<cmd>DiffviewClose<cr>",         desc = "Diffview Close" },
+    { "<leader>gf", "<cmd>DiffviewFileHistory<cr>",   desc = "Diffview File History" },
+    { "<leader>gF", "<cmd>DiffviewFileHistory %<cr>", desc = "Diffview File History Current File" },
+    { "<leader>gr", "<cmd>DiffviewRefresh<cr>",       desc = "Diffview Refresh" },
+    { "<leader>gt", "<cmd>DiffviewToggleFiles<cr>",   desc = "Diffview Toggle Files" },
+    { "<leader>gT", "<cmd>DiffviewToggleFiles %<cr>", desc = "Diffview Toggle Files Current File" },
+    { "<leader>gl", "<cmd>LazyGit<cr>",               desc = "Open lazy git" }
 })

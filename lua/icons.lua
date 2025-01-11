@@ -39,7 +39,7 @@ return {
         Variable = " ",
     },
     git = {
-        Git = "?",
+        Git = "",
         LineAdded = "",
         LineModified = "",
         LineRemoved = "",
@@ -55,6 +55,7 @@ return {
         Octoface = "",
         Copilot = "",
         Branch = "",
+        Merge = "",
     },
     ui = {
         ArrowCircleDown = "",

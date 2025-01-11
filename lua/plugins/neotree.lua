@@ -70,9 +70,9 @@ function M.config()
             expander_highlight = "NeoTreeExpander",
         },
         icon = {
-            folder_closed = "",
-            folder_open = "",
-            folder_empty = "󰜌",
+            folder_closed = icons.ui.Folder,
+            folder_open = icons.ui.FolderOpen,
+            folder_empty = icons.ui.EmptyFolderOpen,
             provider = function(icon, node, _) -- default icon provider utilizes nvim-web-devicons if available
                 if node.type == "file" or node.type == "terminal" then
                     local success, web_devicons = pcall(require, "nvim-web-devicons")
@@ -103,14 +103,14 @@ function M.config()
                 -- Change type
                 added     = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
                 modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
-                deleted   = "✖", -- this can only be used in the git_status source
+                deleted   = icons.ui.Close, -- this can only be used in the git_status source
                 renamed   = "󰁕", -- this can only be used in the git_status source
                 -- Status type
-                untracked = "",
-                ignored   = "",
-                unstaged  = "󰄱",
-                staged    = "",
-                conflict  = "",
+                untracked = icons.git.FileUntracked, -- ""
+                ignored   = icons.git.FileIgnored, -- "",
+                unstaged  = icons.git.FileUnstaged, -- "󰄱",
+                staged    = icons.git.FileStaged, -- "",
+                conflict  = icons.git.Merge, -- "",
             }
         },
         -- If you don't want to use these columns, you can set `enabled = false` for each of them individually
@@ -191,27 +191,33 @@ function M.config()
         filesystem = {
             filtered_items = {
                 visible = false, -- when true, they will just be displayed differently than normal items
-                hide_dotfiles = true,
-                hide_gitignored = true,
-                hide_hidden = true, -- only works on Windows for hidden files/directories
+                hide_dotfiles = false,
+                hide_gitignored = false,
+                hide_hidden = false,     -- only works on Windows for hidden files/directories
                 hide_by_name = {
-                    --"node_modules"
+                    ".DS_Store",
+                    "thumbs.db",
+                    "node_modules",
+                    "__pycache__",
+                    ".virtual_documents",
+                    ".git",
+                    ".python-version",
+                    ".venv",
+                    ".pytest_cache",
                 },
-                hide_by_pattern = { -- uses glob style patterns
+                hide_by_pattern = {     -- uses glob style patterns
                     --"*.meta",
                     --"*/src/*/tsconfig.json",
                 },
-                always_show = { -- remains visible even if other settings would normally hide it
+                always_show = {     -- remains visible even if other settings would normally hide it
                     --".gitignored",
                 },
-                always_show_by_pattern = { -- uses glob style patterns
-                    --".env*",
+                never_show = {     -- remains hidden even if visible is toggled to true, this overrides always_show
+                    ".DS_Store",
+                    "thumbs.db",
+                    "__pycache__",
                 },
-                never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
-                    --".DS_Store",
-                    --"thumbs.db"
-                },
-                never_show_by_pattern = { -- uses glob style patterns
+                never_show_by_pattern = {     -- uses glob style patterns
                     --".null-ls_*",
                 },
             },
