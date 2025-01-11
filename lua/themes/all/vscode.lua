@@ -1,5 +1,6 @@
 local M = {
-    'Mofiqul/vscode.nvim'
+    'Mofiqul/vscode.nvim',
+    name = "vscode"
 }
 
 function M.config()
