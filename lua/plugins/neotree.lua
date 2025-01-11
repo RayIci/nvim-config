@@ -38,113 +38,100 @@ function M.config()
         enable_diagnostics = true,
         open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
         sort_case_insensitive = false,                                     -- used when sorting files and directories in the tree
-        source_selector = {
-            winbar = true,
-            statusline = false,
-            content_layout = "start",
-            tabs_layout = "equal",
-            tabs_min_width = nil,
-            tabs_max_width = nil,
-            -- Icone e nomi personalizzati per i tab
-            sources = {
-                { source = "filesystem", display_name = " " .. icons.ui.Folder .. " Files " },
-                { source = "buffers",    display_name = " " .. icons.ui.Files .. " Buffers " },
-                { source = "git_status", display_name = " " .. icons.git.Git .. " Git " },
+        default_component_configs = {
+            container = {
+                enable_character_fade = true
             },
-        }, default_component_configs = {
-        container = {
-            enable_character_fade = true
-        },
-        indent = {
-            indent_size = 2,
-            padding = 1, -- extra padding on left hand side
-            -- indent guides
-            with_markers = true,
-            indent_marker = "│",
-            last_indent_marker = "└",
-            highlight = "NeoTreeIndentMarker",
-            -- expander config, needed for nesting files
-            with_expanders = nil, -- if nil and file nesting is enabled, will enable expanders
-            expander_collapsed = "",
-            expander_expanded = "",
-            expander_highlight = "NeoTreeExpander",
-        },
-        icon = {
-            folder_closed = icons.ui.Folder,
-            folder_open = icons.ui.FolderOpen,
-            folder_empty = icons.ui.EmptyFolderOpen,
-            provider = function(icon, node, _) -- default icon provider utilizes nvim-web-devicons if available
-                if node.type == "file" or node.type == "terminal" then
-                    local success, web_devicons = pcall(require, "nvim-web-devicons")
-                    local name = node.type == "terminal" and "terminal" or node.name
-                    if success then
-                        local devicon, hl = web_devicons.get_icon(name)
-                        icon.text = devicon or icon.text
-                        icon.highlight = hl or icon.highlight
+            indent = {
+                indent_size = 2,
+                padding = 1, -- extra padding on left hand side
+                -- indent guides
+                with_markers = true,
+                indent_marker = "│",
+                last_indent_marker = "└",
+                highlight = "NeoTreeIndentMarker",
+                -- expander config, needed for nesting files
+                with_expanders = nil, -- if nil and file nesting is enabled, will enable expanders
+                expander_collapsed = "",
+                expander_expanded = "",
+                expander_highlight = "NeoTreeExpander",
+            },
+            icon = {
+                folder_closed = icons.ui.Folder,
+                folder_open = icons.ui.FolderOpen,
+                folder_empty = icons.ui.EmptyFolderOpen,
+                provider = function(icon, node, _) -- default icon provider utilizes nvim-web-devicons if available
+                    if node.type == "file" or node.type == "terminal" then
+                        local success, web_devicons = pcall(require, "nvim-web-devicons")
+                        local name = node.type == "terminal" and "terminal" or node.name
+                        if success then
+                            local devicon, hl = web_devicons.get_icon(name)
+                            icon.text = devicon or icon.text
+                            icon.highlight = hl or icon.highlight
+                        end
                     end
-                end
-            end,
-            -- The next two settings are only a fallback, if you use nvim-web-devicons and configure default icons there
-            -- then these will never be used.
-            default = "*",
-            highlight = "NeoTreeFileIcon"
+                end,
+                -- The next two settings are only a fallback, if you use nvim-web-devicons and configure default icons there
+                -- then these will never be used.
+                default = "*",
+                highlight = "NeoTreeFileIcon"
+            },
+            modified = {
+                symbol = "[+]",
+                highlight = "NeoTreeModified",
+            },
+            name = {
+                trailing_slash = false,
+                use_git_status_colors = true,
+                highlight = "NeoTreeFileName",
+            },
+            git_status = {
+                symbols = {
+                    -- Change type
+                    added     = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
+                    modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
+                    deleted   = icons.ui.Close, -- this can only be used in the git_status source
+                    renamed   = "󰁕", -- this can only be used in the git_status source
+                    -- Status type
+                    untracked = icons.git.FileUntracked, -- ""
+                    ignored   = icons.git.FileIgnored, -- "",
+                    unstaged  = icons.git.FileUnstaged, -- "󰄱",
+                    staged    = icons.git.FileStaged, -- "",
+                    conflict  = icons.git.Merge, -- "",
+                }
+            },
+            -- If you don't want to use these columns, you can set `enabled = false` for each of them individually
+            file_size = {
+                enabled = true,
+                width = 12,          -- width of the column
+                required_width = 64, -- min width of window required to show this column
+            },
+            type = {
+                enabled = true,
+                width = 10,           -- width of the column
+                required_width = 122, -- min width of window required to show this column
+            },
+            last_modified = {
+                enabled = true,
+                width = 20,          -- width of the column
+                required_width = 88, -- min width of window required to show this column
+            },
+            created = {
+                enabled = true,
+                width = 20,           -- width of the column
+                required_width = 110, -- min width of window required to show this column
+            },
+            symlink_target = {
+                enabled = false,
+            },
         },
-        modified = {
-            symbol = "[+]",
-            highlight = "NeoTreeModified",
-        },
-        name = {
-            trailing_slash = false,
-            use_git_status_colors = true,
-            highlight = "NeoTreeFileName",
-        },
-        git_status = {
-            symbols = {
-                -- Change type
-                added     = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
-                modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
-                deleted   = icons.ui.Close, -- this can only be used in the git_status source
-                renamed   = "󰁕", -- this can only be used in the git_status source
-                -- Status type
-                untracked = icons.git.FileUntracked, -- ""
-                ignored   = icons.git.FileIgnored, -- "",
-                unstaged  = icons.git.FileUnstaged, -- "󰄱",
-                staged    = icons.git.FileStaged, -- "",
-                conflict  = icons.git.Merge, -- "",
-            }
-        },
-        -- If you don't want to use these columns, you can set `enabled = false` for each of them individually
-        file_size = {
-            enabled = true,
-            width = 12,          -- width of the column
-            required_width = 64, -- min width of window required to show this column
-        },
-        type = {
-            enabled = true,
-            width = 10,           -- width of the column
-            required_width = 122, -- min width of window required to show this column
-        },
-        last_modified = {
-            enabled = true,
-            width = 20,          -- width of the column
-            required_width = 88, -- min width of window required to show this column
-        },
-        created = {
-            enabled = true,
-            width = 20,           -- width of the column
-            required_width = 110, -- min width of window required to show this column
-        },
-        symlink_target = {
-            enabled = false,
-        },
-    },
         -- A list of functions, each representing a global custom command
         -- that will be available in all sources (if not overridden in `opts[source_name].commands`)
         -- see `:h neo-tree-custom-commands-global`
         commands = {},
         window = {
             position = "left",
-            width = 70,
+            width = 50,
             mapping_options = {
                 noremap = true,
                 nowait = true,
@@ -193,7 +180,7 @@ function M.config()
                 visible = false, -- when true, they will just be displayed differently than normal items
                 hide_dotfiles = false,
                 hide_gitignored = false,
-                hide_hidden = false,     -- only works on Windows for hidden files/directories
+                hide_hidden = false, -- only works on Windows for hidden files/directories
                 hide_by_name = {
                     ".DS_Store",
                     "thumbs.db",
@@ -205,19 +192,19 @@ function M.config()
                     ".venv",
                     ".pytest_cache",
                 },
-                hide_by_pattern = {     -- uses glob style patterns
+                hide_by_pattern = { -- uses glob style patterns
                     --"*.meta",
                     --"*/src/*/tsconfig.json",
                 },
-                always_show = {     -- remains visible even if other settings would normally hide it
+                always_show = { -- remains visible even if other settings would normally hide it
                     --".gitignored",
                 },
-                never_show = {     -- remains hidden even if visible is toggled to true, this overrides always_show
+                never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
                     ".DS_Store",
                     "thumbs.db",
                     "__pycache__",
                 },
-                never_show_by_pattern = {     -- uses glob style patterns
+                never_show_by_pattern = { -- uses glob style patterns
                     --".null-ls_*",
                 },
             },
