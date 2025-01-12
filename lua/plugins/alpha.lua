@@ -11,7 +11,7 @@ function M.config()
     local icons = require "icons"
     local dashboard = require("alpha.themes.dashboard")
 
-    dashboard.section.header.val = M.headers.strange
+    dashboard.section.header.val = M.headers.neovim
 
     dashboard.section.buttons.val = {
         dashboard.button("f", icons.ui.Search .. "  Find file", ":Telescope find_files <cr>"),
