@@ -32,9 +32,29 @@ function M.config()
         sections = {
             lualine_a = { 'mode' },
             lualine_b = { 'branch', 'diff', 'diagnostics' },
-            lualine_c = { 'filename', { "macro_recording", "%S" }, },
-            lualine_x = { 'encoding', 'fileformat', 'filetype' },
-            lualine_y = { 'progress' },
+            lualine_c = {
+                { "macro_recording", "%S" },
+                'filename',
+            },
+            lualine_x = {
+                {
+                    function()
+                        local venv = os.getenv("VIRTUAL_ENV")
+                        return venv and "(" .. icons.code.python .. " " .. vim.fn.fnamemodify(venv, ":t") .. ")" or ""
+                    end,
+                },
+            },
+            lualine_y = {
+                'encoding',
+                'fileformat',
+                'filetype',
+                {
+                    function()
+                        return "Current tab: " .. tostring(vim.fn.tabpagenr())
+                    end
+                },
+                'progress',
+            },
             lualine_z = { 'location' }
         },
         inactive_sections = {

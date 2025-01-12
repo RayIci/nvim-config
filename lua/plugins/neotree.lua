@@ -189,12 +189,13 @@ function M.config()
                     ".virtual_documents",
                     ".git",
                     ".python-version",
-                    ".venv",
                     ".pytest_cache",
                 },
                 hide_by_pattern = { -- uses glob style patterns
                     --"*.meta",
                     --"*/src/*/tsconfig.json",
+                    ".venv*",
+                    ".env*",
                 },
                 always_show = { -- remains visible even if other settings would normally hide it
                     --".gitignored",

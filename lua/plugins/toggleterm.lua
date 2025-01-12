@@ -13,7 +13,7 @@ function M.config()
                 return vim.o.columns * 0.4
             end
         end,
-        open_mapping = "<c-\\>",
+        open_mapping = "<c-t>",
         shade_filetypes = {},
         shade_terminals = true,
         shading_factor = 1,
@@ -25,7 +25,7 @@ function M.config()
     })
 
     map = require "utils".keymap
-    map("n", "<c-\\>", [[<Cmd>ToggleTerm<CR>]], { desc = "Toggle terminal", silent = true, noremap = true })
+    map("n", "<c-t>", ":ToggleTerm<cr>", { desc = "Toggle terminal" })
 
     function _G.set_terminal_keymaps()
         local opts = { buffer = 0 }

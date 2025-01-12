@@ -22,6 +22,11 @@ M.lsp_servers = {
     "lua_ls",                          -- Lua
 }
 
+-- The dap servers that mason will install
+M.dap_servers = {
+    "python"
+}
+
 
 function M.config()
     -- Mason default setup
@@ -32,9 +37,15 @@ function M.config()
     }
 
     -- Mason LSP
-    require("mason-lspconfig").setup {
+    require "mason-lspconfig".setup {
         automatic_installation = true,
         ensure_installed = M.lsp_servers,
+    }
+
+    -- Mason DAP
+    require "mason-nvim-dap".setup {
+        automatic_installation = true,
+        ensure_installed = M.dap_servers,
     }
 end
 

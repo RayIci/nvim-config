@@ -8,15 +8,17 @@ local M = {
 }
 
 function M.config()
+    local icons = require("icons")
+
     require("bufferline").setup {
         options = {
             mode = "buffers", -- "buffers" | "tabs"  set to "tabs" to only show tabpages instead
             themable = true,  -- allows highlight groups to be overriden i.e. sets highlights as default
             numbers = "none", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
-            buffer_close_icon = "✗",
-            close_icon = "✗",
+            buffer_close_icon = icons.ui.Close,
+            close_icon = icons.ui.Close,
             path_components = 1, -- Show only the file name without the directory
-            modified_icon = "●",
+            modified_icon = icons.ui.Dot,
             max_name_length = 30,
             max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
             tab_size = 21,
@@ -33,7 +35,7 @@ function M.config()
             indicator = {
                 style = "none", -- Options: 'icon', 'underline', 'none'
             },
-            icon_pinned = "󰐃",
+            icon_pinned = icons.ui.Pin,
             minimum_padding = 1,
             maximum_padding = 5,
             maximum_length = 15,

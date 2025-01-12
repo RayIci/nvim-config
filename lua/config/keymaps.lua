@@ -82,8 +82,8 @@ add({
     { "]h",               "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.HINT})<CR>",  desc = "Next hint diagnostic" },
 
     -- Diagnostics
-    { "<leader>d",        group = "Diagnostics" },
-    { "<leader>dw",       vim.diagnostic.open_float,                                                           desc = "Open floating message" },
+    { "<leader>D",        group = "Diagnostics" },
+    { "<leader>Dw",       vim.diagnostic.open_float,                                                           desc = "Open floating message" },
 
     -- Stay in indent mode
     { "<",                "<gv",                                                                               desc = "Indent left" },
@@ -194,4 +194,61 @@ add({
     { "<leader>gt", "<cmd>DiffviewToggleFiles<cr>",   desc = "Diffview Toggle Files" },
     { "<leader>gT", "<cmd>DiffviewToggleFiles %<cr>", desc = "Diffview Toggle Files Current File" },
     { "<leader>gl", "<cmd>LazyGit<cr>",               desc = "Open lazy git" }
+})
+
+----------------------------------------------------------------------------------------
+-- DEBUGGER KEYMAPS
+add({
+    { "<leader>d",  group = "Debugger" },
+    { "<leader>db", "<cmd>lua require('dap').toggle_breakpoint()<cr>", desc = "Toggle Breakpoint" },
+    {
+        "<leader>dc",
+        function()
+            require "dap.ext.vscode".json_decode = vim.fn.json_decode
+            require "dap.ext.vscode".load_launchjs(".vscode/launch.json", nil)
+            require "dap".continue()
+        end,
+        desc = "Continue",
+    },
+    { "<leader>dr",  "<cmd>lua require('dap').run()<cr>",                          desc = "Run" },
+    { "<leader>dp",  "<cmd>lua require('dap').pause()<cr>",                        desc = "Pause" },
+    { "<leader>dk",  "<cmd>lua require('dap').terminate()<cr>",                    desc = "Kill" },
+
+    { "<leader>dt",  "<cmd>lua require('nvim-dap-virtual-text').toggle()<cr>",     desc = "Toggle Virtual Text" },
+
+    { "<leader>du",  group = "Debugger Ui" },
+    { "<leader>dut", "<cmd>lua require('dapui').toggle()<cr>",                     desc = "Toggle Ui" },
+    { "<leader>dur", "<cmd>lua require('dapui').open({ reset = true })<cr>",       desc = "Reset Ui" },
+
+    { "<leader>ds",  "<cmd>lua require('dapui').float_element('scopes')<cr>",      desc = "Floating Scopes" },
+    { "<leader>dB",  "<cmd>lua require('dapui').float_element('breakpoints')<cr>", desc = "Floating Breakpoint" },
+    { "<leader>dS",  "<cmd>lua require('dapui').float_element('stacks')<cr>",      desc = "Floating Stacks" },
+    { "<leader>dw",  "<cmd>lua require('dapui').float_element('watches')<cr>",     desc = "Floating Watches" },
+    { "<leader>dR",  "<cmd>lua require('dapui').float_element('repl')<cr>",        desc = "Floating Repl" },
+    { "<leader>de",  "<cmd>lua require('dapui').eval()<cr>",                       desc = "Floating Evaluate" },
+
+    { "<F5>",        require "dap".continue,                                       desc = "Debugger: continue" },
+    { "<F1>",        require "dap".step_into,                                      desc = "Debugger: step into" },
+    { "<F2>",        require "dap".step_over,                                      desc = "Debugger: step over" },
+    { "<F3>",        require "dap".step_out,                                       desc = "Debugger: step out" },
+})
+
+----------------------------------------------------------------------------------------
+-- UNIT TEST KEYMAPS
+add({
+    { "<leader>t",  group = "Test" },
+    { "<leader>tr", "<cmd>lua require('neotest').run.run()<cr>",                   desc = "Run" },
+    { "<leader>tf", "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", desc = "Run File" },
+    { "<leader>td", "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", desc = "Debug Nearest" },
+    { "<leader>tS", "<cmd>lua require('neotest').run.stop()<cr>",                  desc = "Stop" },
+    { "<leader>ta", "<cmd>lua require('neotest').run.attach()<cr>",                desc = "Attach" },
+    {
+        "<leader>tw",
+        "<cmd>lua require('neotest').watch.toggle(vim.fn.expand('%'))<cr>",
+        desc = "Watch File Toggle",
+    },
+    { "<leader>to", "<cmd>lua require('neotest').output.open()<cr>",         desc = "Output Open" },
+    { "<leader>tc", "<cmd>lua require('neotest').output.close()<cr>",        desc = "Output Close" },
+    { "<leader>tO", "<cmd>lua require('neotest').output_panel.toggle()<cr>", desc = "Output Panel Toggle" },
+    { "<leader>ts", "<cmd>lua require('neotest').summary.toggle()<cr>",      desc = "Summary Toggle" },
 })

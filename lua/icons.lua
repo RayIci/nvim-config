@@ -58,6 +58,8 @@ return {
         Merge = "",
     },
     ui = {
+        Dot = "",
+        Pin = "󰐃",
         ArrowCircleDown = "",
         ArrowCircleLeft = "",
         ArrowCircleRight = "",
@@ -161,4 +163,13 @@ return {
         Package = "",
         CircuitBoard = "",
     },
+    code = {
+        python = "",
+    },
+    debugger = {
+        Breakpoint = "●",
+        BreakpointCondition = "●",
+        LogPoint = "◆",
+        DapStopped = "",
+    }
 }
