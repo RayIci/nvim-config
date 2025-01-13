@@ -210,27 +210,28 @@ add({
         end,
         desc = "Continue",
     },
-    { "<leader>dr",  "<cmd>lua require('dap').run()<cr>",                          desc = "Run" },
-    { "<leader>dp",  "<cmd>lua require('dap').pause()<cr>",                        desc = "Pause" },
-    { "<leader>dk",  "<cmd>lua require('dap').terminate()<cr>",                    desc = "Kill" },
+    { "<leader>dr",  "<cmd>lua require('dap').run()<cr>",                                            desc = "Run" },
+    { "<leader>dp",  "<cmd>lua require('dap').pause()<cr>",                                          desc = "Pause" },
+    { "<leader>dk",  "<cmd>lua require('dap').terminate()<cr>",                                      desc = "Kill" },
 
-    { "<leader>dt",  "<cmd>lua require('nvim-dap-virtual-text').toggle()<cr>",     desc = "Toggle Virtual Text" },
+    { "<leader>dt",  "<cmd>lua require('nvim-dap-virtual-text').toggle()<cr>",                       desc = "Toggle Virtual Text" },
 
     { "<leader>du",  group = "Debugger Ui" },
-    { "<leader>dut", "<cmd>lua require('dapui').toggle()<cr>",                     desc = "Toggle Ui" },
-    { "<leader>dur", "<cmd>lua require('dapui').open({ reset = true })<cr>",       desc = "Reset Ui" },
+    { "<leader>dut", "<cmd>lua require('dapui').toggle()<cr>",                                       desc = "Toggle Ui" },
+    { "<leader>dur", "<cmd>lua require('dapui').open({ reset = true })<cr>",                         desc = "Reset Ui" },
 
-    { "<leader>ds",  "<cmd>lua require('dapui').float_element('scopes')<cr>",      desc = "Floating Scopes" },
-    { "<leader>dB",  "<cmd>lua require('dapui').float_element('breakpoints')<cr>", desc = "Floating Breakpoint" },
-    { "<leader>dS",  "<cmd>lua require('dapui').float_element('stacks')<cr>",      desc = "Floating Stacks" },
-    { "<leader>dw",  "<cmd>lua require('dapui').float_element('watches')<cr>",     desc = "Floating Watches" },
-    { "<leader>dR",  "<cmd>lua require('dapui').float_element('repl')<cr>",        desc = "Floating Repl" },
-    { "<leader>de",  "<cmd>lua require('dapui').eval()<cr>",                       desc = "Floating Evaluate" },
+    { "<leader>ds",  "<cmd>lua require('dapui').float_element('scopes', { enter = true })<cr>",      desc = "Floating Scopes" },
+    { "<leader>dS",  "<cmd>lua require('dapui').float_element('stacks', { enter = true })<cr>",      desc = "Floating Stacks" },
+    { "<leader>dw",  "<cmd>lua require('dapui').float_element('watches', { enter = true })<cr>",     desc = "Floating Watches" },
+    { "<leader>dB",  "<cmd>lua require('dapui').float_element('breakpoints', { enter = true })<cr>", desc = "Floating Breakpoint" },
+    { "<leader>dR",  "<cmd>lua require('dapui').float_element('repl', { enter = true })<cr>",        desc = "Floating Repl" },
+    { "<leader>dC",  "<cmd>lua require('dapui').float_element('console', { enter = true })<cr>",     desc = "Floating Console" },
+    { "<leader>de",  "<cmd>lua require('dapui').eval()<cr>",                                         desc = "Floating Evaluate" },
 
-    { "<F5>",        require "dap".continue,                                       desc = "Debugger: continue" },
-    { "<F1>",        require "dap".step_into,                                      desc = "Debugger: step into" },
-    { "<F2>",        require "dap".step_over,                                      desc = "Debugger: step over" },
-    { "<F3>",        require "dap".step_out,                                       desc = "Debugger: step out" },
+    { "<F5>",        require "dap".continue,                                                         desc = "Debugger: continue" },
+    { "<F1>",        require "dap".step_into,                                                        desc = "Debugger: step into" },
+    { "<F2>",        require "dap".step_over,                                                        desc = "Debugger: step over" },
+    { "<F3>",        require "dap".step_out,                                                         desc = "Debugger: step out" },
 })
 
 ----------------------------------------------------------------------------------------
@@ -251,4 +252,11 @@ add({
     { "<leader>tc", "<cmd>lua require('neotest').output.close()<cr>",        desc = "Output Close" },
     { "<leader>tO", "<cmd>lua require('neotest').output_panel.toggle()<cr>", desc = "Output Panel Toggle" },
     { "<leader>ts", "<cmd>lua require('neotest').summary.toggle()<cr>",      desc = "Summary Toggle" },
+})
+
+
+----------------------------------------------------------------------------------------
+-- ZEN MODE KEYMAPS
+add({
+    { "<c-z>", "<cmd>ZenMode<cr>", desc = "Zen mode" }
 })

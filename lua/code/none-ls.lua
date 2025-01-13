@@ -8,7 +8,7 @@ local M = {
 function M.sources(formatting, diagnostics)
     return {
         formatting.prettier,
-        formatting.stylua,
+        -- formatting.stylua,
         formatting.shfmt.with({ args = { "-i", "4" } }),
         formatting.csharpier,
         formatting.rustywind,
@@ -22,7 +22,7 @@ end
 
 function M.config()
     local null_ls = require("null-ls")
-    local formatting = null_ls.builtins.formatting -- to setup formatters
+    local formatting = null_ls.builtins.formatting   -- to setup formatters
     local diagnostics = null_ls.builtins.diagnostics -- to setup linters
 
     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})

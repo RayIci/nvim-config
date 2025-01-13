@@ -50,7 +50,7 @@ function M.config()
                 'filetype',
                 {
                     function()
-                        return "Current tab: " .. tostring(vim.fn.tabpagenr())
+                        return "Current tab: " .. tostring(vim.fn.tabpagenr()) .. "/" .. tostring(vim.fn.tabpagenr('$'))
                     end
                 },
                 'progress',
