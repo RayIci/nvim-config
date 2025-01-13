@@ -22,6 +22,20 @@ M.lsp_servers = {
     "lua_ls",                          -- Lua
 }
 
+-- none-ls packages for diagnostics and formatting
+M.none_ls_servers = {
+    "prettier",     -- ts/js formatter
+    "stylua",       -- lua formatter
+    "eslint_d",     -- ts/js linter
+    "shfmt",        -- Shell formatter
+    "black",        -- Python formatter
+    "isort",        -- Python import sorter
+    "csharpier",    -- C# formatter
+    "clang-format", -- C & C++ formatter
+    "rustywind",    -- tailwind classes organizer
+    "hadolint",     -- Dockerfile linter
+}
+
 -- The dap servers that mason will install
 M.dap_servers = {
     "python"
@@ -41,6 +55,12 @@ function M.config()
         automatic_installation = true,
         ensure_installed = M.lsp_servers,
     }
+
+    -- None ls for diagnostics and formatting
+    require("mason-null-ls").setup({
+        ensure_installed = M.none_ls_servers,
+        automatic_installation = true,
+    })
 
     -- Mason DAP
     require "mason-nvim-dap".setup {
