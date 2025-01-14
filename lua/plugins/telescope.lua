@@ -5,6 +5,12 @@ local M = {
 }
 
 function M.config()
+    local actions = require("telescope.actions")
+    local open_with_trouble = require("trouble.sources.telescope").open
+
+    -- Use this to add more results without clearing the trouble list
+    local add_to_trouble = require("trouble.sources.telescope").add
+
     require("telescope").setup({
         defaults = {
             mappings = {
@@ -15,9 +21,13 @@ function M.config()
                     ["<C-l>"] = require("telescope.actions").select_default,
                     ["<C-v>"] = require("telescope.actions").select_vertical,
                     ["<C-h>"] = require("telescope.actions").select_horizontal,
-                    -- ["<C-t>"] = open_with_trouble,
+                    ["<C-t>"] = open_with_trouble,
+                    ["<C-a>"] = add_to_trouble,
                 },
-                -- n = { ["<C-t>"] = open_with_trouble },
+                n = {
+                    ["<C-t>"] = open_with_trouble,
+                    ["<C-a>"] = add_to_trouble,
+                },
             },
         },
         pickers = {

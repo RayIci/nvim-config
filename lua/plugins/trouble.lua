@@ -8,7 +8,10 @@ local M = {
 }
 
 function M.config()
-    require("trouble").setup({})
+    require("trouble").setup({
+        height = 60,
+        width = 60,
+    })
 end
 
 return M
