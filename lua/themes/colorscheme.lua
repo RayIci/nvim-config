@@ -1,4 +1,4 @@
-local selected_theme = "vscode"
+local selected_theme = "github"
 
 local M = {
     vim.tbl_extend("force", require("themes.all." .. selected_theme), { priority = 1000, lazy = false })
