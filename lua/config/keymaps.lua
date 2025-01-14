@@ -185,15 +185,24 @@ add({
 ----------------------------------------------------------------------------------------
 -- GIT KEYMAPS
 add({
-    { "<leader>g",  group = "Git" },
-    { "<leader>gd", "<cmd>DiffviewOpen<cr>",          desc = "Diffview" },
-    { "<leader>gD", "<cmd>DiffviewClose<cr>",         desc = "Diffview Close" },
-    { "<leader>gf", "<cmd>DiffviewFileHistory<cr>",   desc = "Diffview File History" },
-    { "<leader>gF", "<cmd>DiffviewFileHistory %<cr>", desc = "Diffview File History Current File" },
-    { "<leader>gr", "<cmd>DiffviewRefresh<cr>",       desc = "Diffview Refresh" },
-    { "<leader>gt", "<cmd>DiffviewToggleFiles<cr>",   desc = "Diffview Toggle Files" },
-    { "<leader>gT", "<cmd>DiffviewToggleFiles %<cr>", desc = "Diffview Toggle Files Current File" },
-    { "<leader>gl", "<cmd>LazyGit<cr>",               desc = "Open lazy git" }
+    { "<leader>g",   group = "Git" },
+    { "<leader>gd",  "<cmd>DiffviewOpen<cr>",             desc = "Diffview" },
+    { "<leader>gD",  "<cmd>DiffviewClose<cr>",            desc = "Diffview Close" },
+    { "<leader>gf",  "<cmd>DiffviewFileHistory<cr>",      desc = "Diffview File History" },
+    { "<leader>gF",  "<cmd>DiffviewFileHistory %<cr>",    desc = "Diffview File History Current File" },
+    { "<leader>gr",  "<cmd>DiffviewRefresh<cr>",          desc = "Diffview Refresh" },
+    { "<leader>gt",  "<cmd>DiffviewToggleFiles<cr>",      desc = "Diffview Toggle Files" },
+    { "<leader>gT",  "<cmd>DiffviewToggleFiles %<cr>",    desc = "Diffview Toggle Files Current File" },
+    { "<leader>gl",  "<cmd>LazyGit<cr>",                  desc = "Open lazy git" },
+
+    { "<leader>gc",  group = "Git conflict" },
+    { "<leader>gcc", "<cmd>GitConflictChooseOurs<cr>",    desc = "Select the current changes" },
+    { "<leader>gci", "<cmd>GitConflictChooseTheirs <cr>", desc = "Select the incoming changes" },
+    { "<leader>gcb", "<cmd>GitConflictChooseBoth<cr>",    desc = "GitConflictChooseOurs" },
+    { "<leader>gcN", "<cmd>GitConflictChooseNone<cr>",    desc = "Select none of the changes" },
+    { "<leader>gcn", "<cmd>GitConflictNextConflict<cr>",  desc = "Move to the next conflict" },
+    { "<leader>gcp", "<cmd>GitConflictPrevConflict<cr>",  desc = "Move to the previous conflict" },
+    { "<leader>gcq", "<cmd>GitConflictListQf<cr>",        desc = "Get all conflict to quickfix" },
 })
 
 ----------------------------------------------------------------------------------------
