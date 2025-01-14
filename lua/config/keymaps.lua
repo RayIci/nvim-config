@@ -86,8 +86,8 @@ add({
     { "<leader>Dw",       vim.diagnostic.open_float,                                                           desc = "Open floating message" },
 
     -- Stay in indent mode
-    { "<",                "<gv",                                                                               desc = "Indent left" },
-    { ">",                ">gv",                                                                               desc = "Indent right" },
+    { "<",                "<gv",                                                                               desc = "Indent left",                      mode = "v" },
+    { ">",                ">gv",                                                                               desc = "Indent right",                     mode = "v" },
 
     -- General options
     { "<leader>o",        group = "Options" },
