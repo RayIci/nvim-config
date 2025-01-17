@@ -24,9 +24,10 @@ return {
         "hrsh7th/cmp-path",
     },
     config = function()
-        local cmp = require("cmp") -- See `:help cmp`
-        local luasnip = require("luasnip")
-        luasnip.config.setup({})
+        local cmp = require "cmp" -- See `:help cmp`
+        local luasnip = require "luasnip"
+
+        luasnip.config.setup {}
 
         cmp.setup({
             snippet = {
@@ -38,32 +39,16 @@ return {
             -- Settings for window border style
             window = {
                 completion = {
-                    border = {
-                        { "󱐋", "WarningMsg" },
-                        { "─", "Comment" },
-                        { "╮", "Comment" },
-                        { "│", "Comment" },
-                        { "╯", "Comment" },
-                        { "─", "Comment" },
-                        { "╰", "Comment" },
-                        { "│", "Comment" },
-                    },
+                    border = "rounded",
+                    winhighlight = "Normal:Pmenu,CursorLine:PmenuSel,FloatBorder:FloatBorder,Search:None",
+                    col_offset = -3,
+                    side_padding = 1,
                     scrollbar = false,
-                    winblend = 0,
+                    scrolloff = 8,
                 },
                 documentation = {
-                    border = {
-                        { "󰙎", "DiagnosticHint" },
-                        { "─", "Comment" },
-                        { "╮", "Comment" },
-                        { "│", "Comment" },
-                        { "╯", "Comment" },
-                        { "─", "Comment" },
-                        { "╰", "Comment" },
-                        { "│", "Comment" },
-                    },
-                    scrollbar = true,
-                    winblend = 0,
+                    border = "rounded",
+                    winhighlight = "Normal:Pmenu,FloatBorder:FloatBorder,Search:None",
                 },
             },
 
@@ -84,19 +69,21 @@ return {
 
                 -- Manually trigger a completion from nvim-cmp.
                 ["<C-Space>"] = cmp.mapping.complete({}),
-
+                
                 -- <c-l> will move you to the right of each of the expansion locations.
                 -- <c-h> is similar, except moving you backwards.
-                ["<C-l>"] = cmp.mapping(function()
-                    if luasnip.expand_or_locally_jumpable() then
-                        luasnip.expand_or_jump()
-                    end
-                end, { "i", "s" }),
-                ["<C-h>"] = cmp.mapping(function()
-                    if luasnip.locally_jumpable(-1) then
-                        luasnip.jump(-1)
-                    end
-                end, { "i", "s" }),
+                --
+                -- Jump over the positional completable field of the snippet
+                -- ["<Tab>"] = cmp.mapping(function()
+                --     if luasnip.expand_or_locally_jumpable() then
+                --         luasnip.expand_or_jump()
+                --     end
+                -- end, { "i", "s" }),
+                -- ["<S-Tab>"] = cmp.mapping(function()
+                --     if luasnip.locally_jumpable(-1) then
+                --         luasnip.jump(-1)
+                --     end
+                -- end, { "i", "s" }),
 
                 -- For more advanced Luasnip keymaps https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
             }),
