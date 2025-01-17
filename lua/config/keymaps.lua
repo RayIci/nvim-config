@@ -92,6 +92,7 @@ add({
     -- General options
     { "<leader>o",        group = "Options" },
     { "<leader>ow",       "<cmd>set wrap!<cr>",                                                                desc = "Toggle line wrap" },
+    { "<leader>ob",       require "utils".toggle_nvim_background,                                              desc = "Toggle neovim background" },
 })
 
 ----------------------------------------------------------------------------------------
