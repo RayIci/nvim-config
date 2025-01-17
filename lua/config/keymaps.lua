@@ -152,6 +152,7 @@ add({
     { "<leader>fh",       "<cmd>Telescope help_tags<cr>",  desc = "Help Tags" },
     { "<leader>fn",       "<cmd>Telescope notify<cr>",     desc = "Notifications" },
     { "<leader>fm",       "<cmd>Telescope marks<cr>",      desc = "Marks" },
+    { "<leader>ft",       "<cmd>TodoTelescope<cr>",        desc = "Todos" }
 })
 
 
