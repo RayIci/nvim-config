@@ -167,7 +167,7 @@ add({
 ----------------------------------------------------------------------------------------
 -- DODGE KEYMAPS
 add({
-    { "<leader>D", "<Plug>(doge-generate)", desc = "Docstring Generate" },
+    { "<leader>G", "<Plug>(doge-generate)", desc = "Docstring Generate" },
 })
 
 
