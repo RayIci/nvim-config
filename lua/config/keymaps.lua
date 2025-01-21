@@ -50,8 +50,6 @@ add({
 
     -- Buffers
     { "<leader>b",        group = "Buffers" },
-    { "<tab>",            "<cmd>bnext<cr>",                                                                    desc = "Buffer next" },
-    { "<s-tab>",          "<cmd>bprevious<cr>",                                                                desc = "Buffer previous" },
     { "<leader>bn",       "<cmd>enew<cr>",                                                                     desc = "New" },
 
     -- Tabs
@@ -109,9 +107,11 @@ add({
 ----------------------------------------------------------------------------------------
 -- BUFFERLINE KEYMAPS
 add({
-    { "<C-Left>",   "<cmd>BufferLineMovePrev<cr>", desc = "Buffer Move Previous" },
-    { "<C-Right>",  "<cmd>BufferLineMoveNext<cr>", desc = "Buffer Move Next" },
-    { "<leader>bp", "<cmd>BufferTogglePin<cr>",    desc = "Pin Toggle" },
+    { "<C-Left>",   "<cmd>BufferLineMovePrev<cr>",  desc = "Buffer Move Previous" },
+    { "<C-Right>",  "<cmd>BufferLineMoveNext<cr>",  desc = "Buffer Move Next" },
+    { "<leader>bp", "<cmd>BufferTogglePin<cr>",     desc = "Pin Toggle" },
+    { "<tab>",      "<cmd>BufferLineCycleNext<cr>", desc = "Buffer next" },
+    { "<s-tab>",    "<cmd>BufferLineCyclePrev<cr>", desc = "Buffer previous" },
 })
 
 ----------------------------------------------------------------------------------------
