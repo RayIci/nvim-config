@@ -7,6 +7,9 @@ local add = require("which-key").add
 -- Disable space behaviour in normal and visual mode
 map({ "n", "v" }, "<space>", "<nop>")
 
+-- Keep last yanked when pasting
+map("v", "p", '"_dP', { desc = "Paste" })
+
 ----------------------------------------------------------------------------------------
 -- DEFAULT KEYMAPS
 add({
