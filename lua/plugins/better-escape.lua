@@ -4,8 +4,6 @@ local M = {
 
 function M.config()
     require "better_escape".setup {
-        mapping = { "jj" },
-        timeout = 200,
         clear_empty_lines = false,
     }
 end
