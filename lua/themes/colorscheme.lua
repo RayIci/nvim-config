@@ -1,4 +1,4 @@
-local selected_theme = "onedark"
+local selected_theme = "sonokai"
 
 local M = {
     vim.tbl_extend("force", require("themes.all." .. selected_theme), { priority = 1000, lazy = false })
