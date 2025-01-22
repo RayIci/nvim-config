@@ -4,7 +4,21 @@ local M = {
 
 function M.config()
     require "better_escape".setup {
-        clear_empty_lines = false,
+        timeout = vim.o.timeoutlen,
+        default_mappings = false,
+        mappings = {
+            i = {
+                j = {
+                    -- These can all also be functions
+                    k = "<Esc>",
+                    j = "<Esc>",
+                },
+            },
+            c = {},
+            t = {},
+            v = {},
+            s = {},
+        },
     }
 end
 
