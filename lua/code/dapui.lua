@@ -6,6 +6,28 @@ local M = {
     },
 }
 
+M.default_config = true
+
+function M.toggle_floating_config()
+    M.default_config = not M.default_config
+end
+
+function M.get_floating_config()
+    if M.default_config then
+        return {
+            enter = true,
+            width = vim.o.columns,
+            height = vim.o.lines,
+        }
+    end
+
+    return { enter = true }
+end
+
+function M.open_float(window)
+    require "dapui".float_element(window, M.get_floating_config())
+end
+
 function M.icons_setup()
     local sign = vim.fn.sign_define
     local sethl = vim.api.nvim_set_hl
@@ -34,18 +56,18 @@ function M.config()
     -- Virtual text setup
     require("nvim-dap-virtual-text").setup({})
 
-    dap.listeners.before.attach.dapui_config = function()
-        dapui.open()
-    end
-    dap.listeners.before.launch.dapui_config = function()
-        dapui.open()
-    end
-    dap.listeners.before.event_terminated.dapui_config = function()
-        dapui.close()
-    end
-    dap.listeners.before.event_exited.dapui_config = function()
-        dapui.close()
-    end
+    -- dap.listeners.before.attach.dapui_config = function()
+    --     dapui.open()
+    -- end
+    -- dap.listeners.before.launch.dapui_config = function()
+    --     dapui.open()
+    -- end
+    -- dap.listeners.before.event_terminated.dapui_config = function()
+    --     dapui.close()
+    -- end
+    -- dap.listeners.before.event_exited.dapui_config = function()
+    --     dapui.close()
+    -- end
 
     M.icons_setup()
 
@@ -75,6 +97,8 @@ function M.config()
             mappings = {
                 close = { "q", "<Esc>" },
             },
+            max_height = 0.99,
+            max_width = 0.99,
         },
         windows = {
             indent = 1,

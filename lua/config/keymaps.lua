@@ -227,28 +227,29 @@ add({
         end,
         desc = "Continue",
     },
-    { "<leader>dr", "<cmd>lua require('dap').run()<cr>",                                            desc = "Run" },
-    { "<leader>dp", "<cmd>lua require('dap').pause()<cr>",                                          desc = "Pause" },
-    { "<leader>dk", "<cmd>lua require('dap').terminate()<cr>",                                      desc = "Kill" },
+    { "<leader>dr", "<cmd>lua require('dap').run()<cr>",                            desc = "Run" },
+    { "<leader>dp", "<cmd>lua require('dap').pause()<cr>",                          desc = "Pause" },
+    { "<leader>dk", "<cmd>lua require('dap').terminate()<cr>",                      desc = "Kill" },
 
-    { "<leader>dt", "<cmd>lua require('nvim-dap-virtual-text').toggle()<cr>",                       desc = "Toggle Virtual Text" },
+    { "<leader>dt", "<cmd>lua require('nvim-dap-virtual-text').toggle()<cr>",       desc = "Toggle Virtual Text" },
 
-    { "<leader>ds", "<cmd>lua require('dapui').float_element('scopes', { enter = true })<cr>",      desc = "Floating Scopes" },
-    { "<leader>dS", "<cmd>lua require('dapui').float_element('stacks', { enter = true })<cr>",      desc = "Floating Stacks" },
-    { "<leader>dw", "<cmd>lua require('dapui').float_element('watches', { enter = true })<cr>",     desc = "Floating Watches" },
-    { "<leader>dB", "<cmd>lua require('dapui').float_element('breakpoints', { enter = true })<cr>", desc = "Floating Breakpoint" },
-    { "<leader>dR", "<cmd>lua require('dapui').float_element('repl', { enter = true })<cr>",        desc = "Floating Repl" },
-    { "<leader>dC", "<cmd>lua require('dapui').float_element('console', { enter = true })<cr>",     desc = "Floating Console" },
-    { "<leader>de", "<cmd>lua require('dapui').eval()<cr>",                                         desc = "Floating Evaluate" },
+    { "<leader>ds", "<cmd>lua require('code.dapui').open_float('scopes')<cr>",      desc = "Floating Scopes" },
+    { "<leader>dS", "<cmd>lua require('code.dapui').open_float('stacks')<cr>",      desc = "Floating Stacks" },
+    { "<leader>dw", "<cmd>lua require('code.dapui').open_float('watches')<cr>",     desc = "Floating Watches" },
+    { "<leader>dB", "<cmd>lua require('code.dapui').open_float('breakpoints')<cr>", desc = "Floating Breakpoint" },
+    { "<leader>dE", "<cmd>lua require('code.dapui').open_float('repl')<cr>",        desc = "Floating Repl" },
+    { "<leader>dC", "<cmd>lua require('code.dapui').open_float('console')<cr>",     desc = "Floating Console" },
+    { "<leader>do", require "code.dapui".toggle_floating_config,                    desc = "Toggle floating config" },
+    { "<leader>de", "<cmd>lua require('dapui').eval()<cr>",                         desc = "Floating Evaluate" },
 
-    { "<F5>",       require "dap".continue,                                                         desc = "Debugger: continue" },
-    { "<F1>",       require "dap".step_into,                                                        desc = "Debugger: step into" },
-    { "<F2>",       require "dap".step_over,                                                        desc = "Debugger: step over" },
-    { "<F3>",       require "dap".step_out,                                                         desc = "Debugger: step out" },
+    { "<F5>",       require "dap".continue,                                         desc = "Debugger: continue" },
+    { "<F1>",       require "dap".step_into,                                        desc = "Debugger: step into" },
+    { "<F2>",       require "dap".step_over,                                        desc = "Debugger: step over" },
+    { "<F3>",       require "dap".step_out,                                         desc = "Debugger: step out" },
 
     -- UI keymaps
-    { "<leader>dT", "<cmd>lua require('dapui').toggle()<cr>",                                       desc = "Toggle Ui" },
-    { "<leader>dR", "<cmd>lua require('dapui').open({ reset = true })<cr>",                         desc = "Reset Ui" },
+    { "<leader>dT", "<cmd>lua require('dapui').toggle()<cr>",                       desc = "Toggle Ui" },
+    { "<leader>dR", "<cmd>lua require('dapui').open({ reset = true })<cr>",         desc = "Reset Ui" },
 })
 
 ----------------------------------------------------------------------------------------
