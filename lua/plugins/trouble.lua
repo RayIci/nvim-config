@@ -3,15 +3,19 @@
 
 local M = {
     "folke/trouble.nvim",
-    opts = {}, -- for default options, refer to the configuration section for custom setup.
+    opts = {
+        modes = {
+            symbols = {
+                win = {
+                    type = "split",
+                    relative = "win",
+                    position = "right",
+                    size = 0.4,
+                },
+            },
+        },
+    },
     cmd = "Trouble",
 }
-
-function M.config()
-    require("trouble").setup({
-        height = 60,
-        width = 60,
-    })
-end
 
 return M
