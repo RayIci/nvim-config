@@ -9,7 +9,6 @@ local M = {
 
 function M.config()
     -- Disable the folcolumn color
-    vim.cmd("highlight FoldColumn guibg=NONE guifg=NONE")
 
     local builtin = require "statuscol.builtin"
     local cfg = {
