@@ -13,18 +13,42 @@ function M.config()
 
     require("telescope").setup({
         defaults = {
+            layout_strategy = "vertical",
+            layout_config = {
+                horizontal = {
+                    prompt_position = "top",
+                    preview_width = 0.6,
+                    results_width = 0.8,
+                },
+                vertical = {
+                    mirror = false,
+                    preview_height = 0.4,
+                    results_width = 0.6,
+                },
+                width = 0.9,
+                height = 0.9,
+            },
+            prompt_prefix = "🔍 ",
             mappings = {
                 i = {
                     ["<C-g>"] = "which_key",
                     ["<C-k>"] = require("telescope.actions").move_selection_previous,
                     ["<C-j>"] = require("telescope.actions").move_selection_next,
+
+                    ["<C-n>"] = require('telescope.actions').preview_scrolling_down,
+                    ["<C-p>"] = require('telescope.actions').preview_scrolling_up,
+
                     ["<C-l>"] = require("telescope.actions").select_default,
                     ["<C-v>"] = require("telescope.actions").select_vertical,
                     ["<C-h>"] = require("telescope.actions").select_horizontal,
+
                     ["<C-t>"] = open_with_trouble,
                     ["<C-a>"] = add_to_trouble,
                 },
                 n = {
+                    ["<C-n>"] = require('telescope.actions').preview_scrolling_down,
+                    ["<C-p>"] = require('telescope.actions').preview_scrolling_up,
+
                     ["<C-t>"] = open_with_trouble,
                     ["<C-a>"] = add_to_trouble,
                 },
