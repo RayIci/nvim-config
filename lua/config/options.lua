@@ -1,3 +1,9 @@
+vim.opt.shiftwidth = 2                          -- the number of spaces inserted for each indentation
+vim.opt.tabstop = 2                             -- insert 2 spaces for a tab
+vim.opt.expandtab = true                        -- convert tabs to spaces
+vim.o.autoindent = true                         -- automatically indent
+-- vim.opt.smartindent = true                      -- make indenting smarter again
+
 vim.o.number = true                             -- activate ruler numbers
 vim.o.relativenumber = true                     -- make ruler numbers relative
 
@@ -12,8 +18,6 @@ vim.o.updatetime = 250                          -- Decrease update time (default
 vim.o.timeoutlen = 300                          -- Time to wait for a mapped sequence to complete (in milliseconds) (default: 1000)
 
 vim.opt.numberwidth = 4                         -- set number column width to 2 {default 4}
-vim.o.autoindent = true                         -- automatically indent
-vim.opt.smartindent = true                      -- make indenting smarter again
 vim.opt.ignorecase = true                       -- ignore case in search patterns
 vim.opt.smartcase = true                        -- smart case
 vim.o.scrolloff = 4                             -- Minimal number of screen lines to keep above and below the cursor (default: 0)
@@ -38,9 +42,6 @@ vim.opt.pumblend = 10
 vim.opt.undofile = true                         -- enable persistent undo
 vim.opt.updatetime = 100                        -- faster completion (4000ms default)
 vim.opt.writebackup = false                     -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
-vim.opt.expandtab = true                        -- convert tabs to spaces
-vim.opt.shiftwidth = 2                          -- the number of spaces inserted for each indentation
-vim.opt.tabstop = 2                             -- insert 2 spaces for a tab
 vim.opt.laststatus = 3
 vim.opt.showcmd = false
 vim.opt.ruler = false
