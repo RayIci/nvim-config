@@ -1,4 +1,5 @@
 local themes = {
+    catppuccin = "catppuccin",
     gruvbox = "gruvbox",
     sonokai = "sonokai",
     vscode = "vscode",
