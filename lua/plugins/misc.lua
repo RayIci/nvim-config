@@ -33,6 +33,10 @@ local M = {
         opts = { signs = false },
     },
     {
+        'JoosepAlviste/nvim-ts-context-commentstring',
+        config = true
+    },
+    {
         -- High-performance color highlighter
         "norcalli/nvim-colorizer.lua",
         config = true,
