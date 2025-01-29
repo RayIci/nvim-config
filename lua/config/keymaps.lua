@@ -10,6 +10,10 @@ map({ "n", "v" }, "<space>", "<nop>")
 -- Keep last yanked when pasting
 map("v", "p", '"_dP', { desc = "Paste" })
 
+-- Center next and previous position
+map("n", "<c-o>", "<c-o>zz", { desc = "Prev position"})
+map("n", "<c-i>", "<c-i>zz", { desc = "Next position"})
+
 ----------------------------------------------------------------------------------------
 -- DEFAULT KEYMAPS
 add({
@@ -231,7 +235,7 @@ add({
     { "<leader>dp", "<cmd>lua require('dap').pause()<cr>",                          desc = "Pause" },
     { "<leader>dk", "<cmd>lua require('dap').terminate()<cr>",                      desc = "Kill" },
 
-    { "<leader>dt", "<cmd>lua require('nvim-dap-virtual-text').toggle()<cr>",       desc = "Toggle Virtual Text" },
+    { "<leader>dT", "<cmd>lua require('nvim-dap-virtual-text').toggle()<cr>",       desc = "Toggle Virtual Text" },
 
     { "<leader>ds", "<cmd>lua require('code.dapui').open_float('scopes')<cr>",      desc = "Floating Scopes" },
     { "<leader>dS", "<cmd>lua require('code.dapui').open_float('stacks')<cr>",      desc = "Floating Stacks" },
@@ -248,7 +252,7 @@ add({
     { "<F3>",       require "dap".step_out,                                         desc = "Debugger: step out" },
 
     -- UI keymaps
-    { "<leader>dT", "<cmd>lua require('dapui').toggle()<cr>",                       desc = "Toggle Ui" },
+    { "<leader>dt", "<cmd>lua require('dapui').toggle()<cr>",                       desc = "Toggle Ui" },
     { "<leader>dR", "<cmd>lua require('dapui').open({ reset = true })<cr>",         desc = "Reset Ui" },
 })
 
