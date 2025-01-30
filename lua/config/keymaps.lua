@@ -106,7 +106,7 @@ add({
 ----------------------------------------------------------------------------------------
 -- NEOTREE KEYMAPS
 add({
-    { "<leader>e",  "<cmd>Neotree toggle position=right<cr>",      desc = "Toggle workspace tree" },
+    { "<leader>e",  "<cmd>Neotree toggle<cr>",      desc = "Toggle workspace tree" },
 
     { "<leader>bw", "<cmd>Neotree buffers position=float<cr>",     desc = "Window" },
 
