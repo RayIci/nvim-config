@@ -13,7 +13,7 @@ function M.config()
 
     require("telescope").setup({
         defaults = {
-            layout_strategy = "vertical",
+            layout_strategy = "horizontal",
             layout_config = {
                 horizontal = {
                     prompt_position = "top",
