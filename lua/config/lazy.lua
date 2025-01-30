@@ -21,6 +21,13 @@ require("lazy").setup({
         { import = "code.extra" },
         { import = "themes" },
         { import = "git" },
+        -- Custom plugin import
+        -- {
+        --     dir = "~/.config/nvim/custom-plugins/python-df.nvim",
+        --     config = function()
+        --         require "python-df".setup()
+        --     end
+        -- }
     },
     defaults = {
         lazy = false,
