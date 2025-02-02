@@ -1,3 +1,5 @@
+-- For extra see https://github.com/nvimtools/none-ls-extras.nvim
+
 local M = {
     "nvimtools/none-ls.nvim",
     dependencies = {
