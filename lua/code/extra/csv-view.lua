@@ -4,14 +4,16 @@ local M = {
 
 function M.config()
     require "csvview".setup {
-        display_mode = "border"
+        view = {
+            display_mode = "border"
+        }
     }
 
     require "which-key".add {
         { "-c",  group = "CSV" },
         { "-ct", "<cmd>CsvViewToggle<cr>",  desc = "CSV View toggle" },
-        { "-ct", "<cmd>CsvViewEnable<cr>",  desc = "CSV View enable" },
-        { "-ct", "<cmd>CsvViewDisable<cr>", desc = "CSV View disable" },
+        { "-ce", "<cmd>CsvViewEnable<cr>",  desc = "CSV View enable" },
+        { "-cd", "<cmd>CsvViewDisable<cr>", desc = "CSV View disable" },
     }
 end
 
