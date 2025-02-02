@@ -1,7 +1,10 @@
-return {
+local M = {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
+        "saadparwaiz1/cmp_luasnip",
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-path",
         {
             "L3MON4D3/LuaSnip",
             build = (function()
@@ -19,84 +22,78 @@ return {
                 },
             },
         },
-        "saadparwaiz1/cmp_luasnip",
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-path",
     },
-    config = function()
-        local cmp = require "cmp" -- See `:help cmp`
-        local luasnip = require "luasnip"
-
-        luasnip.config.setup {}
-
-        cmp.setup({
-            snippet = {
-                expand = function(args)
-                    luasnip.lsp_expand(args.body)
-                end,
-            },
-
-            -- Settings for window border style
-            window = {
-                completion = {
-                    border = "rounded",
-                    winhighlight = "Normal:Pmenu,CursorLine:PmenuSel,FloatBorder:FloatBorder,Search:None",
-                    col_offset = -3,
-                    side_padding = 1,
-                    scrollbar = false,
-                    scrolloff = 8,
-                },
-                documentation = {
-                    border = "rounded",
-                    winhighlight = "Normal:Pmenu,FloatBorder:FloatBorder,Search:None",
-                },
-            },
-
-            completion = { completeopt = "menu,menuone,noinsert" },
-
-            -- For understanding these mappings read `:help ins-completion`
-            mapping = cmp.mapping.preset.insert({
-                -- Select the next and previous item
-                ["<C-j>"] = cmp.mapping.select_next_item(),
-                ["<C-k>"] = cmp.mapping.select_prev_item(),
-
-                -- Scroll the documentation window
-                ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-                ["<C-d>"] = cmp.mapping.scroll_docs(4),
-
-                -- Accept ([y]es) the completion.
-                ["<Enter>"] = cmp.mapping.confirm({ select = true }),
-
-                -- Manually trigger a completion from nvim-cmp.
-                ["<C-Space>"] = cmp.mapping.complete({}),
-                
-                -- <c-l> will move you to the right of each of the expansion locations.
-                -- <c-h> is similar, except moving you backwards.
-                --
-                -- Jump over the positional completable field of the snippet
-                -- ["<Tab>"] = cmp.mapping(function()
-                --     if luasnip.expand_or_locally_jumpable() then
-                --         luasnip.expand_or_jump()
-                --     end
-                -- end, { "i", "s" }),
-                -- ["<S-Tab>"] = cmp.mapping(function()
-                --     if luasnip.locally_jumpable(-1) then
-                --         luasnip.jump(-1)
-                --     end
-                -- end, { "i", "s" }),
-
-                -- For more advanced Luasnip keymaps https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
-            }),
-            sources = {
-                {
-                    name = "lazydev",
-                    group_index = 0,
-                },
-                { name = "nvim_lsp" },
-                { name = "luasnip" },
-                { name = "buffer" },
-                { name = "path" },
-            },
-        })
-    end,
 }
+
+function M.get_mappings(cmp)
+    return {
+        -- Select the next and previous item
+        ["<C-j>"] = cmp.mapping.select_next_item(),
+        ["<C-k>"] = cmp.mapping.select_prev_item(),
+
+        -- Scroll the documentation window
+        ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-d>"] = cmp.mapping.scroll_docs(4),
+
+        -- Accept ([y]es) the completion.
+        ["<Enter>"] = cmp.mapping.confirm({ select = true }),
+
+        -- Manually trigger a completion from nvim-cmp.
+        ["<C-Space>"] = cmp.mapping.complete({}),
+
+        -- <c-l> will move you to the right of each of the expansion locations.
+        -- <c-h> is similar, except moving you backwards.
+        --
+        -- Jump over the positional completable field of the snippet
+        -- ["<Tab>"] = cmp.mapping(function()
+        --     if luasnip.expand_or_locally_jumpable() then
+        --         luasnip.expand_or_jump()
+        --     end
+        -- end, { "i", "s" }),
+        -- ["<S-Tab>"] = cmp.mapping(function()
+        --     if luasnip.locally_jumpable(-1) then
+        --         luasnip.jump(-1)
+        --     end
+        -- end, { "i", "s" }),
+
+        -- For more advanced Luasnip keymaps https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
+    }
+end
+
+function M.config()
+    local cmp = require "cmp" -- See `:help cmp`
+    local luasnip = require "luasnip"
+
+    luasnip.config.setup {}
+
+    cmp.setup({
+        snippet = {
+            expand = function(args)
+                luasnip.lsp_expand(args.body)
+            end,
+        },
+
+        -- Settings for window border style
+        window = {
+            completion = cmp.config.window.bordered(),
+            documentation = cmp.config.disable,
+        },
+
+        completion = { completeopt = "menu,menuone,noinsert" },
+
+        -- For understanding these mappings read `:help ins-completion`
+        mapping = cmp.mapping.preset.insert(M.get_mappings(cmp)),
+        sources = {
+            {
+                name = "lazydev",
+                group_index = 0,
+            },
+            { name = "nvim_lsp" },
+            { name = "luasnip" },
+            { name = "buffer" },
+            { name = "path" },
+        },
+    })
+end
+
+return M
