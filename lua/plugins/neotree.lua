@@ -130,7 +130,7 @@ function M.config()
         -- see `:h neo-tree-custom-commands-global`
         commands = {},
         window = {
-            position = "left",
+            position = "right",
             width = 70,
             mapping_options = {
                 noremap = true,
