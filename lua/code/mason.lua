@@ -20,6 +20,7 @@ M.lsp_servers = {
     "docker_compose_language_service", -- Docker compose
     "dockerls",                        -- Docker
     "lua_ls",                          -- Lua
+    "sqlls",                           -- SQL
 }
 
 -- none-ls packages for diagnostics and formatting
@@ -34,6 +35,8 @@ M.none_ls_servers = {
     "clang-format", -- C & C++ formatter
     "rustywind",    -- tailwind classes organizer
     "hadolint",     -- Dockerfile linter
+    "sqlfluff",     -- SQL linter
+    "sqlfmt",       -- SQL formatter
 }
 
 -- The dap servers that mason will install

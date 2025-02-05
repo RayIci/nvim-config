@@ -17,8 +17,15 @@ function M.sources(formatting, diagnostics)
         formatting.black,
         formatting.isort.with({ extra_args = { "--profile", "black" } }),
         formatting.clang_format,
+        formatting.sqlfmt,
 
         diagnostics.hadolint,
+        diagnostics.sqlfluff.with({
+            extra_args = {
+                "--dialect", "postgres",
+                "--exclude-rules", "layout.indent,layout.cte_bracket,layout.select_targets,layout.spacing",
+            },
+        }),
     }
 end
 
