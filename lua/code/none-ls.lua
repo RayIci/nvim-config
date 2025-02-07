@@ -7,7 +7,7 @@ local M = {
     },
 }
 
-function M.sources(formatting, diagnostics)
+function M.sources(formatting, diagnostics, code_actions)
     return {
         formatting.prettier,
         -- formatting.stylua,
@@ -33,12 +33,13 @@ function M.config()
     local null_ls = require("null-ls")
     local formatting = null_ls.builtins.formatting   -- to setup formatters
     local diagnostics = null_ls.builtins.diagnostics -- to setup linters
+    local code_actions = null_ls.builtins.code_actions
 
     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
     null_ls.setup({
         debug = true,
-        sources = M.sources(formatting, diagnostics),
+        sources = M.sources(formatting, diagnostics, code_actions),
         on_attach = function(client, bufnr)
             if client.supports_method("textDocument/formatting") then
                 vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
