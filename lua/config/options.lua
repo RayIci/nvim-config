@@ -2,6 +2,7 @@ vim.opt.shiftwidth = 2                          -- the number of spaces inserted
 vim.opt.tabstop = 2                             -- insert 2 spaces for a tab
 vim.opt.expandtab = true                        -- convert tabs to spaces
 vim.o.autoindent = true                         -- automatically indent
+vim.opt.formatoptions:remove({ "c", "r", "o" }) -- Don't insert the current comment leader automatically for auto-wrapping comments using 'textwidth', hitting <Enter> in insert mode, or hitting 'o' or 'O' in normal mode. (default: 'croql')
 -- vim.opt.smartindent = true                      -- make indenting smarter again
 
 vim.o.number = true                             -- activate ruler numbers
@@ -55,7 +56,6 @@ vim.opt.title = true
 vim.opt.titlelen = 0                                  -- do not shorten title
 vim.opt.shortmess:append("c")                         -- Don't give |ins-completion-menu| messages (default: does not include 'c')
 vim.opt.iskeyword:append("-")                         -- Hyphenated words recognized by searches (default: does not include '-')
-vim.opt.formatoptions:remove({ "c", "r", "o" })       -- Don't insert the current comment leader automatically for auto-wrapping comments using 'textwidth', hitting <Enter> in insert mode, or hitting 'o' or 'O' in normal mode. (default: 'croql')
 vim.opt.runtimepath:remove("/usr/share/vim/vimfiles") -- Separate Vim plugins from Neovim in case Vim still in use (default: includes this path if Vim is installed)
 
 vim.g.netrw_banner = 0
