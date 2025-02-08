@@ -11,8 +11,8 @@ map({ "n", "v" }, "<space>", "<nop>")
 map("v", "p", '"_dP', { desc = "Paste" })
 
 -- Center next and previous position
-map("n", "<c-o>", "<c-o>zz", { desc = "Prev position"})
-map("n", "<c-i>", "<c-i>zz", { desc = "Next position"})
+map("n", "<c-o>", "<c-o>zz", { desc = "Prev position" })
+map("n", "<c-i>", "<c-i>zz", { desc = "Next position" })
 
 ----------------------------------------------------------------------------------------
 -- DEFAULT KEYMAPS
@@ -106,7 +106,7 @@ add({
 ----------------------------------------------------------------------------------------
 -- NEOTREE KEYMAPS
 add({
-    { "<leader>e",  "<cmd>Neotree toggle<cr>",      desc = "Toggle workspace tree" },
+    { "<leader>e",  "<cmd>Neotree toggle<cr>",                     desc = "Toggle workspace tree" },
 
     { "<leader>bw", "<cmd>Neotree buffers position=float<cr>",     desc = "Window" },
 
@@ -164,6 +164,16 @@ add({
     { "<leader>fn",       "<cmd>Telescope notify<cr>",     desc = "Notifications" },
     { "<leader>fm",       "<cmd>Telescope marks<cr>",      desc = "Marks" },
     { "<leader>ft",       "<cmd>TodoTelescope<cr>",        desc = "Todos" }
+})
+
+
+----------------------------------------------------------------------------------------
+-- NOTIFY KEYMAPS
+add({
+    { "<leader>n",  group = "Notifications" },
+    { "<leader>nf", "<cmd>Telescope notify<cr>",     desc = "Show notifications" },
+    { "<leader>nx", require("notify").dismiss,       desc = "Dismiss notifications" },
+    { "<leader>nh", require("notify").clear_history, desc = "Clear history" },
 })
 
 
