@@ -52,6 +52,14 @@ function M.get_mappings(cmp, luasnip)
         -- Abort
         ["<C-a>"] = cmp.mapping.abort(),
 
+        -- Open signature help and close cmp popup
+        ["<C-s>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.abort()
+            end
+            vim.lsp.buf.signature_help()
+        end, { "i", "s" }),
+
         -- Jump over the positional completable field of the snippet
         ["<C-l>"] = cmp.mapping(function()
             if luasnip.expand_or_locally_jumpable() then
