@@ -292,3 +292,10 @@ add({
 add({
     { "<c-z>", "<cmd>ZenMode<cr>", desc = "Zen mode" }
 })
+
+
+----------------------------------------------------------------------------------------
+-- AUTO SESSIONS KEYMAPS
+add({
+    { "<leader>s", require "auto-session.session-lens".search_session,    desc = "Search sessions" }
+})
