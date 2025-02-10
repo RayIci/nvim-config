@@ -86,7 +86,16 @@ function M.get_cmdline_mappings(cmp)
             end
         end, { "c" }),
 
-        ["<Enter>"] = cmp.mapping(function(fallback)
+
+        ["<C-a>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.abort()
+            else
+                fallback()
+            end
+        end, { "c" }),
+
+        ["<C-y>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.confirm()
             else
@@ -137,7 +146,15 @@ function M.config()
 
     -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
     cmp.setup.cmdline(':', {
-        mapping = M.get_cmdline_mappings(cmp),
+        mapping = vim.tbl_extend("force", M.get_cmdline_mappings(cmp), {
+            ["<Enter>"] = cmp.mapping(function(fallback)
+                if cmp.visible() then
+                    cmp.confirm()
+                else
+                    fallback()
+                end
+            end, { "c" }),
+        }),
         sources = {
             { name = 'path' },
             { name = 'cmdline' },
