@@ -86,7 +86,13 @@ function M.get_cmdline_mappings(cmp)
             end
         end, { "c" }),
 
-        ["<Enter>"] = cmp.mapping.confirm({ select = true }),
+        ["<Enter>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.confirm()
+            else
+                fallback()
+            end
+        end, { "c" }),
     }
 end
 
