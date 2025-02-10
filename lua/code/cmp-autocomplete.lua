@@ -1,10 +1,18 @@
 local M = {
     "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
     dependencies = {
-        "saadparwaiz1/cmp_luasnip",
+        -- other dependencies
+        "neovim/nvim-lspconfig",
+        "github/copilot.vim",
+
+        -- cmp dependecies
         "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
+        "hrsh7th/cmp-cmdline",
+
+        -- luasnip engine dependencies
+        "saadparwaiz1/cmp_luasnip",
         {
             "L3MON4D3/LuaSnip",
             build = (function()
@@ -25,7 +33,7 @@ local M = {
     },
 }
 
-function M.get_mappings(cmp)
+function M.get_mappings(cmp, luasnip)
     return {
         -- Select the next and previous item
         ["<C-j>"] = cmp.mapping.select_next_item(),
@@ -41,22 +49,44 @@ function M.get_mappings(cmp)
         -- Manually trigger a completion from nvim-cmp.
         ["<C-Space>"] = cmp.mapping.complete({}),
 
-        -- <c-l> will move you to the right of each of the expansion locations.
-        -- <c-h> is similar, except moving you backwards.
-        --
+        -- Abort
+        ["<C-a>"] = cmp.mapping.abort(),
+
         -- Jump over the positional completable field of the snippet
-        -- ["<Tab>"] = cmp.mapping(function()
-        --     if luasnip.expand_or_locally_jumpable() then
-        --         luasnip.expand_or_jump()
-        --     end
-        -- end, { "i", "s" }),
-        -- ["<S-Tab>"] = cmp.mapping(function()
-        --     if luasnip.locally_jumpable(-1) then
-        --         luasnip.jump(-1)
-        --     end
-        -- end, { "i", "s" }),
+        ["<C-l>"] = cmp.mapping(function()
+            if luasnip.expand_or_locally_jumpable() then
+                luasnip.expand_or_jump()
+            end
+        end, { "i", "s" }),
+        ["<C-h>"] = cmp.mapping(function()
+            if luasnip.locally_jumpable(-1) then
+                luasnip.jump(-1)
+            end
+        end, { "i", "s" }),
 
         -- For more advanced Luasnip keymaps https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
+    }
+end
+
+function M.get_cmdline_mappings(cmp)
+    return {
+        ["<C-j>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            else
+                fallback()
+            end
+        end, { "c" }),
+
+        ["<C-k>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            else
+                fallback()
+            end
+        end, { "c" }),
+
+        ["<Enter>"] = cmp.mapping.confirm({ select = true }),
     }
 end
 
@@ -82,17 +112,31 @@ function M.config()
         completion = { completeopt = "menu,menuone,noinsert" },
 
         -- For understanding these mappings read `:help ins-completion`
-        mapping = cmp.mapping.preset.insert(M.get_mappings(cmp)),
+        mapping = cmp.mapping.preset.insert(M.get_mappings(cmp, luasnip)),
         sources = {
-            {
-                name = "lazydev",
-                group_index = 0,
-            },
             { name = "nvim_lsp" },
             { name = "luasnip" },
             { name = "buffer" },
             { name = "path" },
         },
+    })
+
+    -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+    cmp.setup.cmdline({ '/', '?' }, {
+        mapping = M.get_cmdline_mappings(cmp),
+        sources = {
+            { name = 'buffer' }
+        }
+    })
+
+    -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+    cmp.setup.cmdline(':', {
+        mapping = M.get_cmdline_mappings(cmp),
+        sources = {
+            { name = 'path' },
+            { name = 'cmdline' },
+        },
+        matching = { disallow_symbol_nonprefix_matching = false }
     })
 end
 
