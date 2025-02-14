@@ -1,7 +1,10 @@
 local M = {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.8',
-    dependencies = { 'nvim-lua/plenary.nvim' }
+    dependencies = {
+        'nvim-lua/plenary.nvim',
+        'scottmckendry/telescope-resession.nvim'
+    }
 }
 
 function M.config()
@@ -65,6 +68,12 @@ function M.config()
             additional_args = function(_)
                 return { "--hidden" }
             end,
+        },
+        extensions = {
+            resession = {
+                prompt_title = "Find Sessions", -- telescope prompt title
+                dir = "session",                -- directory where resession stores sessions
+            },
         },
     })
 end
