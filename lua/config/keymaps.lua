@@ -18,86 +18,88 @@ map("n", "<c-i>", "<c-i>zz", { desc = "Next position" })
 -- DEFAULT KEYMAPS
 add({
     -- File save
-    { "<c-s>",           "<cmd>w<cr>",                                                                        desc = "Save file" },
-    { "<c-a>",           "<cmd>noautocmd w<cr>",                                                              desc = "Save without formatting" },
+    { "<c-s>",            "<cmd>w<cr>",                                                                        desc = "Save file" },
+    { "<c-a>",            "<cmd>noautocmd w<cr>",                                                              desc = "Save without formatting" },
 
     -- Deletion
-    { "x",               '"_x',                                                                               desc = "Delete single char (no buff save)" },
+    { "x",                '"_x',                                                                               desc = "Delete single char (no buff save)" },
 
     -- Vertical scroll and center
-    { "<c-d>",           "<c-d>zz",                                                                           desc = "Scroll down" },
-    { "<c-u>",           "<c-u>zz",                                                                           desc = "Scroll up" },
+    { "<c-d>",            "<c-d>zz",                                                                           desc = "Scroll down" },
+    { "<c-u>",            "<c-u>zz",                                                                           desc = "Scroll up" },
 
     -- Find and center
-    { "n",               "nzzzv",                                                                             desc = "Find next" },
-    { "N",               "Nzzzv",                                                                             desc = "Find previous" },
+    { "n",                "nzzzv",                                                                             desc = "Find next" },
+    { "N",                "Nzzzv",                                                                             desc = "Find previous" },
 
     -- Remove find
-    { "<c-x>",           "<cmd>noh<cr>",                                                                      desc = "Clear find" },
+    { "<c-x>",            "<cmd>noh<cr>",                                                                      desc = "Clear find" },
 
     -- Windows management
-    { "<leader>v",       "<c-w>v",                                                                            desc = "Split window vertically" },
-    { "<leader>h",       "<c-w>s",                                                                            desc = "Split window hrizontally" },
-    { "<leader>=",       "<c-w>=",                                                                            desc = "Split window reset Size" },
+    { "<leader>v",        "<c-w>v",                                                                            desc = "Split window vertically" },
+    { "<leader>h",        "<c-w>s",                                                                            desc = "Split window hrizontally" },
+    { "<leader>=",        "<c-w>=",                                                                            desc = "Split window reset Size" },
 
     -- Move between windows
-    { "<c-h>",           "<cmd>wincmd h<cr>",                                                                 desc = "Move on left window" },
-    { "<c-j>",           "<cmd>wincmd j<cr>",                                                                 desc = "Move on bottom window" },
-    { "<c-k>",           "<cmd>wincmd k<cr>",                                                                 desc = "Move on up window" },
-    { "<c-l>",           "<cmd>wincmd l<cr>",                                                                 desc = "Move on right window" },
+    { "<c-h>",            "<cmd>wincmd h<cr>",                                                                 desc = "Move on left window" },
+    { "<c-j>",            "<cmd>wincmd j<cr>",                                                                 desc = "Move on bottom window" },
+    { "<c-k>",            "<cmd>wincmd k<cr>",                                                                 desc = "Move on up window" },
+    { "<c-l>",            "<cmd>wincmd l<cr>",                                                                 desc = "Move on right window" },
 
     -- Move code line Up, Down
-    { "J",               "<cmd>m .+1<cr>==",                                                                  desc = "Move line up" },
-    { "K",               "<cmd>m .-2<cr>==",                                                                  desc = "Move line down" },
-    { "J",               ":m '> +1<cr>gv=gv",                                                                 desc = "Move line up",                     mode = "v" },
-    { "K",               ":m '< -2<cr>gv=gv",                                                                 desc = "Move line down",                   mode = "v" },
+    { "J",                "<cmd>m .+1<cr>==",                                                                  desc = "Move line up" },
+    { "K",                "<cmd>m .-2<cr>==",                                                                  desc = "Move line down" },
+    { "J",                ":m '> +1<cr>gv=gv",                                                                 desc = "Move line up",                     mode = "v" },
+    { "K",                ":m '< -2<cr>gv=gv",                                                                 desc = "Move line down",                   mode = "v" },
 
     -- Resize with arrows
-    { "<Up>",            [[<cmd>horizontal resize +5<cr>]],                                                   desc = "Resize horizontal (-)" },
-    { "<Down>",          [[<cmd>horizontal resize -5<cr>]],                                                   desc = "Resize horizontal (+)" },
-    { "<Left>",          [[<cmd>vertical resize +2<cr>]],                                                     desc = "Resize vertical (+)" },
-    { "<Right>",         [[<cmd>vertical resize -2<cr>]],                                                     desc = "Resize vertical (-)" },
+    { "<Up>",             [[<cmd>horizontal resize +5<cr>]],                                                   desc = "Resize horizontal (-)" },
+    { "<Down>",           [[<cmd>horizontal resize -5<cr>]],                                                   desc = "Resize horizontal (+)" },
+    { "<Left>",           [[<cmd>vertical resize +2<cr>]],                                                     desc = "Resize vertical (+)" },
+    { "<Right>",          [[<cmd>vertical resize -2<cr>]],                                                     desc = "Resize vertical (-)" },
 
     -- Buffers
-    { "<leader>b",       group = "Buffers" },
-    { "<leader>bn",      "<cmd>enew<cr>",                                                                     desc = "New" },
+    { "<leader>b",        group = "Buffers" },
+    { "<leader>bn",       "<cmd>enew<cr>",                                                                     desc = "New" },
 
     -- Tabs
-    { "<leader>j",       group = "Tabs" },
-    { "<leader>jn",      "<cmd>tabnew<cr>",                                                                   desc = "New" },
-    { "<leader>js",      "<cmd>tab split<cr>",                                                                desc = "Split" },
-    { "<leader><tab>",   "<cmd>tabn<cr>",                                                                     desc = "Tab next" },
-    { "<leader><S-tab>", "<cmd>tabp<cr>",                                                                     desc = "Tab previous" },
+    { "<leader>j",        group = "Tabs" },
+    { "<leader>jn",       "<cmd>tabnew<cr>",                                                                   desc = "New" },
+    { "<leader>j<Tab>",   "<cmd>tabn<cr>",                                                                     desc = "Next" },
+    { "<leader>j<S-Tab>", "<cmd>tabp<cr>",                                                                     desc = "Previous" },
+    { "<leader>js",       "<cmd>tab split<cr>",                                                                desc = "Split" },
 
     -- Close keys
-    { "<leader>x",       group = "Close" },
-    { "<leader>xs",      "<cmd>close<CR>",                                                                    desc = "Split close" },
-    { "<leader>xj",      "<cmd>tabclose<cr>",                                                                 desc = "Tab close" },
+    { "<leader>x",        group = "Close" },
+    -- { "<leader>xf",       ":Bdelete!<cr>",                                                                     desc = "Buffer close force (no save)" },
+    -- { "<leader>xa",       ":bufdo :Bdelete<cr>",                                                               desc = "Buffer close all" },
+    { "<leader>xs",       "<cmd>close<CR>",                                                                    desc = "Split close" },
+    { "<leader>xj",       "<cmd>tabclose<cr>",                                                                 desc = "Tab close" },
 
     -- Diagnostics navigation
-    { "[d",              vim.diagnostic.goto_prev,                                                            desc = "Go to previous diagnostic message" },
-    { "]d",              vim.diagnostic.goto_next,                                                            desc = "Go to next diagnostic message" },
-    { "[e",              "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>", desc = "Prev error diagnostic" },
-    { "]e",              "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>", desc = "Next error diagnostic" },
-    { "[w",              "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.WARN})<CR>",  desc = "Prev warning diagnostic" },
-    { "]w",              "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.WARN})<CR>",  desc = "Next warning diagnostic" },
-    { "[i",              "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.INFO})<CR>",  desc = "Prev info diagnostic" },
-    { "]i",              "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.INFO})<CR>",  desc = "Next info diagnostic" },
-    { "[h",              "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.HINT})<CR>",  desc = "Prev hint diagnostic" },
-    { "]h",              "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.HINT})<CR>",  desc = "Next hint diagnostic" },
+    { "[d",               vim.diagnostic.goto_prev,                                                            desc = "Go to previous diagnostic message" },
+    { "]d",               vim.diagnostic.goto_next,                                                            desc = "Go to next diagnostic message" },
+    { "[e",               "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>", desc = "Prev error diagnostic" },
+    { "]e",               "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>", desc = "Next error diagnostic" },
+    { "[w",               "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.WARN})<CR>",  desc = "Prev warning diagnostic" },
+    { "]w",               "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.WARN})<CR>",  desc = "Next warning diagnostic" },
+    { "[i",               "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.INFO})<CR>",  desc = "Prev info diagnostic" },
+    { "]i",               "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.INFO})<CR>",  desc = "Next info diagnostic" },
+    { "[h",               "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.HINT})<CR>",  desc = "Prev hint diagnostic" },
+    { "]h",               "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.HINT})<CR>",  desc = "Next hint diagnostic" },
 
     -- Diagnostics
-    { "<leader>D",       group = "Diagnostics" },
-    { "<leader>Dw",      vim.diagnostic.open_float,                                                           desc = "Open floating message" },
+    { "<leader>D",        group = "Diagnostics" },
+    { "<leader>Dw",       vim.diagnostic.open_float,                                                           desc = "Open floating message" },
 
     -- Stay in indent mode
-    { "<",               "<gv",                                                                               desc = "Indent left",                      mode = "v" },
-    { ">",               ">gv",                                                                               desc = "Indent right",                     mode = "v" },
+    { "<",                "<gv",                                                                               desc = "Indent left",                      mode = "v" },
+    { ">",                ">gv",                                                                               desc = "Indent right",                     mode = "v" },
 
     -- General options
-    { "<leader>o",       group = "Options" },
-    { "<leader>ow",      "<cmd>set wrap!<cr>",                                                                desc = "Toggle line wrap" },
-    { "<leader>ob",      require "utils".toggle_nvim_background,                                              desc = "Toggle neovim background" },
+    { "<leader>o",        group = "Options" },
+    { "<leader>ow",       "<cmd>set wrap!<cr>",                                                                desc = "Toggle line wrap" },
+    { "<leader>ob",       require "utils".toggle_nvim_background,                                              desc = "Toggle neovim background" },
 })
 
 ----------------------------------------------------------------------------------------
@@ -304,19 +306,7 @@ add({
 
 
 ----------------------------------------------------------------------------------------
--- RESESSION KEYMAPS
+-- AUTO SESSIONS KEYMAPS
 add({
-    { "<leader>s",  group = "Session" },
-    { "<leader>ss", "<cmd>Telescope resession<cr>",  desc = "Search sessions telescope" },
-    { "<leader>sS", require "resession".save,  desc = "Search sessions" },
-    { "<leader>sl", require "resession".load,  desc = "Search load" },
-    { "<leader>sd", require "resession".delete, desc = "Search delete" },
-})
-
-
-----------------------------------------------------------------------------------------
--- SCOPES KEYMAPS
-add({
-    { "<leader>S", group = "Scopes" },
-    { "<leader>b", "<cmd>Telescope scope buffers<cr>", desc = "Search sessions" },
+    { "<leader>s", require "auto-session.session-lens".search_session, desc = "Search sessions" }
 })

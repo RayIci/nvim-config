@@ -68,7 +68,7 @@ function M.config()
             button = icons.ui.BoldClose,
             -- Enables / disables diagnostic symbols
             diagnostics = {
-                [vim.diagnostic.severity.ERROR] = { enabled = true, icon = icons.diagnostics.Error },
+                [vim.diagnostic.severity.ERROR] = { enabled = true, icon = 'ﬀ' },
                 [vim.diagnostic.severity.WARN] = { enabled = false },
                 [vim.diagnostic.severity.INFO] = { enabled = false },
                 [vim.diagnostic.severity.HINT] = { enabled = true },
@@ -102,19 +102,6 @@ function M.config()
             -- Configure the icons on the bufferline based on the visibility of a buffer.
             -- Supports all the base icon options, plus `modified` and `pinned`.
             inactive = { button = icons.ui.BoldClose },
-        },
-
-        hooks = {
-            -- Scope.nvim integration
-            pre_tab_leave = function()
-                vim.api.nvim_exec_autocmds('User', { pattern = 'ScopeTabLeavePre' })
-                -- [other statements]
-            end,
-
-            post_tab_enter = function()
-                vim.api.nvim_exec_autocmds('User', { pattern = 'ScopeTabEnterPost' })
-                -- [other statements]
-            end,
         },
     }
     vim.api.nvim_set_hl(0, "BufferInactive", { link = "BufferCurrent" })
