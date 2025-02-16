@@ -65,8 +65,8 @@ add({
     -- Tabs
     { "<leader>j",        group = "Tabs" },
     { "<leader>jn",       "<cmd>tabnew<cr>",                                                                   desc = "New" },
-    { "<leader>j<Tab>",   "<cmd>tabn<cr>",                                                                     desc = "Next" },
-    { "<leader>j<S-Tab>", "<cmd>tabp<cr>",                                                                     desc = "Previous" },
+    { "<leader><Tab>",   "<cmd>tabn<cr>",                                                                     desc = "Next" },
+    { "<leader><S-Tab>", "<cmd>tabp<cr>",                                                                     desc = "Previous" },
     { "<leader>js",       "<cmd>tab split<cr>",                                                                desc = "Split" },
 
     -- Close keys
