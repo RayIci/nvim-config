@@ -4,7 +4,9 @@ local M = {
 }
 
 function M.config()
-    require "git-conflict".setup {}
+    require "git-conflict".setup {
+        default_mappings = false
+    }
 end
 
 return M
