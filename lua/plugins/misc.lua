@@ -1,5 +1,9 @@
 local M = {
     {
+        -- Pretty quick list fix
+        "yorickpeterse/nvim-pqf"
+    },
+    {
         -- Tmux & split window navigation
         "christoomey/vim-tmux-navigator",
     },
