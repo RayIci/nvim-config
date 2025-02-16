@@ -71,8 +71,9 @@ add({
 
     -- Close keys
     { "<leader>x",        group = "Close" },
-    -- { "<leader>xf",       ":Bdelete!<cr>",                                                                     desc = "Buffer close force (no save)" },
-    -- { "<leader>xa",       ":bufdo :Bdelete<cr>",                                                               desc = "Buffer close all" },
+    { "<leader>xw",       ":Bdelete<cr>",                                                                      desc = "Buffer close" },
+    { "<leader>xf",       ":Bdelete!<cr>",                                                                     desc = "Buffer close force (no save)" },
+    { "<leader>xa",       ":bufdo :Bdelete<cr>",                                                               desc = "Buffer close all" },
     { "<leader>xs",       "<cmd>close<CR>",                                                                    desc = "Split close" },
     { "<leader>xj",       "<cmd>tabclose<cr>",                                                                 desc = "Tab close" },
 
@@ -114,25 +115,13 @@ add({
 })
 
 ----------------------------------------------------------------------------------------
--- BAR BAR KEYMAPS
+-- BUFFERLINE KEYMAPS
 add({
-    { "<C-Left>",    "<cmd>BufferMovePrevious<cr>",        desc = "Buffer Move Previous" },
-    { "<C-Right>",   "<cmd>BufferMoveNext<cr>",            desc = "Buffer Move Next" },
-    { "<tab>",       "<cmd>BufferNext<cr>",                desc = "Buffer next" },
-    { "<s-tab>",     "<cmd>BufferPrevious<cr>",            desc = "Buffer previous" },
-    { "<leader>bp",  "<cmd>BufferPin<cr>",                 desc = "Pin Toggle" },
-    { "<leader>br",  "<cmd>BufferRestore<cr>",             desc = "Pin Toggle" },
-    { "<leader>xw",  "<cmd>BufferClose<cr>",               desc = "Close buffer" },
-    { "<leader>xf",  "<cmd>BufferClose!<cr>",              desc = "Close all buffer" },
-    { "<leader>xa",  "<cmd>BufferCloseAllButCurrent<cr>",  desc = "Close all buffers but current" },
-    { "<leader>xA",  "<cmd>%bd<cr>",                       desc = "Close all buffers" },
-
-    { "<leader>bo",  group = "Buffer order" },
-    { "<leader>bon", "<cmd>BufferOrderByBufferNumber<cr>", desc = "By number" },
-    { "<leader>bon", "<cmd>BufferOrderByName<cr>",         desc = "By name" },
-    { "<leader>bon", "<cmd>BufferOrderByDirectory<cr>",    desc = "By directory" },
-    { "<leader>bon", "<cmd>BufferOrderByLanguage<cr>",     desc = "By language" },
-    { "<leader>bon", "<cmd>BufferOrderByWindowNumber<cr>", desc = "By window number" },
+    { "<C-Left>",   "<cmd>BufferLineMovePrev<cr>",  desc = "Buffer Move Previous" },
+    { "<C-Right>",  "<cmd>BufferLineMoveNext<cr>",  desc = "Buffer Move Next" },
+    { "<leader>bp", "<cmd>BufferTogglePin<cr>",     desc = "Pin Toggle" },
+    { "<tab>",      "<cmd>BufferLineCycleNext<cr>", desc = "Buffer next" },
+    { "<s-tab>",    "<cmd>BufferLineCyclePrev<cr>", desc = "Buffer previous" },
 })
 
 ----------------------------------------------------------------------------------------
@@ -308,5 +297,5 @@ add({
 ----------------------------------------------------------------------------------------
 -- AUTO SESSIONS KEYMAPS
 add({
-    { "<leader>s", require "auto-session.session-lens".search_session, desc = "Search sessions" }
+    { "<leader>s", require "auto-session.session-lens".search_session,    desc = "Search sessions" }
 })
