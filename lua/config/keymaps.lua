@@ -235,7 +235,13 @@ add({
 -- DEBUGGER KEYMAPS
 add({
     { "<leader>d",  group = "Debugger" },
-    { "<leader>db", "<cmd>lua require('dap').toggle_breakpoint()<cr>", desc = "Toggle Breakpoint" },
+    { "<leader>db", "<cmd>PBToggleBreakpoint<cr>",         desc = "Breakpoint toggle" },
+    { "<leader>dl", "<cmd>PBSetLogPoint<cr>",              desc = "Brakepoint log" },
+    { "<leader>dj", "<cmd>PBSetConditionalBreakpoint<cr>", desc = "Brakepoint conditional" },
+    { "<leader>dx", "<cmd>PBClearAllBreakpoints<cr>",      desc = "Brakepoint clear all" },
+    { "<leader>dn", require('goto-breakpoints').next,      desc = "Brakepoint next" },
+    { "<leader>dN", require('goto-breakpoints').prev,      desc = "Brakepoint prev" },
+    { "<leader>dy", require('goto-breakpoints').stopped,   desc = "Brakepoint stopped" },
     {
         "<leader>dc",
         function()
