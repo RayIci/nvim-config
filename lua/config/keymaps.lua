@@ -14,6 +14,9 @@ map("v", "p", '"_dP', { desc = "Paste" })
 map("n", "<c-o>", "<c-o>zz", { desc = "Prev position" })
 map("n", "<c-i>", "<c-i>zz", { desc = "Next position" })
 
+-- Remap ctrl+c to esc
+map("i", "<c-c>", "<esc>", { desc = "Ctrl+c to esc"})
+
 ----------------------------------------------------------------------------------------
 -- DEFAULT KEYMAPS
 add({
@@ -299,3 +302,11 @@ add({
 add({
     { "<leader>s", require "auto-session.session-lens".search_session, desc = "Search sessions" }
 })
+
+
+----------------------------------------------------------------------------------------
+-- GITHUB COPILOT KEYMAPS
+map("i", "<c-t>", 'copilot#Accept("\\<CR>")', { desc = "Copilot accept", expr = true, replace_keycodes = false })
+map("i", "<c-y>", '<plug>(copilot-accept-word)', { desc = "Copilot accept word" })
+vim.g.copilot_no_tab_map = true
+

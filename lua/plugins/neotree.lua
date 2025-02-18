@@ -196,6 +196,7 @@ function M.config()
                     --"*/src/*/tsconfig.json",
                     ".venv*",
                     ".env*",
+                    "*.egg-info"
                 },
                 always_show = { -- remains visible even if other settings would normally hide it
                     --".gitignored",
