@@ -100,10 +100,6 @@ function M.config()
             max_height = 0.99,
             max_width = 0.99,
         },
-        windows = {
-            indent = 1,
-        },
-        force_buffers = true,
     })
 end
 
