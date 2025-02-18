@@ -15,7 +15,7 @@ map("n", "<c-o>", "<c-o>zz", { desc = "Prev position" })
 map("n", "<c-i>", "<c-i>zz", { desc = "Next position" })
 
 -- Remap ctrl+c to esc
-map("i", "<c-c>", "<esc>", { desc = "Ctrl+c to esc"})
+map("i", "<c-c>", "<esc>", { desc = "Ctrl+c to esc" })
 
 ----------------------------------------------------------------------------------------
 -- DEFAULT KEYMAPS
@@ -120,6 +120,7 @@ add({
 ----------------------------------------------------------------------------------------
 -- BUFFERLINE KEYMAPS
 add({
+    { "<leader>xA", "<cmd>%bd|e#|bd#<cr>",          desc = "Close all but this one" },
     { "<C-Left>",   "<cmd>BufferLineMovePrev<cr>",  desc = "Buffer Move Previous" },
     { "<C-Right>",  "<cmd>BufferLineMoveNext<cr>",  desc = "Buffer Move Next" },
     { "<leader>bp", "<cmd>BufferTogglePin<cr>",     desc = "Pin Toggle" },
@@ -309,4 +310,3 @@ add({
 map("i", "<c-t>", 'copilot#Accept("\\<CR>")', { desc = "Copilot accept", expr = true, replace_keycodes = false })
 map("i", "<c-y>", '<plug>(copilot-accept-word)', { desc = "Copilot accept word" })
 vim.g.copilot_no_tab_map = true
-
