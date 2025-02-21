@@ -103,6 +103,13 @@ function M.config()
 
             -- Text object
             map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = "Hunk select" })
+
+            vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = "#00ff00", bg = "none" })
+            vim.api.nvim_set_hl(0, "GitSignsChange", { fg = "#ffff00", bg = "none" })
+            vim.api.nvim_set_hl(0, "GitSignsDelete", { fg = "#ff0000", bg = "none" })
+            vim.api.nvim_set_hl(0, "GitSignsStagedAdd", { fg = "#008800", bg = "none" })
+            vim.api.nvim_set_hl(0, "GitSignsStagedChange", { fg = "#888800", bg = "none" })
+            vim.api.nvim_set_hl(0, "GitSignsStagedDelete", { fg = "#880000", bg = "none" })
         end
     }
 end
