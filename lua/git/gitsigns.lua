@@ -107,9 +107,9 @@ function M.config()
             vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = "#00ff00", bg = "none" })
             vim.api.nvim_set_hl(0, "GitSignsChange", { fg = "#ffff00", bg = "none" })
             vim.api.nvim_set_hl(0, "GitSignsDelete", { fg = "#ff0000", bg = "none" })
-            vim.api.nvim_set_hl(0, "GitSignsStagedAdd", { fg = "#008800", bg = "none" })
-            vim.api.nvim_set_hl(0, "GitSignsStagedChange", { fg = "#888800", bg = "none" })
-            vim.api.nvim_set_hl(0, "GitSignsStagedDelete", { fg = "#880000", bg = "none" })
+            vim.api.nvim_set_hl(0, "GitSignsStagedAdd", { fg = "#004400", bg = "none" })
+            vim.api.nvim_set_hl(0, "GitSignsStagedChange", { fg = "#444400", bg = "none" })
+            vim.api.nvim_set_hl(0, "GitSignsStagedDelete", { fg = "#440000", bg = "none" })
         end
     }
 end
