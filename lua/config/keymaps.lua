@@ -176,7 +176,7 @@ add({
 add({
     { "<leader>n",  group = "Notifications" },
     { "<leader>nf", "<cmd>Telescope notify<cr>",     desc = "Show notifications" },
-    { "<leader>nx", require("notify").dismiss,       desc = "Dismiss notifications" },
+    { "<leader>xk", require("notify").dismiss,       desc = "Kill/Dismiss notifications" },
     { "<leader>nh", require("notify").clear_history, desc = "Clear history" },
 })
 
@@ -238,7 +238,7 @@ add({
     { "<leader>db", "<cmd>PBToggleBreakpoint<cr>",         desc = "Breakpoint toggle" },
     { "<leader>dl", "<cmd>PBSetLogPoint<cr>",              desc = "Brakepoint log" },
     { "<leader>dj", "<cmd>PBSetConditionalBreakpoint<cr>", desc = "Brakepoint conditional" },
-    { "<leader>dx", "<cmd>PBClearAllBreakpoints<cr>",      desc = "Brakepoint clear all" },
+    { "<leader>xb", "<cmd>PBClearAllBreakpoints<cr>",      desc = "Brakepoint clear all" },
     { "<leader>dn", require('goto-breakpoints').next,      desc = "Brakepoint next" },
     { "<leader>dN", require('goto-breakpoints').prev,      desc = "Brakepoint prev" },
     { "<leader>dy", require('goto-breakpoints').stopped,   desc = "Brakepoint stopped" },
