@@ -33,7 +33,8 @@ function M.config()
             always_show_bufferline = true,
             show_tab_indicators = false,
             indicator = {
-                style = "none", -- Options: 'icon', 'underline', 'none'
+                icon = '▎', -- this should be omitted if indicator style is not 'icon'
+                style = 'icon' -- 'icon' | 'underline' | 'none',
             },
             icon_pinned = icons.ui.Pin,
             minimum_padding = 1,
