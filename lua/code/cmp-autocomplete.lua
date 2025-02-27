@@ -35,6 +35,8 @@ local M = {
 
 function M.get_mappings(cmp, luasnip)
     return {
+        ["<C-y>"] = cmp.config.disable,
+
         -- Select the next and previous item
         ["<C-j>"] = cmp.mapping.select_next_item(),
         ["<C-k>"] = cmp.mapping.select_prev_item(),
