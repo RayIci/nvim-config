@@ -1,7 +1,10 @@
 local M = {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.8',
-    dependencies = { 'nvim-lua/plenary.nvim' }
+    dependencies = {
+        'nvim-lua/plenary.nvim',
+        'nvim-telescope/telescope-live-grep-args.nvim',
+    }
 }
 
 function M.config()
@@ -67,6 +70,10 @@ function M.config()
             end,
         },
     })
+
+    -- Telescope Extensions
+    local telescope = require "telescope"
+    telescope.load_extension "live_grep_args" -- Add live grep arguments to telescope file grep
 end
 
 return M
