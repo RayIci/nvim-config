@@ -101,6 +101,14 @@ function M.config()
             max_width = 0.99,
         },
     })
+
+    -- Set exit insert mode from dapui terminal
+    vim.api.nvim_create_autocmd("BufWinEnter", {
+        pattern = "*dap-terminal*",
+        callback = function()
+            vim.api.nvim_buf_set_keymap(0, "t", "<Esc>", "<C-\\><C-n>", { noremap = true, silent = true })
+        end,
+    })
 end
 
 return M
