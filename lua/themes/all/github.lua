@@ -17,7 +17,7 @@ function M.config()
     -- github_light_colorblind
     -- github_dark_tritanopia
     -- github_light_tritanopia	
-    vim.cmd('colorscheme github_dark')
+    vim.cmd('colorscheme github_dark_default')
 end
 
 return M
