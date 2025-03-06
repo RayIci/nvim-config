@@ -17,6 +17,9 @@ map("n", "<c-i>", "<c-i>zz", { desc = "Next position" })
 -- Remap ctrl+c to esc
 map("i", "<c-c>", "<esc>", { desc = "Ctrl+c to esc" })
 
+-- Remap to nothing alt+space since idk why but if you press it default is exit insert
+map("i", "<a-space>", "<nop>")
+
 ----------------------------------------------------------------------------------------
 -- DEFAULT KEYMAPS
 add({
