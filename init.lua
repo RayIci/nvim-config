@@ -3,23 +3,16 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Setup options
-require "config.options"
+require "core.options"
 
 -- Setup lazy package manager
-require "config.lazy"
+require "core.lazy"
 
 -- Setup keymaps
-require "config.keymaps"
+require "core.keymaps"
 
--- Setup Diagnostics
-require "config.diagnostics"
+-- Setup diagnostics
+require "core.diagnostics"
 
--- Autocommands
-require "config.autocmd"
-
--- Fixes:
--- Colorscheme fix, reset background
-vim.cmd("highlight FoldColumn guibg=NONE guifg=NONE")
-vim.cmd("highlight SignColumn guibg=NONE guifg=NONE")
-vim.cmd("highlight CursorLineNr guibg=NONE guifg=NONE")
--- vim.cmd("highlight LineNr guifg=#5eacd3 guibg=NONE") -- Line number color
+-- Setup highlights
+require "core.highlight"
