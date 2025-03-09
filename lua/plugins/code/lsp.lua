@@ -73,10 +73,7 @@ end
 -- Common LSP capabilities
 function M.common_capabilities()
     local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-    local cmp_capabilities = {}
-    if status_ok then
-        cmp_capabilities = cmp_nvim_lsp.default_capabilities()
-    end
+    local cmp_capabilities = status_ok and cmp_nvim_lsp.default_capabilities() or {}
 
     local client_capabilities = vim.lsp.protocol.make_client_capabilities()
     client_capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -93,8 +90,8 @@ function M.common_capabilities()
     }
 
     local capabilities = {}
-    vim.tbl_deep_extend("force", capabilities, client_capabilities)
-    vim.tbl_deep_extend("force", capabilities, cmp_capabilities)
+    capabilities = vim.tbl_deep_extend("force", capabilities, client_capabilities)
+    capabilities = vim.tbl_deep_extend("force", capabilities, cmp_capabilities)
 
     return capabilities
 end
