@@ -121,7 +121,7 @@ function M.config()
 
     luasnip.config.setup {}
 
-    cmp.setup({
+    cmp.setup {
         snippet = {
             expand = function(args)
                 luasnip.lsp_expand(args.body)
@@ -144,7 +144,7 @@ function M.config()
             { name = "buffer" },
             { name = "path" },
         },
-    })
+    }
 
     -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
     cmp.setup.cmdline({ '/', '?' }, {

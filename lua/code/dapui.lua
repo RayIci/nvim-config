@@ -6,6 +6,7 @@ local M = {
     },
 }
 
+-- Default windows configs
 M.default_config = true
 
 function M.toggle_floating_config()
@@ -34,15 +35,10 @@ function M.icons_setup()
     local icons = require("icons")
 
     sign("DapBreakpoint", { text = icons.debugger.Breakpoint, texthl = "DapBreakpoint", linehl = "", numhl = "" })
-    sign(
-        "DapBreakpointCondition",
-        { text = icons.debugger.BreakpointCondition, texthl = "DapBreakpointCondition", linehl = "", numhl = "" }
-    )
+    sign("DapBreakpointCondition", { text = icons.debugger.BreakpointCondition, texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
     sign("DapLogPoint", { text = icons.debugger.LogPoint, texthl = "DapLogPoint", linehl = "", numhl = "" })
-    sign(
-        "DapStopped",
-        { text = icons.debugger.DapStopped, texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" }
-    )
+    sign("DapStopped", { text = icons.debugger.DapStopped, texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" })
+
     sethl(0, "DapBreakpoint", { ctermbg = 0, fg = "#993939" })
     sethl(0, "DapLogPoint", { ctermbg = 0, fg = "#61afef", bg = "#31353f" })
     sethl(0, "DapStopped", { ctermbg = 0, fg = "#98c379", bg = "#31353f" })
@@ -50,24 +46,10 @@ end
 
 function M.config()
     -- DAP and DAPui
-    local dap = require("dap")
-    local dapui = require("dapui")
+    local dapui = require "dapui"
 
     -- Virtual text setup
-    require("nvim-dap-virtual-text").setup({})
-
-    -- dap.listeners.before.attach.dapui_config = function()
-    --     dapui.open()
-    -- end
-    -- dap.listeners.before.launch.dapui_config = function()
-    --     dapui.open()
-    -- end
-    -- dap.listeners.before.event_terminated.dapui_config = function()
-    --     dapui.close()
-    -- end
-    -- dap.listeners.before.event_exited.dapui_config = function()
-    --     dapui.close()
-    -- end
+    require "nvim-dap-virtual-text".setup {}
 
     M.icons_setup()
 
