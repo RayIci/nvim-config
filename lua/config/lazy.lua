@@ -21,8 +21,8 @@ require("lazy").setup({
         { import = "code.extra" },
         { import = "themes" },
         { import = "git" },
-        { import = "misc" },
-        { import = "ui" },
+        -- { import = "misc" },
+        -- { import = "ui" },
         -- Custom plugin import
         -- {
         --     dir = "~/.config/nvim/custom-plugins/python-df.nvim",
