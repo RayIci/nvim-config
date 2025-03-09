@@ -14,9 +14,6 @@ require "config.keymaps"
 -- Setup Diagnostics
 require "config.diagnostics"
 
--- Workaround to fix xclip
-require "config.clipboard"
-
 -- Autocommands
 require "config.autocmd"
 
