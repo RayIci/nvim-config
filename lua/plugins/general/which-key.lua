@@ -2,7 +2,7 @@ local M = {
     "folke/which-key.nvim",
     event = "VeryLazy",
     opts = {
-        preset = "modern", -- classic | modern | helix
+        preset = "helix", -- classic | modern | helix
     },
     keys = {
         {

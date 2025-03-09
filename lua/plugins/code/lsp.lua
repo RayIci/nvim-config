@@ -2,13 +2,42 @@ local M = {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-        "hrsh7th/cmp-nvim-lsp"
+        "hrsh7th/cmp-nvim-lsp",
     },
 }
 
+-- Global keymaps
+function M.g_keymaps()
+    require("which-key").add({
+        -- Formatting
+        { "<leader>f",  "<cmd>lua vim.lsp.buf.format({async = true})<cr>",       desc = "Format file" },
+        {
+            "<leader>f",
+            "<cmd>'<'>lua vim.lsp.buf.format({async = true})<CR>",
+            desc = "Format selection",
+            mode = { "v" },
+        },
+
+        { "<leader>l",  group = "LSP" },
+        { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>",                desc = "Code Action" },
+        { "<leader>li", "<cmd>LspInfo<cr>",                                      desc = "Info" },
+        { "<leader>lh", "<cmd>lua require('code.lsp').toggle_inlay_hints()<cr>", desc = "Hints" },
+        { "<leader>ll", "<cmd>lua vim.lsp.codelens.run()<cr>",                   desc = "CodeLens Action" },
+        { "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<cr>",              desc = "Quickfix" },
+        { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>",                     desc = "Rename" },
+        { "<leader>l",  group = "LSP",                                           mode = "v" },
+        {
+            "<leader>la",
+            "<cmd>lua vim.lsp.buf.code_action()<cr>",
+            desc = "Code Action",
+            mode = { "v" },
+        },
+    })
+end
+
 -- Buffer keymaps settings
 function M.keymaps(bufnr)
-    local map = require "utils.keymaps".map
+    local map = require("utils.keymaps").map
 
     map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { buffer = bufnr, desc = "Go declaration" })
     map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { buffer = bufnr, desc = "Go definition" })
@@ -27,22 +56,19 @@ function M.keymaps(bufnr)
     end)
 end
 
-
 -- On LSP attach function
 M.on_attach = function(client, bufnr)
     M.keymaps(bufnr)
 
-    if client.supports_method "textDocument/inlayHint" then
+    if client.supports_method("textDocument/inlayHint") then
         vim.lsp.inlay_hint.enable(true)
     end
 end
 
-
 -- Inlay hints function
 M.toggle_inlay_hints = function()
-    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled {})
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
 end
-
 
 -- Common LSP capabilities
 function M.common_capabilities()
@@ -75,18 +101,21 @@ end
 
 -- Handlers setup
 function M.handlers_setup()
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {})                   -- { border = "rounded" }
-    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {})  -- { border = "rounded" }
+    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {})                  -- { border = "rounded" }
+    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {}) -- { border = "rounded" }
     -- require("lspconfig.ui.windows").default_options.border = "rounded"
 end
 
 -- LSP config configuration
 function M.config()
-    local lspconfig = require "lspconfig"
-    local servers = require "plugins.code.mason".lsp_servers
+    local lspconfig = require("lspconfig")
+    local servers = require("plugins.code.mason").lsp_servers
 
-    -- Setup handlers 
+    -- Setup handlers
     M.handlers_setup()
+
+    -- Global keymaps
+    M.g_keymaps()
 
     for _, server in pairs(servers) do
         local opts = {

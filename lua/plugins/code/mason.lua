@@ -30,7 +30,6 @@ M.none_ls_server_not_to_configure = {
 
 M.none_ls_servers_formatting = {
     "prettier",     -- ts/js formatter
-    "stylua",       -- lua formatter
     "shfmt",        -- Shell formatter
     "black",        -- Python formatter
     "isort",        -- Python import sorter
