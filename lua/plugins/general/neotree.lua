@@ -28,6 +28,46 @@ local M = {
     }
 }
 
+M.position = "left"
+M.indent_size = 5
+M.window_width = 60
+
+
+M.hide_by_name = {
+    ".DS_Store",
+    "thumbs.db",
+    "node_modules",
+    "__pycache__",
+    ".virtual_documents",
+    ".git",
+    ".python-version",
+    ".pytest_cache",
+}
+
+M.hide_by_pattern = { -- uses glob style patterns
+    --"*.meta",
+    --"*/src/*/tsconfig.json",
+    ".venv*",
+    ".env*",
+    "*.egg-info"
+}
+
+M.always_show = { -- remains visible even if other settings would normally hide it
+    --".gitignored",
+}
+
+M.never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
+    ".DS_Store",
+    "thumbs.db",
+    "__pycache__",
+}
+
+M.never_show_by_pattern = { -- uses glob style patterns
+    --".null-ls_*",
+}
+
+
+
 function M.keymaps()
     require "which-key".add {
         { "<leader>e",  "<cmd>Neotree toggle<cr>",                     desc = "Toggle workspace tree" },
@@ -52,7 +92,7 @@ function M.config()
                 enable_character_fade = true
             },
             indent = {
-                indent_size = 2,
+                indent_size = M.indent_size,
                 padding = 1, -- extra padding on left hand side
                 -- indent guides
                 with_markers = true,
@@ -139,8 +179,8 @@ function M.config()
         -- see `:h neo-tree-custom-commands-global`
         commands = {},
         window = {
-            position = "right",
-            width = 70,
+            position = M.position,
+            width = M.window_width,
             mapping_options = {
                 noremap = true,
                 nowait = true,
@@ -190,34 +230,11 @@ function M.config()
                 hide_dotfiles = false,
                 hide_gitignored = false,
                 hide_hidden = false, -- only works on Windows for hidden files/directories
-                hide_by_name = {
-                    ".DS_Store",
-                    "thumbs.db",
-                    "node_modules",
-                    "__pycache__",
-                    ".virtual_documents",
-                    ".git",
-                    ".python-version",
-                    ".pytest_cache",
-                },
-                hide_by_pattern = { -- uses glob style patterns
-                    --"*.meta",
-                    --"*/src/*/tsconfig.json",
-                    ".venv*",
-                    ".env*",
-                    "*.egg-info"
-                },
-                always_show = { -- remains visible even if other settings would normally hide it
-                    --".gitignored",
-                },
-                never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
-                    ".DS_Store",
-                    "thumbs.db",
-                    "__pycache__",
-                },
-                never_show_by_pattern = { -- uses glob style patterns
-                    --".null-ls_*",
-                },
+                hide_by_name = M.hide_by_name,
+                hide_by_pattern = M.hide_by_pattern,
+                always_show = M.always_show,
+                never_show = M.never_show,
+                never_show_by_pattern = M.never_show_by_pattern,
             },
             follow_current_file = {
                 enabled = false,                    -- This will find and focus the file in the active buffer every time

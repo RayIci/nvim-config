@@ -39,12 +39,6 @@ add {
     { "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "Undotree toggle" },
 }
 
--- ILLUMINATE KEYMAPS
-add {
-    { "<L>", require("illuminate").goto_next_reference, desc = "Prossima referenza" },
-    { "<H>", require("illuminate").goto_prev_reference, desc = "Referenza precedente" },
-}
-
 -- GITHUB COPILOT KEYMAPS
 map("i", "<c-t>", 'copilot#Accept("\\<CR>")', { desc = "Copilot accept", expr = true, replace_keycodes = false })
 map("i", "<c-y>", '<Plug>(copilot-accept-word)', { desc = "Copilot accept word" })
