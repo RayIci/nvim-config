@@ -80,18 +80,6 @@ add {
     { "<leader>xs",      "<cmd>close<CR>",                                                                    desc = "Split close" },
     { "<leader>xj",      "<cmd>tabclose<cr>",                                                                 desc = "Tab close" },
 
-    -- Diagnostics navigation
-    { "[d",              vim.diagnostic.goto_prev,                                                            desc = "Go to previous diagnostic message" },
-    { "]d",              vim.diagnostic.goto_next,                                                            desc = "Go to next diagnostic message" },
-    { "[e",              "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>", desc = "Prev error diagnostic" },
-    { "]e",              "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>", desc = "Next error diagnostic" },
-    { "[w",              "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.WARN})<CR>",  desc = "Prev warning diagnostic" },
-    { "]w",              "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.WARN})<CR>",  desc = "Next warning diagnostic" },
-    { "[i",              "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.INFO})<CR>",  desc = "Prev info diagnostic" },
-    { "]i",              "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.INFO})<CR>",  desc = "Next info diagnostic" },
-    { "[h",              "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.HINT})<CR>",  desc = "Prev hint diagnostic" },
-    { "]h",              "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.HINT})<CR>",  desc = "Next hint diagnostic" },
-
     -- Diagnostics
     { "<leader>D",       group = "Diagnostics" },
     { "<leader>Dw",      vim.diagnostic.open_float,                                                           desc = "Open floating message" },
@@ -103,5 +91,5 @@ add {
     -- General options
     { "<leader>o",       group = "Options" },
     { "<leader>ow",      "<cmd>set wrap!<cr>",                                                                desc = "Toggle line wrap" },
-    { "<leader>ob",      require "utils.background".toggle_nvim_background,                                              desc = "Toggle neovim background" },
+    { "<leader>ob",      require "utils.background".toggle_nvim_background,                                   desc = "Toggle neovim background" },
 }

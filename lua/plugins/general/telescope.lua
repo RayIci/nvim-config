@@ -9,10 +9,10 @@ local M = {
 
 function M.config()
     local actions = require("telescope.actions")
-    -- local open_with_trouble = require("trouble.sources.telescope").open
+    local open_with_trouble = require("trouble.sources.telescope").open
 
     -- Use this to add more results without clearing the trouble list
-    -- local add_to_trouble = require("trouble.sources.telescope").add
+    local add_to_trouble = require("trouble.sources.telescope").add
 
     M.keymaps()
 
@@ -47,15 +47,15 @@ function M.config()
                     ["<C-v>"] = require("telescope.actions").select_vertical,
                     ["<C-h>"] = require("telescope.actions").select_horizontal,
 
-                    -- ["<C-t>"] = open_with_trouble,
-                    -- ["<C-a>"] = add_to_trouble,
+                    ["<C-t>"] = open_with_trouble,
+                    ["<C-a>"] = add_to_trouble,
                 },
                 n = {
                     ["<C-n>"] = require("telescope.actions").preview_scrolling_down,
                     ["<C-p>"] = require("telescope.actions").preview_scrolling_up,
 
-                    -- ["<C-t>"] = open_with_trouble,
-                    -- ["<C-a>"] = add_to_trouble,
+                    ["<C-t>"] = open_with_trouble,
+                    ["<C-a>"] = add_to_trouble,
                 },
             },
         },
@@ -80,14 +80,14 @@ end
 
 function M.keymaps()
     require "which-key".add {
-        { "<leader><leader>", "<cmd>Telescope find_files<cr>",                              desc = "Find File" },
-        { "<leader>f",        group = "Find" },
-        { "<leader>fg",       require 'telescope'.extensions.live_grep_args.live_grep_args, desc = "Live Grep" },
-        { "<leader>fb",       "<cmd>Telescope buffers<cr>",                                 desc = "Buffers" },
-        { "<leader>fh",       "<cmd>Telescope help_tags<cr>",                               desc = "Help Tags" },
-        { "<leader>fn",       "<cmd>Telescope notify<cr>",                                  desc = "Notifications" },
-        { "<leader>fm",       "<cmd>Telescope marks<cr>",                                   desc = "Marks" },
-        { "<leader>ft",       "<cmd>TodoTelescope<cr>",                                     desc = "Todos" }
+        { "<leader>p",  "<cmd>Telescope find_files<cr>",                              desc = "Find File" },
+        { "<leader>f",  group = "Find" },
+        { "<leader>fg", require 'telescope'.extensions.live_grep_args.live_grep_args, desc = "Live Grep" },
+        { "<leader>fb", "<cmd>Telescope buffers<cr>",                                 desc = "Buffers" },
+        { "<leader>fh", "<cmd>Telescope help_tags<cr>",                               desc = "Help Tags" },
+        { "<leader>fn", "<cmd>Telescope notify<cr>",                                  desc = "Notifications" },
+        { "<leader>fm", "<cmd>Telescope marks<cr>",                                   desc = "Marks" },
+        { "<leader>ft", "<cmd>TodoTelescope<cr>",                                     desc = "Todos" }
     }
 end
 

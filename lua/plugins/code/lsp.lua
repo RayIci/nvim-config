@@ -19,7 +19,7 @@ function M.g_keymaps()
         },
 
         { "<leader>l",  group = "LSP" },
-        { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>",                desc = "Code Action" },
+        { "<leader>la", "<cmd>Lspsaga code_action<cr>",                          desc = "Code Action" },
         { "<leader>li", "<cmd>LspInfo<cr>",                                      desc = "Info" },
         { "<leader>lh", "<cmd>lua require('code.lsp').toggle_inlay_hints()<cr>", desc = "Hints" },
         { "<leader>ll", "<cmd>lua vim.lsp.codelens.run()<cr>",                   desc = "CodeLens Action" },
@@ -49,7 +49,7 @@ function M.keymaps(bufnr)
     map("n", "H", function()
         local winid = require("ufo").peekFoldedLinesUnderCursor()
         if not winid then
-            vim.lsp.buf.hover()
+            vim.cmd("Lspsaga hover_doc")
         end
     end)
 end
