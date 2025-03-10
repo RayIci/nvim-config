@@ -80,14 +80,14 @@ end
 
 function M.keymaps()
     require "which-key".add {
-        { "<leader><leader>",  "<cmd>Telescope find_files<cr>",                              desc = "Find File" },
-        { "<leader>f",  group = "Find" },
-        { "<leader>fg", require 'telescope'.extensions.live_grep_args.live_grep_args, desc = "Live Grep" },
-        { "<leader>fb", "<cmd>Telescope buffers<cr>",                                 desc = "Buffers" },
-        { "<leader>fh", "<cmd>Telescope help_tags<cr>",                               desc = "Help Tags" },
-        { "<leader>fn", "<cmd>Telescope notify<cr>",                                  desc = "Notifications" },
-        { "<leader>fm", "<cmd>Telescope marks<cr>",                                   desc = "Marks" },
-        { "<leader>ft", "<cmd>TodoTelescope<cr>",                                     desc = "Todos" }
+        { "<leader><leader>", "<cmd>Telescope find_files<cr>",                              desc = "Find File" },
+        { "<leader>f",        group = "Find" },
+        { "<leader>fg",       require 'telescope'.extensions.live_grep_args.live_grep_args, desc = "Live Grep" },
+        { "<leader>fb",       "<cmd>Telescope buffers<cr>",                                 desc = "Buffers" },
+        { "<leader>fh",       "<cmd>Telescope help_tags<cr>",                               desc = "Help Tags" },
+        { "<leader>fn",       "<cmd>Telescope notify<cr>",                                  desc = "Notifications" },
+        { "<leader>fm",       "<cmd>Telescope marks<cr>",                                   desc = "Marks" },
+        { "<leader>ft",       "<cmd>TodoTelescope<cr>",                                     desc = "Todos" }
     }
 end
 
