@@ -41,8 +41,8 @@ add {
 
 -- ILLUMINATE KEYMAPS
 add {
-    { "<C-g>", require("illuminate").goto_next_reference, desc = "Prossima referenza" },
-    { "<C-p>", require("illuminate").goto_prev_reference, desc = "Referenza precedente" },
+    { "<c-g>", require("illuminate").goto_next_reference, desc = "Prossima referenza" },
+    { "<c-G>", require("illuminate").goto_prev_reference, desc = "Referenza precedente" },
 }
 
 -- GITHUB COPILOT KEYMAPS
