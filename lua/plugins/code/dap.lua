@@ -54,7 +54,7 @@ function M.keymaps()
         { "<leader>dE", "<cmd>lua require('plugins.code.dap-ui').open_float('repl')<cr>",        desc = "Floating Repl" },
         { "<leader>dC", "<cmd>lua require('plugins.code.dap-ui').open_float('console')<cr>",     desc = "Floating Console" },
         { "<leader>do", require "plugins.code.dap-ui".toggle_floating_config,                    desc = "Toggle floating config" },
-        { "<leader>de", "<cmd>lua require('dap-ui').eval()<cr>",                                 desc = "Floating Evaluate" },
+        { "<leader>de", "<cmd>lua require('dapui').eval()<cr>",                                 desc = "Floating Evaluate" },
 
         { "<F5>",       require "dap".continue,                                                  desc = "Debugger: continue" },
         { "<F1>",       require "dap".step_into,                                                 desc = "Debugger: step into" },

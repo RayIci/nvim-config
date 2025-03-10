@@ -29,7 +29,7 @@ function M.config()
 
         local formatting_server = string.gsub(server, "%-", "_")
 
-        if next(opts) == nil then
+        if next(opts) ~= nil then
             table.insert(sources, formatting[formatting_server].with(opts))
         else
             table.insert(sources, formatting[formatting_server])

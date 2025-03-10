@@ -15,23 +15,31 @@ add {
 -- LSP SAGA
 add {
     -- Diagnostics navigation
-    { "[d", "<cmd>Lspsaga diagnostic_jump_next<cr>",                                                              desc = "Go to next diagnostic message" },
-    { "]d", "<cmd>Lspsaga diagnostic_jump_prev<cr>",                                                              desc = "Go to previous diagnostic message" },
+    { "<leader>D",  group = "Diagnostics" },
+    { "<leader>Dw", "<cmd>Lspsaga show_cursor_diagnostics<cr>",                    desc = "Open floating message" },
 
-    { "[e", "<cmd>lua require('lspsaga.diagnostic'):goto_next({ severity = vim.diagnostic.severity.ERROR })<CR>", desc = "Next error diagnostic" },
-    { "]e", "<cmd>lua require('lspsaga.diagnostic'):goto_prev({ severity = vim.diagnostic.severity.ERROR })<CR>", desc = "Prev error diagnostic" },
+    { "[d",         "<cmd>Lspsaga diagnostic_jump_next<cr>",                                                              desc = "Go to next diagnostic message" },
+    { "]d",         "<cmd>Lspsaga diagnostic_jump_prev<cr>",                                                              desc = "Go to previous diagnostic message" },
 
-    { "[w", "<cmd>lua require('lspsaga.diagnostic'):goto_next({ severity = vim.diagnostic.severity.WARN })<CR>",  desc = "Next warning diagnostic" },
-    { "]w", "<cmd>lua require('lspsaga.diagnostic'):goto_prev({ severity = vim.diagnostic.severity.WARN })<CR>",  desc = "Prev warning diagnostic" },
+    { "[e",         "<cmd>lua require('lspsaga.diagnostic'):goto_next({ severity = vim.diagnostic.severity.ERROR })<CR>", desc = "Next error diagnostic" },
+    { "]e",         "<cmd>lua require('lspsaga.diagnostic'):goto_prev({ severity = vim.diagnostic.severity.ERROR })<CR>", desc = "Prev error diagnostic" },
 
-    { "[i", "<cmd>lua require('lspsaga.diagnostic'):goto_next({ severity = vim.diagnostic.severity.INFO })<CR>",  desc = "Next info diagnostic" },
-    { "]i", "<cmd>lua require('lspsaga.diagnostic'):goto_prev({ severity = vim.diagnostic.severity.INFO })<CR>",  desc = "Prev info diagnostic" },
+    { "[w",         "<cmd>lua require('lspsaga.diagnostic'):goto_next({ severity = vim.diagnostic.severity.WARN })<CR>",  desc = "Next warning diagnostic" },
+    { "]w",         "<cmd>lua require('lspsaga.diagnostic'):goto_prev({ severity = vim.diagnostic.severity.WARN })<CR>",  desc = "Prev warning diagnostic" },
 
-    { "[h", "<cmd>lua require('lspsaga.diagnostic'):goto_next({ severity = vim.diagnostic.severity.HINT })<CR>",  desc = "Next hint diagnostic" },
-    { "]h", "<cmd>lua require('lspsaga.diagnostic'):goto_prev({ severity = vim.diagnostic.severity.HINT })<CR>",  desc = "Prev hint diagnostic" },
+    { "[i",         "<cmd>lua require('lspsaga.diagnostic'):goto_next({ severity = vim.diagnostic.severity.INFO })<CR>",  desc = "Next info diagnostic" },
+    { "]i",         "<cmd>lua require('lspsaga.diagnostic'):goto_prev({ severity = vim.diagnostic.severity.INFO })<CR>",  desc = "Prev info diagnostic" },
+
+    { "[h",         "<cmd>lua require('lspsaga.diagnostic'):goto_next({ severity = vim.diagnostic.severity.HINT })<CR>",  desc = "Next hint diagnostic" },
+    { "]h",         "<cmd>lua require('lspsaga.diagnostic'):goto_prev({ severity = vim.diagnostic.severity.HINT })<CR>",  desc = "Prev hint diagnostic" },
 }
 
 -- UNDO TREE
 add {
     { "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "Undotree toggle" },
 }
+
+-- GITHUB COPILOT KEYMAPS
+map("i", "<c-t>", 'copilot#Accept("\\<CR>")', { desc = "Copilot accept", expr = true, replace_keycodes = false })
+map("i", "<c-y>", '<Plug>(copilot-accept-word)', { desc = "Copilot accept word" })
+vim.g.copilot_no_tab_map = true

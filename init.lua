@@ -16,3 +16,9 @@ require "core.diagnostics"
 
 -- Setup highlights
 require "core.highlight"
+
+-- Setup autocommands
+require "plugins.autocmds"
+
+-- Setup plugins keymaps
+require "plugins.plugins_keymaps"

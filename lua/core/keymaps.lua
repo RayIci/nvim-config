@@ -80,10 +80,6 @@ add {
     { "<leader>xs",      "<cmd>close<CR>",                                                                    desc = "Split close" },
     { "<leader>xj",      "<cmd>tabclose<cr>",                                                                 desc = "Tab close" },
 
-    -- Diagnostics
-    { "<leader>D",       group = "Diagnostics" },
-    { "<leader>Dw",      vim.diagnostic.open_float,                                                           desc = "Open floating message" },
-
     -- Stay in indent mode
     { "<",               "<gv",                                                                               desc = "Indent left",                      mode = "v" },
     { ">",               ">gv",                                                                               desc = "Indent right",                     mode = "v" },

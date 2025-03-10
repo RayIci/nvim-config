@@ -80,7 +80,7 @@ end
 
 function M.keymaps()
     require "which-key".add {
-        { "<leader>p",  "<cmd>Telescope find_files<cr>",                              desc = "Find File" },
+        { "<c-p>",  "<cmd>Telescope find_files<cr>",                              desc = "Find File" },
         { "<leader>f",  group = "Find" },
         { "<leader>fg", require 'telescope'.extensions.live_grep_args.live_grep_args, desc = "Live Grep" },
         { "<leader>fb", "<cmd>Telescope buffers<cr>",                                 desc = "Buffers" },
