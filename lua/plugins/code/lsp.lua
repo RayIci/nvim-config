@@ -47,12 +47,10 @@ function M.keymaps(bufnr)
     map("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", { buffer = bufnr, desc = "Go diagnostics" })
 
     map("n", "H", function()
-        -- local winid = require("ufo").peekFoldedLinesUnderCursor()
-        -- if not winid then
-        --     vim.lsp.buf.hover()
-        -- end
-
-        vim.lsp.buf.hover()
+        local winid = require("ufo").peekFoldedLinesUnderCursor()
+        if not winid then
+            vim.lsp.buf.hover()
+        end
     end)
 end
 
