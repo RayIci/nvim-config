@@ -16,7 +16,7 @@ add {
 add {
     -- Diagnostics navigation
     { "<leader>D",  group = "Diagnostics" },
-    { "<leader>Dw", "<cmd>Lspsaga show_cursor_diagnostics<cr>",                    desc = "Open floating message" },
+    { "<leader>Dw", "<cmd>Lspsaga show_cursor_diagnostics<cr>",                                                           desc = "Open floating message" },
 
     { "[d",         "<cmd>Lspsaga diagnostic_jump_next<cr>",                                                              desc = "Go to next diagnostic message" },
     { "]d",         "<cmd>Lspsaga diagnostic_jump_prev<cr>",                                                              desc = "Go to previous diagnostic message" },
@@ -37,6 +37,12 @@ add {
 -- UNDO TREE
 add {
     { "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "Undotree toggle" },
+}
+
+-- ILLUMINATE KEYMAPS
+add {
+    { "<C-g>", require("illuminate").goto_next_reference, desc = "Prossima referenza" },
+    { "<C-p>", require("illuminate").goto_prev_reference, desc = "Referenza precedente" },
 }
 
 -- GITHUB COPILOT KEYMAPS
