@@ -1,3 +1,5 @@
+-- Add nord theme
+
 local themes = {
     catppuccin = "catppuccin",
     gruvbox = "gruvbox",
