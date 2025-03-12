@@ -10,9 +10,10 @@ local M = {
 -- The lsp servers that mason have to install
 -- Those servers are also used my lsp to configure
 M.lsp_servers = {
-    "pyright",                         -- Python
-    "ts_ls",                           -- Typescript
-    "tailwindcss",                     -- Tailwindcss
+    "pyright",     -- Python
+    "pylsp",       -- Python (used for import code action)
+    "ts_ls",       -- Typescript
+    "tailwindcss", -- Tailwindcss
     -- "texlab",                          -- Latex
     -- "omnisharp",                       -- C#
     -- "clangd",                          -- C and C++
@@ -29,14 +30,14 @@ M.none_ls_server_not_to_configure = {
 }
 
 M.none_ls_servers_formatting = {
-    "prettier",     -- ts/js formatter
-    "shfmt",        -- Shell formatter
-    "black",        -- Python formatter
-    "isort",        -- Python import sorter
+    "prettier", -- ts/js formatter
+    "shfmt",    -- Shell formatter
+    "black",    -- Python formatter
+    "isort",    -- Python import sorter
     -- "csharpier",    -- C# formatter
     -- "clang-format", -- C & C++ formatter
-    "rustywind",    -- tailwind classes organizer
-    "sqlfmt",       -- SQL formatter
+    "rustywind", -- tailwind classes organizer
+    "sqlfmt",    -- SQL formatter
 
 }
 
