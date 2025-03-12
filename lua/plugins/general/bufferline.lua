@@ -51,7 +51,7 @@ function M.config()
             minimum_padding = 1,
             maximum_padding = 5,
             maximum_length = 15,
-            sort_by = "insert_at_end",
+            sort_by = nil, -- "insert_at_end",
         },
     }
     M.keymaps()
