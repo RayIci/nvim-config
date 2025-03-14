@@ -19,8 +19,8 @@ end
 
 function M.keymaps()
     require "which-key".add {
-        { "<s-z>", require("illuminate").goto_next_reference, desc = "Next reference" },
-        { "<s-x>", require("illuminate").goto_prev_reference, desc = "Previous reference" },
+        { "<c-f>", require("illuminate").goto_next_reference, desc = "Next reference" },
+        { "<c-g>", require("illuminate").goto_prev_reference, desc = "Previous reference" },
     }
 end
 

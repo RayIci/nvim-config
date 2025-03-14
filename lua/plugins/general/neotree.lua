@@ -29,7 +29,7 @@ local M = {
 }
 
 M.position = "left"
-M.indent_size = 5
+M.indent_size = 4
 M.window_width = 60
 
 
