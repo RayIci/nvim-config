@@ -14,7 +14,7 @@ local themes = {
     nord = "nord",
 }
 
-local selected_theme = themes.vscode2
+local selected_theme = themes.onedark
 
 local M = {
     vim.tbl_extend("force", require("plugins.themes.all." .. selected_theme), { priority = 1000, lazy = false })

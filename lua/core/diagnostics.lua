@@ -43,4 +43,3 @@ vim.api.nvim_create_autocmd("ColorScheme", {
         vim.cmd("highlight DiagnosticHint guisp=#00FF00 gui=undercurl")
     end,
 })
-
