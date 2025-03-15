@@ -15,23 +15,23 @@ add {
 -- LSP SAGA
 add {
     -- Diagnostics navigation
-    { "<leader>D",  group = "Diagnostics" },
-    { "<leader>Dw", "<cmd>Lspsaga show_cursor_diagnostics<cr>",                                                           desc = "Open floating message" },
+    -- { "<leader>D",  group = "Diagnostics" },
+    { "<leader>D", "<cmd>Lspsaga show_cursor_diagnostics<cr>",                                                           desc = "Open floating message" },
 
-    { "[d",         "<cmd>Lspsaga diagnostic_jump_next<cr>",                                                              desc = "Go to next diagnostic message" },
-    { "]d",         "<cmd>Lspsaga diagnostic_jump_prev<cr>",                                                              desc = "Go to previous diagnostic message" },
+    { "[d",        "<cmd>Lspsaga diagnostic_jump_next<cr>",                                                              desc = "Go to next diagnostic message" },
+    { "]d",        "<cmd>Lspsaga diagnostic_jump_prev<cr>",                                                              desc = "Go to previous diagnostic message" },
 
-    { "[e",         "<cmd>lua require('lspsaga.diagnostic'):goto_next({ severity = vim.diagnostic.severity.ERROR })<CR>", desc = "Next error diagnostic" },
-    { "]e",         "<cmd>lua require('lspsaga.diagnostic'):goto_prev({ severity = vim.diagnostic.severity.ERROR })<CR>", desc = "Prev error diagnostic" },
+    { "[e",        "<cmd>lua require('lspsaga.diagnostic'):goto_next({ severity = vim.diagnostic.severity.ERROR })<CR>", desc = "Next error diagnostic" },
+    { "]e",        "<cmd>lua require('lspsaga.diagnostic'):goto_prev({ severity = vim.diagnostic.severity.ERROR })<CR>", desc = "Prev error diagnostic" },
 
-    { "[w",         "<cmd>lua require('lspsaga.diagnostic'):goto_next({ severity = vim.diagnostic.severity.WARN })<CR>",  desc = "Next warning diagnostic" },
-    { "]w",         "<cmd>lua require('lspsaga.diagnostic'):goto_prev({ severity = vim.diagnostic.severity.WARN })<CR>",  desc = "Prev warning diagnostic" },
+    { "[w",        "<cmd>lua require('lspsaga.diagnostic'):goto_next({ severity = vim.diagnostic.severity.WARN })<CR>",  desc = "Next warning diagnostic" },
+    { "]w",        "<cmd>lua require('lspsaga.diagnostic'):goto_prev({ severity = vim.diagnostic.severity.WARN })<CR>",  desc = "Prev warning diagnostic" },
 
-    { "[i",         "<cmd>lua require('lspsaga.diagnostic'):goto_next({ severity = vim.diagnostic.severity.INFO })<CR>",  desc = "Next info diagnostic" },
-    { "]i",         "<cmd>lua require('lspsaga.diagnostic'):goto_prev({ severity = vim.diagnostic.severity.INFO })<CR>",  desc = "Prev info diagnostic" },
+    { "[i",        "<cmd>lua require('lspsaga.diagnostic'):goto_next({ severity = vim.diagnostic.severity.INFO })<CR>",  desc = "Next info diagnostic" },
+    { "]i",        "<cmd>lua require('lspsaga.diagnostic'):goto_prev({ severity = vim.diagnostic.severity.INFO })<CR>",  desc = "Prev info diagnostic" },
 
-    { "[h",         "<cmd>lua require('lspsaga.diagnostic'):goto_next({ severity = vim.diagnostic.severity.HINT })<CR>",  desc = "Next hint diagnostic" },
-    { "]h",         "<cmd>lua require('lspsaga.diagnostic'):goto_prev({ severity = vim.diagnostic.severity.HINT })<CR>",  desc = "Prev hint diagnostic" },
+    { "[h",        "<cmd>lua require('lspsaga.diagnostic'):goto_next({ severity = vim.diagnostic.severity.HINT })<CR>",  desc = "Next hint diagnostic" },
+    { "]h",        "<cmd>lua require('lspsaga.diagnostic'):goto_prev({ severity = vim.diagnostic.severity.HINT })<CR>",  desc = "Prev hint diagnostic" },
 }
 
 -- UNDO TREE

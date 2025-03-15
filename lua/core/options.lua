@@ -16,7 +16,7 @@ vim.o.linebreak = true                          -- linewrap behaviour
 vim.opt.mouse = "a"                             -- allow the mouse to be used in neovim
 
 vim.o.updatetime = 250                          -- Decrease update time (default: 4000)
-vim.o.timeoutlen = 300                          -- Time to wait for a mapped sequence to complete (in milliseconds) (default: 1000)
+vim.o.timeoutlen = 100                          -- Time to wait for a mapped sequence to complete (in milliseconds) (default: 1000)
 
 vim.opt.numberwidth = 4                         -- set number column width to 2 {default 4}
 vim.opt.ignorecase = true                       -- ignore case in search patterns
@@ -35,7 +35,6 @@ vim.o.swapfile = false                          -- Creates a swapfile (default: 
 vim.opt.showtabline = 1                         -- Always show tabs (default: 1)vim.opt.timeoutlen = 1000                       -- time to wait for a mapped sequence to complete (in milliseconds)
 vim.opt.backup = false                          -- creates a backup file
 vim.opt.cmdheight = 1                           -- more space in the neovim command line for displaying messages
-vim.opt.completeopt = { "menuone", "noselect" } -- mostly just for cmp
 vim.opt.conceallevel = 0                        -- so that `` is visible in markdown files
 vim.opt.fileencoding = "utf-8"                  -- the encoding written to a file
 vim.opt.pumheight = 10                          -- pop up menu height

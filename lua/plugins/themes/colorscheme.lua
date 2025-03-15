@@ -10,10 +10,11 @@ local themes = {
     rosepine = "rose-pine",
     vimcode = "vim-code",
     material = "material",
-    github = "github"
+    github = "github",
+    nord = "nord",
 }
 
-local selected_theme = themes.material
+local selected_theme = themes.vscode2
 
 local M = {
     vim.tbl_extend("force", require("plugins.themes.all." .. selected_theme), { priority = 1000, lazy = false })
