@@ -25,7 +25,6 @@ M.lsp_servers = {
 
 -- none-ls packages for diagnostics and formatting
 M.none_ls_server_not_to_configure = {
-    "eslint_d", -- ts/js linter
 }
 
 M.none_ls_servers_formatting = {
@@ -43,6 +42,7 @@ M.none_ls_servers_formatting = {
 M.none_ls_servers_diagnostics = {
     "hadolint", -- Dockerfile linter
     "sqlfluff", -- SQL linter
+    "eslint_d", -- ts/js linter
 }
 
 -- The dap servers that mason will install
@@ -53,11 +53,7 @@ M.dap_servers = {
 
 function M.config()
     -- Mason default setup
-    require("mason").setup {
-        -- ui = {
-        --     border = "rounded",
-        -- }
-    }
+    require("mason").setup {}
 
     -- Mason LSP
     require "mason-lspconfig".setup {
