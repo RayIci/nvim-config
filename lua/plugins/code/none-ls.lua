@@ -65,7 +65,6 @@ function M.execute_none_ls_servers(mason_servers, kind)
         end
 
         local custom_map = M.map_servers_sources(server)
-        vim.print(custom_map)
 
         if custom_map ~= nil then
             if next(opts) ~= nil then
