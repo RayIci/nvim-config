@@ -129,12 +129,6 @@ function M.config()
             end,
         },
 
-        -- Settings for window border style
-        -- window = {
-        --     completion = cmp.config.window.bordered(),
-        --     documentation = cmp.config.disable,
-        -- },
-
         completion = { completeopt = "menu,menuone,noinsert" },
 
         -- For understanding these mappings read `:help ins-completion`
