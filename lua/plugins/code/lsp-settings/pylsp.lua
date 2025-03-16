@@ -4,7 +4,7 @@ return {
             plugins = {
                 jedi_completion = { enabled = false },
                 jedi_definition = { enabled = false },
-                jedi_hover = { enabled = false },
+                jedi_hover = { enabled = true },
                 jedi_references = { enabled = false },
                 jedi_signature_help = { enabled = false },
                 jedi_symbols = { enabled = false },
@@ -15,12 +15,12 @@ return {
                 yapf = { enabled = false },
                 autopep8 = { enabled = false },
                 black = { enabled = false },
+                jedi = { enabled = false },
                 rope_completion = { enabled = false },
+                rope_rename = { enabled = false },
+                rope_autoimport = { enabled = true },
                 pyflakes = { enabled = true },
-                rope_autoimport = {
-                    enabled = true,
-                },
             },
         },
-    }
+    },
 }

@@ -12,6 +12,7 @@ local M = {
 M.lsp_servers = {
     "pyright",     -- Python
     "ts_ls",       -- Typescript
+    "pylsp",
     "tailwindcss", -- Tailwindcss
     -- "texlab",                          -- Latex
     -- "omnisharp",                       -- C#

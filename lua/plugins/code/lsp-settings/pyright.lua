@@ -10,4 +10,7 @@ return {
             },
         },
     },
+    handlers = {
+        ["textDocument/hover"] = false,
+    }
 }
