@@ -7,6 +7,22 @@ local M = {
     },
 }
 
+M.files_file_ingore_by_pattern = {
+}
+
+M.grep_file_ingore_patterns = {
+}
+
+M.common_file_ignore_patterns = {
+    "%.ropeproject/",
+    "node_modules",
+    "%.git/",
+    "%.venv.*/",
+    "__pycache__",
+    ".pytest_cache"
+}
+
+
 function M.config()
     local actions = require("telescope.actions")
     local open_with_trouble = require("trouble.sources.telescope").open
@@ -61,12 +77,14 @@ function M.config()
         },
         pickers = {
             find_files = {
-                file_ignore_patterns = { "node_modules", "%.git/", "%.venv.*/", "__pycache__", ".pytest_cache" },
+                file_ignore_patterns = require "utils.tables".concat_tables(M.common_file_ignore_patterns,
+                    M.files_file_ingore_by_pattern),
                 hidden = true,
             },
         },
         live_grep = {
-            file_ingore_patterns = { "node_modules", "%.git/", "%.venv.*/", "__pycache__", ".pytest_cache" },
+            file_ingore_patterns = require "utils.tables".concat_tables(M.common_file_ignore_patterns,
+                M.grep_file_ingore_patterns),
             additional_args = function(_)
                 return { "--hidden" }
             end,
