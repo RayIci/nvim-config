@@ -7,22 +7,45 @@ local M = {
     },
 }
 
-function M.on_attach(client, bufnr)
-    local map = require("utils.keymaps").map
+function M.on_attach_selector(server)
+    local on_attach = M.default_on_attach
 
+    if server == "pylsp" then
+        on_attach = function(client, bufnr)
+            client.server_capabilities.hoverProvider = false
+            client.server_capabilities.definitionProvider = false
+            client.server_capabilities.referencesProvider = false
+            client.server_capabilities.implementationProvider = false
+            client.server_capabilities.typeDefinitionProvider = false
+            client.server_capabilities.renameProvider = false
+        end
+    end
+
+    return on_attach
+end
+
+local map = require("utils.keymaps").map
+function M.set_goto_keymaps(client, bufnr)
     map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { buffer = bufnr, desc = "Go declaration" })
     map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { buffer = bufnr, desc = "Go definition" })
     map("n", "<CR>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { buffer = bufnr, desc = "Signature help" })
     map("n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", { buffer = bufnr, desc = "Go implementation" })
     map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { buffer = bufnr, desc = "Go references" })
     map("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", { buffer = bufnr, desc = "Go diagnostics" })
+end
 
+function M.set_hover_keymap(client, bufnr)
     map("n", "H", function()
         local winid = require("ufo").peekFoldedLinesUnderCursor()
         if not winid then
             vim.lsp.buf.hover()
         end
     end)
+end
+
+function M.default_on_attach(client, bufnr)
+    M.set_goto_keymaps(client, bufnr)
+    M.set_hover_keymap(client, bufnr)
 end
 
 function M.g_keymaps()
@@ -69,7 +92,7 @@ function M.config()
     M.g_keymaps()
     for _, server in pairs(servers) do
         local opts = {
-            on_attach = M.on_attach,
+            on_attach = M.on_attach_selector(server),
             capabilities = capabilities,
         }
 
