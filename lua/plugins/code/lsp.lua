@@ -10,7 +10,7 @@ local M = {
 function M.on_attach_selector(server)
     local on_attach = M.default_on_attach
 
-    if server == "pylsp" then
+    --[[ if server == "pylsp" then
         on_attach = function(client, bufnr)
             client.server_capabilities.hoverProvider = false
             client.server_capabilities.definitionProvider = false
@@ -20,7 +20,7 @@ function M.on_attach_selector(server)
             client.server_capabilities.renameProvider = false
             client.server_capabilities.signatureHelpProvider = false
         end
-    end
+    end ]]
 
     return on_attach
 end
