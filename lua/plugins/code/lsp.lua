@@ -18,6 +18,7 @@ function M.on_attach_selector(server)
             client.server_capabilities.implementationProvider = false
             client.server_capabilities.typeDefinitionProvider = false
             client.server_capabilities.renameProvider = false
+            client.server_capabilities.signatureHelpProvider = false
         end
     end
 
