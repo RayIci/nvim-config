@@ -21,6 +21,9 @@ function M.default_on_attach(client, bufnr)
             vim.lsp.buf.hover()
         end
     end)
+
+    -- Disable lsps formatting capabilities
+    client.server_capabilities.documentFormattingProvider = false
 end
 
 function M.g_keymaps()
