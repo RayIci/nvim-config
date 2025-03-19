@@ -34,6 +34,7 @@ function M.config()
 
     require("telescope").setup({
         defaults = {
+            border = true,
             layout_strategy = "vertical",
             layout_config = {
                 horizontal = {
