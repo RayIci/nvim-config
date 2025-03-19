@@ -102,6 +102,7 @@ function M.keymaps()
         { "<leader>f",        group = "Find" },
         { "<leader>fg",       require 'telescope'.extensions.live_grep_args.live_grep_args, desc = "Live Grep" },
         { "<leader>fb",       "<cmd>Telescope buffers<cr>",                                 desc = "Buffers" },
+        { "<leader>ff",       "<cmd>Telescope resume<cr>",                                  desc = "File resume" },
         { "<leader>fh",       "<cmd>Telescope help_tags<cr>",                               desc = "Help Tags" },
         { "<leader>fn",       "<cmd>Telescope notify<cr>",                                  desc = "Notifications" },
         { "<leader>fm",       "<cmd>Telescope marks<cr>",                                   desc = "Marks" },
