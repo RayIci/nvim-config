@@ -20,72 +20,72 @@ map("i", "<a-space>", "<nop>")
 
 add {
     -- File save
-    { "<c-s>",           "<cmd>w<cr>",                                                                        desc = "Save file" },
-    { "<c-a>",           "<cmd>noautocmd w<cr>",                                                              desc = "Save without formatting" },
+    { "<c-s>",           "<cmd>w<cr>",                                      desc = "Save file" },
+    { "<c-a>",           "<cmd>noautocmd w<cr>",                            desc = "Save without formatting" },
 
     -- Deletion
-    { "x",               '"_x',                                                                               desc = "Delete single char (no buff save)" },
+    { "x",               '"_x',                                             desc = "Delete single char (no buff save)" },
 
 
     -- Vertical scroll and center
-    { "<c-d>",           "<c-d>zz",                                                                           desc = "Scroll down" },
-    { "<c-u>",           "<c-u>zz",                                                                           desc = "Scroll up" },
+    { "<c-d>",           "<c-d>zz",                                         desc = "Scroll down" },
+    { "<c-u>",           "<c-u>zz",                                         desc = "Scroll up" },
 
     -- Find and center
-    { "n",               "nzzzv",                                                                             desc = "Find next" },
-    { "N",               "Nzzzv",                                                                             desc = "Find previous" },
+    { "n",               "nzzzv",                                           desc = "Find next" },
+    { "N",               "Nzzzv",                                           desc = "Find previous" },
 
     -- Remove find
-    { "<c-x>",           "<cmd>noh<cr>",                                                                      desc = "Clear find" },
+    { "<c-x>",           "<cmd>noh<cr>",                                    desc = "Clear find" },
 
     -- Windows management
-    { "<leader>v",       "<c-w>v",                                                                            desc = "Split window vertically" },
-    { "<leader>h",       "<c-w>s",                                                                            desc = "Split window hrizontally" },
-    { "<leader>=",       "<c-w>=",                                                                            desc = "Split window reset Size" },
+    { "<leader>v",       "<c-w>v",                                          desc = "Split window vertically" },
+    { "<leader>h",       "<c-w>s",                                          desc = "Split window hrizontally" },
+    { "<leader>=",       "<c-w>=",                                          desc = "Split window reset Size" },
 
     -- Move between windows
-    { "<c-h>",           "<cmd>wincmd h<cr>",                                                                 desc = "Move on left window" },
-    { "<c-j>",           "<cmd>wincmd j<cr>",                                                                 desc = "Move on bottom window" },
-    { "<c-k>",           "<cmd>wincmd k<cr>",                                                                 desc = "Move on up window" },
-    { "<c-l>",           "<cmd>wincmd l<cr>",                                                                 desc = "Move on right window" },
+    { "<c-h>",           "<cmd>wincmd h<cr>",                               desc = "Move on left window" },
+    { "<c-j>",           "<cmd>wincmd j<cr>",                               desc = "Move on bottom window" },
+    { "<c-k>",           "<cmd>wincmd k<cr>",                               desc = "Move on up window" },
+    { "<c-l>",           "<cmd>wincmd l<cr>",                               desc = "Move on right window" },
 
     -- Move code line Up, Down
-    { "J",               "<cmd>m .+1<cr>==",                                                                  desc = "Move line up" },
-    { "K",               "<cmd>m .-2<cr>==",                                                                  desc = "Move line down" },
-    { "J",               ":m '> +1<cr>gv=gv",                                                                 desc = "Move line up",                     mode = "v" },
-    { "K",               ":m '< -2<cr>gv=gv",                                                                 desc = "Move line down",                   mode = "v" },
+    { "J",               "<cmd>m .+1<cr>==",                                desc = "Move line up" },
+    { "K",               "<cmd>m .-2<cr>==",                                desc = "Move line down" },
+    { "J",               ":m '> +1<cr>gv=gv",                               desc = "Move line up",                     mode = "v" },
+    { "K",               ":m '< -2<cr>gv=gv",                               desc = "Move line down",                   mode = "v" },
 
     -- Resize with arrows
-    { "<Up>",            [[<cmd>horizontal resize +5<cr>]],                                                   desc = "Resize horizontal (-)" },
-    { "<Down>",          [[<cmd>horizontal resize -5<cr>]],                                                   desc = "Resize horizontal (+)" },
-    { "<Left>",          [[<cmd>vertical resize +2<cr>]],                                                     desc = "Resize vertical (+)" },
-    { "<Right>",         [[<cmd>vertical resize -2<cr>]],                                                     desc = "Resize vertical (-)" },
+    { "<Up>",            [[<cmd>horizontal resize +5<cr>]],                 desc = "Resize horizontal (-)" },
+    { "<Down>",          [[<cmd>horizontal resize -5<cr>]],                 desc = "Resize horizontal (+)" },
+    { "<Left>",          [[<cmd>vertical resize +2<cr>]],                   desc = "Resize vertical (+)" },
+    { "<Right>",         [[<cmd>vertical resize -2<cr>]],                   desc = "Resize vertical (-)" },
 
     -- Buffers
     { "<leader>b",       group = "Buffers" },
-    { "<leader>bn",      "<cmd>enew<cr>",                                                                     desc = "New" },
+    { "<leader>bn",      "<cmd>enew<cr>",                                   desc = "New" },
 
     -- Tabs
     { "<leader>j",       group = "Tabs" },
-    { "<leader>jn",      "<cmd>tabnew<cr>",                                                                   desc = "New" },
-    { "<leader><Tab>",   "<cmd>tabn<cr>",                                                                     desc = "Next" },
-    { "<leader><S-Tab>", "<cmd>tabp<cr>",                                                                     desc = "Previous" },
-    { "<leader>js",      "<cmd>tab split<cr>",                                                                desc = "Split" },
+    { "<leader>jn",      "<cmd>tabnew<cr>",                                 desc = "New" },
+    { "<leader><Tab>",   "<cmd>tabn<cr>",                                   desc = "Next" },
+    { "<leader><S-Tab>", "<cmd>tabp<cr>",                                   desc = "Previous" },
+    { "<leader>js",      "<cmd>tab split<cr>",                              desc = "Split" },
 
     -- Close keys
     { "<leader>x",       group = "Close" },
-    { "<leader>xw",      ":Bdelete<cr>",                                                                      desc = "Buffer close" },
-    { "<leader>xf",      ":Bdelete!<cr>",                                                                     desc = "Buffer close force (no save)" },
-    { "<leader>xa",      ":bufdo :Bdelete<cr>",                                                               desc = "Buffer close all" },
-    { "<leader>xs",      "<cmd>close<CR>",                                                                    desc = "Split close" },
-    { "<leader>xj",      "<cmd>tabclose<cr>",                                                                 desc = "Tab close" },
+    { "<leader>xw",      ":Bdelete<cr>",                                    desc = "Buffer close" },
+    { "<leader>xf",      ":Bdelete!<cr>",                                   desc = "Buffer close force (no save)" },
+    { "<leader>xa",      ":bufdo :Bdelete<cr>",                             desc = "Buffer close all" },
+    { "<leader>xs",      "<cmd>close<CR>",                                  desc = "Split close" },
+    { "<leader>xj",      "<cmd>tabclose<cr>",                               desc = "Tab close" },
 
     -- Stay in indent mode
-    { "<",               "<gv",                                                                               desc = "Indent left",                      mode = "v" },
-    { ">",               ">gv",                                                                               desc = "Indent right",                     mode = "v" },
+    { "<",               "<gv",                                             desc = "Indent left",                      mode = "v" },
+    { ">",               ">gv",                                             desc = "Indent right",                     mode = "v" },
 
     -- General options
     { "<leader>o",       group = "Options" },
-    { "<leader>ow",      "<cmd>set wrap!<cr>",                                                                desc = "Toggle line wrap" },
-    { "<leader>ob",      require "utils.background".toggle_nvim_background,                                   desc = "Toggle neovim background" },
+    { "<leader>ow",      "<cmd>set wrap!<cr>",                              desc = "Toggle line wrap" },
+    { "<leader>ob",      require "utils.background".toggle_nvim_background, desc = "Toggle neovim background" },
 }
