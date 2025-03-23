@@ -97,7 +97,6 @@ function M.get_cmdline_mappings(cmp)
             end
         end, { "c" }),
 
-
         ["<C-a>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.abort()
@@ -117,12 +116,12 @@ function M.get_cmdline_mappings(cmp)
 end
 
 function M.config()
-    local cmp = require "cmp" -- See `:help cmp`
-    local luasnip = require "luasnip"
+    local cmp = require("cmp") -- See `:help cmp`
+    local luasnip = require("luasnip")
 
-    luasnip.config.setup {}
+    luasnip.config.setup({})
 
-    cmp.setup {
+    cmp.setup({
 
         window = {
             completion = cmp.config.window.bordered(),
@@ -147,37 +146,37 @@ function M.config()
         },
 
         formatting = {
-            format = require "lspkind".cmp_format {
-                mode = 'symbol', -- show only symbol annotations
+            format = require("lspkind").cmp_format({
+                mode = "symbol_text", -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
                 maxwidth = {
                     -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
                     -- can also be a function to dynamically calculate max width such as
                     -- menu = function() return math.floor(0.45 * vim.o.columns) end,
-                    menu = 50,            -- leading text (labelDetails)
-                    abbr = 50,            -- actual suggestion item
+                    menu = 50, -- leading text (labelDetails)
+                    abbr = 50, -- actual suggestion item
                 },
-                ellipsis_char = '...',    -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+                ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
                 show_labelDetails = true, -- show labelDetails in menu. Disabled by default
-            }
-        }
-    }
+            }),
+        },
+    })
 
     -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-    cmp.setup.cmdline({ '/', '?' }, {
+    cmp.setup.cmdline({ "/", "?" }, {
         mapping = M.get_cmdline_mappings(cmp),
         sources = {
-            { name = 'buffer' }
-        }
+            { name = "buffer" },
+        },
     })
 
     -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-    cmp.setup.cmdline(':', {
+    cmp.setup.cmdline(":", {
         mapping = M.get_cmdline_mappings(cmp),
         sources = {
-            { name = 'path' },
-            { name = 'cmdline' },
+            { name = "path" },
+            { name = "cmdline" },
         },
-        matching = { disallow_symbol_nonprefix_matching = false }
+        matching = { disallow_symbol_nonprefix_matching = false },
     })
 end
 
