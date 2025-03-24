@@ -84,6 +84,11 @@ add {
     { "<",               "<gv",                                             desc = "Indent left",                      mode = "v" },
     { ">",               ">gv",                                             desc = "Indent right",                     mode = "v" },
 
+    -- Quickfix and loclist
+    { "<leader>q",       group = "Lists" },
+    { "<leader>qq",      "<cmd>Copen<cr>",                                  desc = "Quickfix open" },
+    { "<leader>ql",      "<cmd>Lopen<cr>",                                  desc = "Loclist open" },
+
     -- General options
     { "<leader>o",       group = "Options" },
     { "<leader>ow",      "<cmd>set wrap!<cr>",                              desc = "Toggle line wrap" },

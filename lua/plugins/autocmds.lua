@@ -3,24 +3,25 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         require("ufo").detach()
         vim.o.foldenable = false
-        vim.o.foldcolumn = '0'
-    end
-})
-
--- Intercept quickfix and use trouble quickfix
-vim.api.nvim_create_autocmd("QuickFixCmdPost", {
-    callback = function()
-        vim.cmd([[Trouble qflist open]])
+        vim.o.foldcolumn = "0"
     end,
 })
 
-vim.api.nvim_create_autocmd("BufRead", {
-    callback = function(ev)
-        if vim.bo[ev.buf].buftype == "quickfix" then
-            vim.schedule(function()
-                vim.cmd([[cclose]])
-                vim.cmd([[Trouble qflist open]])
-            end)
-        end
+-- Intercept quickfix and use trouble quickfix
+vim.api.nvim_create_user_command("Copen", "Trouble qflist toggle", {})
+vim.api.nvim_create_user_command("Lopen", "Trouble loclist toggle", {})
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "qf",
+    callback = function(args)
+        local bufnr = args.buf
+        vim.defer_fn(function()
+            local winid = vim.fn.bufwinid(bufnr)
+            if winid == -1 then
+                return
+            end
+            vim.api.nvim_win_close(winid, true)
+            -- require("trouble").open("quickfix")
+            vim.cmd("Copen")
+        end, 0)
     end,
 })
