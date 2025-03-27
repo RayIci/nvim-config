@@ -219,6 +219,39 @@ function M.config()
                 ["<"] = "prev_source",
                 [">"] = "next_source",
                 ["i"] = "show_file_details",
+                ["Y"] = function(state)
+                    -- NeoTree is based on [NuiTree](https://github.com/MunifTanjim/nui.nvim/tree/main/lua/nui/tree)
+                    -- The node is based on [NuiNode](https://github.com/MunifTanjim/nui.nvim/tree/main/lua/nui/tree#nuitreenode)
+                    local node = state.tree:get_node()
+                    local filepath = node:get_id()
+                    local filename = node.name
+                    local modify = vim.fn.fnamemodify
+
+                    local results = {
+                        filename,
+                        modify(filename, ":r"),
+                        filepath,
+                        modify(filepath, ":."),
+                        modify(filepath, ":~"),
+                        modify(filename, ":e"),
+                    }
+
+                    vim.ui.select({
+                        "1. Filename: " .. results[1],
+                        "2. Filename without extension: " .. results[2],
+                        "3. Absolute path: " .. results[3],
+                        "4. Path relative to CWD: " .. results[4],
+                        "5. Path relative to HOME: " .. results[5],
+                        "6. Extension of the filename: " .. results[6],
+                    }, { prompt = "Choose to copy to clipboard:" }, function(choice)
+                        local i = tonumber(choice:sub(1, 1))
+                        local result = results[i]
+                        vim.fn.setreg("+", result)
+                        vim.fn.setreg("*", result)
+                        vim.fn.setreg('"', result)
+                        vim.notify("Copied: " .. result)
+                    end)
+                end,
             },
         },
         nesting_rules = {},
