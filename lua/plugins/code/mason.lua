@@ -47,6 +47,7 @@ M.none_ls_servers_diagnostics = {
 -- The dap servers that mason will install
 M.dap_servers = {
     "python",
+    "netcoredbg",
 }
 
 function M.config()
