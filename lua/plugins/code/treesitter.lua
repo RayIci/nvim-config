@@ -1,7 +1,7 @@
 local M = {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    dependecies = {
+    dependencies = {
         "LiadOz/nvim-dap-repl-highlights",
     },
 }
