@@ -1,14 +1,20 @@
 local M = {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
+    dependecies = {
+        "LiadOz/nvim-dap-repl-highlights",
+    },
 }
 function M.config()
+    require("nvim-dap-repl-highlights").setup()
+
     local treesitter_configs = require("nvim-treesitter.configs")
     treesitter_configs.setup({
         ignore_install = {},
         modules = {},
         auto_install = true,
         ensure_installed = {
+            "dap_repl",
             "c_sharp",
             "cpp",
             "c",
