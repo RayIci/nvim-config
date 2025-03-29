@@ -9,17 +9,17 @@ function M.opts(_, opts)
 
     require("which-key").add({
         { "<leader>a", group = "Rest" },
-        { "<leader>ao", "<cmp>Rest open<cr>", desc = "Open" },
-        { "<leader>ar", "<cmp>Rest run <cr>", desc = "Run request under cursr" },
+        { "<leader>ao", "<cmd>Rest open<cr>", desc = "Open" },
+        { "<leader>ar", "<cmd>Rest run <cr>", desc = "Run request under cursr" },
         { "<leader>aR", M._rest_run_file, desc = "Run request name" },
-        { "<leader>al", "<cmp>Rest last<cr>", desc = "Run last request" },
-        { "<leader>aL", "<cmp>Rest logs<cr>", desc = "Logs" },
-        { "<leader>ac", "<cmp>Rest cookies<cr>", desc = "Cookies" },
+        { "<leader>al", "<cmd>Rest last<cr>", desc = "Run last request" },
+        { "<leader>aL", "<cmd>Rest logs<cr>", desc = "Logs" },
+        { "<leader>ac", "<cmd>Rest cookies<cr>", desc = "Cookies" },
 
         { "<leader>ae", group = "Environemtn" },
-        { "<leader>av", "<cmp>Rest show<cr>", desc = "Visualize (show)" },
-        { "<leader>as", "<cmp>Rest select<cr>", desc = "Select" },
-        { "<leader>ap", "<cmp>Rest set<cr>", desc = "Set from path" },
+        { "<leader>av", "<cmd>Rest show<cr>", desc = "Visualize (show)" },
+        { "<leader>as", "<cmd>Rest select<cr>", desc = "Select" },
+        { "<leader>ap", "<cmd>Rest set<cr>", desc = "Set from path" },
     })
 
     --[[
