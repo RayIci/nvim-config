@@ -22,8 +22,9 @@ function M.opts(_, opts)
         { "<leader>ap", "<cmd>Rest set<cr>", desc = "Set from path" },
     })
 
-    --[[
---]]
+    opts.winbar = true
+
+    return opts
 end
 
 function M._rest_run_file()
