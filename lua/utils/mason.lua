@@ -5,7 +5,7 @@ function M.mason_data_path()
 end
 
 function M.mason_bins_path()
-    return M.mason_data_path() .. "/bin/"
+    return M.mason_data_path() .. "bin/"
 end
 
 return M
