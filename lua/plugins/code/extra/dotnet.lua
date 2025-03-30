@@ -12,7 +12,6 @@ return {
             map("n", "-ds", "<cmd>Dotnet secrets<cr>", { desc = "Secrets" })
             map("n", "-dr", "<cmd>Dotnet restore<cr>", { desc = "Restore" })
             map("n", "-dc", "<cmd>Dotnet clean<cr>", { desc = "Clean" })
-            map("n", "-df", "<cmd>Dotnet createfile<cr>", { desc = "Create file" })
             map("n", "-dSs", "<cmd>Dotnet solution select<cr>", { desc = "Solution select" })
             map("n", "-dSa", "<cmd>Dotnet solution add<cr>", { desc = "Solution add" })
             map("n", "-dSr", "<cmd>Dotnet solution remove<cr>", { desc = "Solution remove" })
@@ -119,6 +118,7 @@ return {
         "MoaidHathot/dotnet.nvim",
         config = function()
             local map = require("utils.keymaps").map
+            map("n", "-dn", "<cmd>DotnetUI new_item<cr>", { desc = "New item" })
             map("n", "-dp", "<cmd>DotnetUI project package add<cr>", { desc = "Package add" })
             map("n", "-dP", "<cmd>DotnetUI project package remove<cr>", { desc = "Package remove" })
             map("n", "-dr", "<cmd>DotnetUI project reference add<cr>", { desc = "Project reference add" })
