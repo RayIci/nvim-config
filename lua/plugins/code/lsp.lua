@@ -24,6 +24,7 @@ function M.default_on_attach(client, bufnr)
 
     -- Disable lsps formatting capabilities
     client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
 end
 
 function M.g_keymaps()
