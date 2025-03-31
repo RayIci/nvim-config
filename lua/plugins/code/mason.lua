@@ -14,7 +14,7 @@ M.lsp_servers = {
     "ts_ls", -- Typescript
     "tailwindcss", -- Tailwindcss
     "texlab", -- Latex
-    "csharp_ls", -- C#,
+    "omnisharp",
     "clangd", -- C and C++
     "cmake", -- cmake
     "docker_compose_language_service", -- Docker compose
@@ -31,7 +31,6 @@ M.none_ls_servers_formatting = {
     "shfmt", -- Shell formatter
     "black", -- Python formatter
     "isort", -- Python import sorter
-    "csharpier", -- C# formatter
     "clang-format", -- C & C++ formatter
     "rustywind", -- tailwind classes organizer
     "sqlfmt", -- SQL formatter
