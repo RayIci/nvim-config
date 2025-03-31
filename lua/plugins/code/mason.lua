@@ -14,7 +14,7 @@ M.lsp_servers = {
     "ts_ls", -- Typescript
     "tailwindcss", -- Tailwindcss
     "texlab", -- Latex
-    "omnisharp",
+    "omnisharp", -- c#
     "clangd", -- C and C++
     "cmake", -- cmake
     "docker_compose_language_service", -- Docker compose
