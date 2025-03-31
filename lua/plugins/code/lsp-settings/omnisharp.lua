@@ -14,7 +14,7 @@ return {
         RoslynExtensionsOptions = {
             EnableAnalyzersSupport = true,
             EnableImportCompletion = true,
-            AnalyzeOpenDocumentsOnly = nil,
+            AnalyzeOpenDocumentsOnly = false,
         },
         Sdk = {
             IncludePrereleases = true,
