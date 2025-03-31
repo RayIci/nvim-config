@@ -31,14 +31,19 @@ function M.g_keymaps()
     map("x", "<leader>f", "<cmd>'<'>lua vim.lsp.buf.format({async = true})<CR>", { desc = "Format selection" })
 
     require("which-key").add({
-        { "<leader>l",  group = "LSP" },
-        { "<leader>l",  group = "LSP",                                           mode = "v" },
+        { "<leader>l", group = "LSP" },
+        { "<leader>l", group = "LSP", mode = "v" },
 
-        { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>",                desc = "Code Action",            mode = { "n", "v" } },
-        { "<leader>li", "<cmd>LspInfo<cr>",                                      desc = "Info" },
+        {
+            "<leader>la",
+            "<cmd>lua vim.lsp.buf.code_action()<cr>",
+            desc = "Code Action",
+            mode = { "n", "v" },
+        },
+        { "<leader>li", "<cmd>LspInfo<cr>", desc = "Info" },
         { "<leader>lh", "<cmd>lua require('code.lsp').toggle_inlay_hints()<cr>", desc = "Toggle inlay hints" },
-        { "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<cr>",              desc = "Diagnostics to quickfix" },
-        { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>",                     desc = "Rename" },
+        { "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<cr>", desc = "Diagnostics to quickfix" },
+        { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Rename" },
     })
 
     -- Enable format on save
@@ -46,15 +51,15 @@ function M.g_keymaps()
         pattern = "*",
         callback = function()
             vim.lsp.buf.format({ async = false })
-        end
+        end,
     })
 end
 
 function M.config()
-    local lspconfig = require "lspconfig"
+    local lspconfig = require("lspconfig")
     local servers = require("plugins.code.mason").lsp_servers
 
-    local capabilities = require "cmp_nvim_lsp".default_capabilities()
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
     M.g_keymaps()
     for _, server in pairs(servers) do
