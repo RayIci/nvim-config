@@ -3,22 +3,22 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Setup options
-require "core.options"
+require("core.options")
 
 -- Setup lazy package manager
-require "core.lazy"
+require("core.lazy")
 
 -- Setup keymaps
-require "core.keymaps"
+require("core.keymaps")
 
 -- Setup diagnostics
-require "core.diagnostics"
+require("core.diagnostics")
 
 -- Setup highlights
-require "core.highlight"
+require("core.highlight")
 
 -- Setup autocommands
-require "plugins.autocmds"
+require("plugins.autocmds")
 
 -- Setup plugins keymaps
-require "plugins.plugins_keymaps"
+require("plugins.plugins_keymaps")
