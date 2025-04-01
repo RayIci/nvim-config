@@ -11,7 +11,7 @@ local map = require("utils.keymaps").map
 function M.default_on_attach(client, bufnr)
     map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { buffer = bufnr, desc = "Go declaration" })
     map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { buffer = bufnr, desc = "Go definition" })
-    map("n", "<CR>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { buffer = bufnr, desc = "Signature help" })
+    map({ "n", "i" }, "<M-h>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { buffer = bufnr, desc = "Signature help" })
     map("n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", { buffer = bufnr, desc = "Go implementation" })
     map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { buffer = bufnr, desc = "Go references" })
     map("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", { buffer = bufnr, desc = "Go diagnostics" })
