@@ -6,17 +6,16 @@ local M = {
     },
 }
 
-
 function M.config()
     -- Disable the folcolumn color
-    local builtin = require "statuscol.builtin"
+    local builtin = require("statuscol.builtin")
     local cfg = {
-        ft_ignore = { 'neo-tree', "neotree" },
+        ft_ignore = { "neo-tree", "neotree" },
         setopt = true,
         relculright = true,
         segments = {
             { text = { builtin.foldfunc, " " }, click = "v:lua.ScFa", hl = "Comment" },
-            { text = { "%s" },                  click = "v:lua.ScSa" },
+            { text = { "%s" }, click = "v:lua.ScSa" },
             { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
         },
     }
@@ -27,9 +26,9 @@ function M.config()
     vim.o.foldlevel = 99
     vim.o.foldlevelstart = 99
     vim.o.foldenable = true
-    vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+    vim.o.fillchars = [[fold: ,foldopen:,foldsep: ,foldclose:]]
 
-    require("ufo").setup {
+    require("ufo").setup({
         close_fold_kinds_for_ft = {},
         close_fold_kinds = {},
         open_fold_hl_timeout = 10,
@@ -51,7 +50,7 @@ function M.config()
                 jumpBot = "]",
             },
         },
-    }
+    })
 end
 
 return M
