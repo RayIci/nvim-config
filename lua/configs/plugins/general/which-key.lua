@@ -1,6 +1,9 @@
 local M = {}
 
-M.preset = "helix"
+M.opts = {
+    preset = "helix",
+}
+
 M.keys = {
     {
         "<leader>?",

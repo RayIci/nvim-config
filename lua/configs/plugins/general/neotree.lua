@@ -211,12 +211,14 @@ require("neo-tree").setup({
                     "5. Path relative to HOME: " .. results[5],
                     "6. Extension of the filename: " .. results[6],
                 }, { prompt = "Choose to copy to clipboard:" }, function(choice)
-                    local i = tonumber(choice:sub(1, 1))
-                    local result = results[i]
-                    vim.fn.setreg("+", result)
-                    vim.fn.setreg("*", result)
-                    vim.fn.setreg('"', result)
-                    vim.notify("Copied: " .. result)
+                    if choice ~= nil then
+                        local i = tonumber(choice:sub(1, 1))
+                        local result = results[i]
+                        vim.fn.setreg("+", result)
+                        vim.fn.setreg("*", result)
+                        vim.fn.setreg('"', result)
+                        vim.notify("Copied: " .. result)
+                    end
                 end)
             end,
         },

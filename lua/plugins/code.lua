@@ -88,4 +88,36 @@ return {
         },
         build = "make tiktoken", -- Only on MacOS or Linux
     },
+
+    -- DAP for debugging
+    {
+        "mfussenegger/nvim-dap",
+        config = require("utils.configs").configure("code.dap"),
+        dependencies = {
+            -- Virtual text
+            "theHamsta/nvim-dap-virtual-text",
+
+            -- Brakepoint persist
+            "Weissle/persistent-breakpoints.nvim",
+
+            -- Dap language specific packages
+            "mfussenegger/nvim-dap-python",
+            "NicholasMata/nvim-dap-cs",
+        },
+    },
+
+    -- Neotest for testing
+    {
+        "nvim-neotest/neotest",
+        config = require("utils.configs").configure("code.neotest"),
+        dependencies = {
+            "nvim-neotest/nvim-nio",
+            "nvim-lua/plenary.nvim",
+            "antoinemadec/FixCursorHold.nvim",
+            "nvim-treesitter/nvim-treesitter",
+
+            -- Test language specific plugins
+            "nvim-neotest/neotest-python",
+        },
+    },
 }
