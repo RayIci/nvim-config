@@ -19,11 +19,7 @@ return {
             { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
         },
         config = function()
-            require("venv-selector").setup({
-                auto_refresh = true,
-                search = true,
-            })
-
+            require("venv-selector").setup()
             keymaps()
         end,
         branch = "regexp",
