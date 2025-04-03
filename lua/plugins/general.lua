@@ -59,4 +59,83 @@ return {
             "nvim-telescope/telescope-live-grep-args.nvim",
         },
     },
+
+    -- Refactoring
+    {
+        "ThePrimeagen/refactoring.nvim",
+        config = require("utils.configs").configure("general.refactoring"),
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+        },
+        lazy = false,
+    },
+
+    -- Trouble
+    {
+        "folke/trouble.nvim",
+        cmd = "Trouble",
+        opts = {
+            modes = {
+                symbols = {
+                    win = {
+                        type = "split",
+                        relative = "win",
+                        position = "right",
+                        size = 0.4,
+                    },
+                },
+            },
+        },
+    },
+
+    -- Toggleterm
+    {
+
+        "akinsho/toggleterm.nvim",
+        config = require("utils.configs").configure("general.toggleterm"),
+    },
+
+    -- Replacer
+    {
+        "nvim-pack/nvim-spectre",
+        config = require("utils.configs").configure("general.nvim-specter"),
+    },
+
+    -- Replacer
+    {
+        "rest-nvim/rest.nvim",
+        opts = require("configs.plugins.general.rest").opts,
+        config = function() end,
+    },
+
+    -- Lspsaga
+    {
+        "nvimdev/lspsaga.nvim",
+        config = require("utils.configs").configure("general.lspsaga"),
+    },
+
+    -- Illuminate
+    {
+        "RRethy/vim-illuminate",
+        config = require("utils.configs").configure("general.illuminate"),
+    },
+
+    -- Easy motion
+    {
+        "easymotion/vim-easymotion",
+        config = require("utils.configs").configure("general.easymotion"),
+    },
+
+    -- Doge docstring generate
+    {
+        "kkoomen/vim-doge",
+        build = ":call doge#install()",
+        config = require("utils.configs").configure("general.doge"),
+    },
+
+    {
+        "max397574/better-escape.nvim",
+        config = require("utils.configs").configure("general.better-escape"),
+    },
 }
