@@ -35,4 +35,12 @@ return {
             "nvim-lua/plenary.nvim",
         },
     },
+
+    -- Powerful Git integration for Vim
+    {
+        "tpope/vim-fugitive",
+        dependencies = {
+            "tpope/vim-rhubarb",
+        },
+    },
 }

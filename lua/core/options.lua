@@ -16,7 +16,7 @@ vim.o.linebreak = true -- linewrap behaviour
 
 vim.opt.mouse = "a" -- allow the mouse to be used in neovim
 
-vim.o.updatetime = 250 -- Decrease update time (default: 4000)
+vim.o.updatetime = 100 -- Decrease update time (default: 4000)
 vim.o.timeoutlen = 100 -- Time to wait for a mapped sequence to complete (in milliseconds) (default: 1000)
 
 vim.opt.numberwidth = 4 -- set number column width to 2 {default 4}
