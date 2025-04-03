@@ -16,3 +16,8 @@ require("configs.highlight")
 -- This need to be executed after the lazy configurations
 -- since the keymaps dependes on which-key plugin
 require("core.keymaps")
+
+-- FIXES --
+-- Those ones are general fixes that runs at the end of everything
+-- So i'm sure that are set at the end
+require("configs.fixes")

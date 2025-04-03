@@ -3,7 +3,7 @@ require("lualine").setup({
     options = {
         icons_enabled = true,
         theme = "auto",
-        component_separators = { right = icons.ui.BoldLineMiddle, left = icons.ui.BoldLineMiddle },
+        component_separators = { right = icons.ui.LineMiddle, left = icons.ui.LineMiddle },
         section_separators = { right = icons.ui.BoldDividerLeftCircle, left = icons.ui.BoldDividerRightCircle },
         disabled_filetypes = {
             statusline = {},
@@ -60,6 +60,3 @@ require("lualine").setup({
     inactive_winbar = {},
     extensions = {},
 })
-
-vim.o.laststatus = 3
--- vim.o.cmdheight = 0
