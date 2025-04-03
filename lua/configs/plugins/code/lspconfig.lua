@@ -36,7 +36,7 @@ local on_attach = function(client, bufnr)
     })
     map("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", { desc = "Code action" })
     map("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", { desc = "Rename" })
-    map("n", "<leader>la", "<cmd>lua vim.lsp.codelens.run()<cr>", { buffer = bufnr, desc = "Code lense" })
+    map("n", "<leader>ll", "<cmd>lua vim.lsp.codelens.run()<cr>", { buffer = bufnr, desc = "Code lense" })
 
     map("n", "H", function()
         -- local winid = require("ufo").peekFoldedLinesUnderCursor()

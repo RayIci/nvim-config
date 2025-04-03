@@ -1,16 +1,16 @@
 local M = {
     "folke/tokyonight.nvim",
-    name = "tokyonight"
+    name = "tokyonight",
 }
 
 function M.config()
-    require "tokyonight".setup {}
+    require("tokyonight").setup({})
 
     -- tokyonight-night
     -- tokyonight-storm
     -- tokyonight-day
     -- tokyonight-moon
-    vim.cmd.colorscheme "tokyonight-storm"
+    -- vim.cmd.colorscheme("tokyonight-storm")
 end
 
 return M

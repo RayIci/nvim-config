@@ -28,11 +28,13 @@ return {
     },
 
     -- lualine for crazy bottom line
-    "nvim-lualine/lualine.nvim",
-    config = require("utils.configs").configure("ui.lualine"),
-    dependencies = {
-        { "nvim-tree/nvim-web-devicons" },
-        { "yavorski/lualine-macro-recording.nvim" },
+    {
+        "nvim-lualine/lualine.nvim",
+        config = require("utils.configs").configure("ui.lualine"),
+        dependencies = {
+            { "nvim-tree/nvim-web-devicons" },
+            { "yavorski/lualine-macro-recording.nvim" },
+        },
     },
 
     -- Noice for some amazing functionalities
@@ -50,5 +52,13 @@ return {
     {
         "rcarriga/nvim-notify",
         config = require("utils.configs").configure("ui.notify"),
+    },
+
+    -- Theme switcher
+    {
+        "vague2k/huez.nvim",
+        config = require("utils.configs").configure("ui.themery"),
+        branch = "stable",
+        -- event = "UIEnter",
     },
 }

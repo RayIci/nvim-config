@@ -1,6 +1,6 @@
 local M = {
     "askfiy/visual_studio_code",
-    name = "vscode2"
+    name = "vscode2",
 }
 
 function M.config()
@@ -41,7 +41,7 @@ function M.config()
         },
     })
 
-    vim.cmd([[colorscheme visual_studio_code]])
+    -- vim.cmd([[colorscheme visual_studio_code]])
 end
 
 return M

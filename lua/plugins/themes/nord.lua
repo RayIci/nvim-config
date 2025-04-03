@@ -1,5 +1,5 @@
 local M = {
-    "shaunsingh/nord.nvim"
+    "shaunsingh/nord.nvim",
 }
 
 function M.config()
@@ -11,8 +11,8 @@ function M.config()
     vim.g.nord_bold = false
 
     -- Load the colorscheme
-    require('nord').set()
-    vim.cmd("colorscheme nord")
+    -- require("nord").set()
+    -- vim.cmd("colorscheme nord")
 end
 
 return M

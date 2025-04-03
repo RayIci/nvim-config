@@ -1,5 +1,5 @@
 local M = {
-    "ellisonleao/gruvbox.nvim"
+    "ellisonleao/gruvbox.nvim",
 }
 
 function M.config()
@@ -28,8 +28,8 @@ function M.config()
         transparent_mode = false,
     })
 
-    vim.o.background = "dark"
-    vim.cmd.colorscheme "gruvbox"
+    -- vim.o.background = "dark"
+    -- vim.cmd.colorscheme("gruvbox")
 end
 
 return M

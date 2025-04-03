@@ -8,8 +8,8 @@ map({ "n", "v" }, "<space>", "<nop>")
 map("v", "p", '"_dP', { desc = "Paste" })
 
 -- Center next and previous position
-map("n", "<c-o>", "<c-o>zz", { desc = "Prev position" })
 map("n", "<c-i>", "<c-i>zz", { desc = "Next position" })
+map("n", "<c-o>", "<c-o>zz", { desc = "Prev position" })
 
 -- Remap ctrl+c to esc (used for copilot to clear virtual text when using ctrl+c)
 map("i", "<c-c>", "<esc>", { desc = "Ctrl+c to esc" })
@@ -27,6 +27,7 @@ add({
         "x",
         '"_x',
         desc = "Delete single char (no buff save)",
+        mode = { "n", "x", "v" },
     },
 
     -- Vertical scroll and center

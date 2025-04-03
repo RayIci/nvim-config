@@ -44,8 +44,8 @@ function M.config()
         },
     })
 
-    require("onedark").load()
-    vim.cmd.colorscheme("onedark")
+    -- require("onedark").load()
+    -- vim.cmd.colorscheme("onedark")
 end
 
 return M
