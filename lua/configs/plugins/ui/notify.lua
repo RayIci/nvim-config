@@ -8,6 +8,7 @@ notify.setup({
     render = "default",
     max_width = 50,
     max_height = 10,
+    background_colour = "#000000",
 })
 
 vim.notify = require("notify")
