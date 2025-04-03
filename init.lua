@@ -13,6 +13,7 @@ require("configs.plugins.configure") -- Some plugins needs to be configured not 
 require("configs.autocmds")
 require("configs.diagnostics")
 require("configs.highlight")
+require("configs.folding")
 
 -- CORE KEYMAPS --
 -- This need to be executed after the lazy configurations
