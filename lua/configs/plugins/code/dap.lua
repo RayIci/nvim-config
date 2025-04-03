@@ -47,12 +47,6 @@ local dap = require("dap")
 local map = require("utils.keymaps").map
 local vrtext = require("nvim-dap-virtual-text")
 
-local continue = function()
-    dap.ext.vscode.json_decode = vim.fn.json_decode
-    dap.ext.vscode.load_launchjs(".vscode/launch.json", nil)
-    dap.continue()
-end
-
 require("which-key").add({
     { "<leader>d", group = "Debugger" },
 })
@@ -71,7 +65,7 @@ map("n", "<leader>dp", "<cmd>lua require('dap').pause()<cr>", { desc = "Pause" }
 map("n", "<leader>dk", "<cmd>lua require('dap').terminate()<cr>", { desc = "Kill" })
 
 -- debugger keymaps
-map("n", "<leader>dc", continue, { desc = "Continue" })
+map("n", "<leader>dc", dap.continue, { desc = "Continue" })
 map("n", "<F5>", dap.continue, { desc = "Debugger: continue" })
 map("n", "<F1>", dap.step_into, { desc = "Debugger: step into" })
 map("n", "<F2>", dap.step_over, { desc = "Debugger: step over" })

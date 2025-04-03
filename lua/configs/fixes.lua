@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
         vim.defer_fn(function()
             vim.o.laststatus = 3
             vim.o.cmdheight = 0
-            require("configs.highlight")
-        end, 20)
+            require("configs.highlight").set_highlight()
+        end, 200)
     end,
 })

@@ -1,6 +1,6 @@
 require("toggleterm").setup({
     open_mapping = "<c-t>",
-    insert_mappings = true,
+    insert_mappings = false,
     size = function(term)
         if term.direction == "horizontal" then
             return 25
