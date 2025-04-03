@@ -1,10 +1,10 @@
 local keymaps = function()
-    require "which-key".add {
-        { "-p",   group = "Python" },
-        { "-pv",  group = "Virtual Environment" },
-        { "-pvc", "<cmd>VenvSelectCached<cr>",  desc = "Cached" },
-        { "-pvs", "<cmd>VenvSelect<cr>",        desc = "Select" },
-    }
+    require("which-key").add({
+        { "-p", group = "Python" },
+        { "-pv", group = "Virtual Environment" },
+        { "-pvc", "<cmd>VenvSelectCached<cr>", desc = "Cached" },
+        { "-pvs", "<cmd>VenvSelect<cr>", desc = "Select" },
+    })
 end
 
 return {

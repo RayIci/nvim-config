@@ -20,10 +20,7 @@ return {
                 local path = ""
                 local home_dir = vim.fn.expand("~")
                 if require("easy-dotnet.extensions").isWindows() then
-                    local secret_path = home_dir
-                        .. "\\AppData\\Roaming\\Microsoft\\UserSecrets\\"
-                        .. secret_guid
-                        .. "\\secrets.json"
+                    local secret_path = home_dir .. "\\AppData\\Roaming\\Microsoft\\UserSecrets\\" .. secret_guid .. "\\secrets.json"
                     path = secret_path
                 else
                     local secret_path = home_dir .. "/.microsoft/usersecrets/" .. secret_guid .. "/secrets.json"

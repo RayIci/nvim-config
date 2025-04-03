@@ -1,12 +1,12 @@
 local keymaps = function()
-    require "which-key".add {
-        { "-m",   group = "Markdown" },
-        { "-mp",  group = "Markdown Preview" },
+    require("which-key").add({
+        { "-m", group = "Markdown" },
+        { "-mp", group = "Markdown Preview" },
         { "-mpt", "<cmd>MarkdownPreviewToggle<cr>", desc = "Toggle" },
-        { "-mpo", "<cmd>MarkdownPreview<cr>",       desc = "Open" },
-        { "-mps", "<cmd>MarkdownPreviewStop<cr>",   desc = "Stop" },
-        { "-mpc", "<cmd>MarkdownPreviewClose<cr>",  desc = "Close" },
-    }
+        { "-mpo", "<cmd>MarkdownPreview<cr>", desc = "Open" },
+        { "-mps", "<cmd>MarkdownPreviewStop<cr>", desc = "Stop" },
+        { "-mpc", "<cmd>MarkdownPreviewClose<cr>", desc = "Close" },
+    })
 end
 
 return {
