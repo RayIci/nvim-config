@@ -1,6 +1,7 @@
 local M = {}
 
 function M.on_toggleterm_open(terminal)
+    -- Activate the python venv when you create a new terminal
     -- vim.print(require("venv-selector").get_active_venv())
     local path_venv = os.getenv("VIRTUAL_ENV")
     if path_venv ~= nil then
@@ -15,8 +16,6 @@ function M.on_toggleterm_open(terminal)
     end
 end
 
-function M.on_toggleterm_create(terminal)
-    -- Activate the python venv when you create a new terminal
-end
+function M.on_toggleterm_create(terminal) end
 
 return M
