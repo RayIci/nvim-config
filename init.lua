@@ -9,6 +9,7 @@ require("core.options")
 
 -- CONFIGURATIONS --
 require("configs.lazy") -- Lazy package manager initialize all plugins
+require("configs.plugins.configure") -- Some plugins needs to be configured not in config function of lazy
 require("configs.diagnostics")
 require("configs.highlight")
 
