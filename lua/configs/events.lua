@@ -13,8 +13,6 @@ function M.on_toggleterm_open(terminal)
             vim.api.nvim_chan_send(terminal.job_id, "clear\n")
         end
     end
-
-    print(path_venv)
 end
 
 function M.on_toggleterm_create(terminal)
