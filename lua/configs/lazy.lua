@@ -4,6 +4,7 @@ lazy.initialize_lazy()
 require("lazy").setup({
     spec = {
         lazy.lazy_folder("plugins"),
+        lazy.lazy_folder("plugins.code-extra"),
         lazy.lazy_folder("plugins.themes"),
 
         --  Example of custom plugin
