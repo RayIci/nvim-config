@@ -8,7 +8,12 @@ require("toggleterm").setup({
             return vim.o.columns * 0.4
         end
     end,
-    on_open = function(terminal) end,
+    on_open = function(terminal)
+        require("configs.events").on_toggleterm_open(terminal)
+    end,
+    on_create = function(terminal)
+        require("configs.events").on_toggleterm_create(terminal)
+    end,
 })
 
 function _G.set_terminal_keymaps()
