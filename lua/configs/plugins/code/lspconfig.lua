@@ -47,7 +47,7 @@ local on_attach = function(client, bufnr)
     end)
 
     -- Refresh code lenses
-    vim.cmd("autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh({ bufnr = bufnr })")
+    vim.cmd("autocmd BufEnter,InsertLeave <buffer> lua vim.lsp.codelens.refresh({ bufnr = bufnr })")
 
     -- OTHER ON ATTACH CONFIGURATIONS
     -- Disable lsps formatting capabilities
