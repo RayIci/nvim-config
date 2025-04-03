@@ -2,24 +2,25 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Setup options
-require "config.options"
+-- CORE OPTIONS --
+-- This is needed do be executed as first since some
+-- plugins redefine some vim options
+require("core.options")
 
--- Setup lazy package manager
-require "config.lazy"
+-- CONFIGURATIONS --
+require("configs.lazy") -- Lazy package manager initialize all plugins
+require("configs.plugins.configure") -- Some plugins needs to be configured not in config function of lazy
+require("configs.autocmds")
+require("configs.diagnostics")
+require("configs.highlight")
+require("configs.folding")
 
--- Setup keymaps
-require "config.keymaps"
+-- CORE KEYMAPS --
+-- This need to be executed after the lazy configurations
+-- since the keymaps dependes on which-key plugin
+require("core.keymaps")
 
--- Setup Diagnostics
-require "config.diagnostics"
-
--- Autocommands
-require "config.autocmd"
-
--- Fixes:
--- Colorscheme fix, reset background
-vim.cmd("highlight FoldColumn guibg=NONE guifg=NONE")
-vim.cmd("highlight SignColumn guibg=NONE guifg=NONE")
-vim.cmd("highlight CursorLineNr guibg=NONE guifg=NONE")
--- vim.cmd("highlight LineNr guifg=#5eacd3 guibg=NONE") -- Line number color
+-- FIXES --
+-- Those ones are general fixes that runs at the end of everything
+-- So i'm sure that are set at the end
+require("configs.fixes")
