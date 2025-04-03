@@ -13,6 +13,7 @@ local mason_packages = {
     "rustywind", -- tailwind classes organizer
     "sqlfmt", -- SQL formatter
     "stylua", -- Lua formatter
+    "csharpier ", -- C# formatter
 }
 
 -- Mason packages install
@@ -80,6 +81,9 @@ local sources = {
 
     -- Lua formatter
     formatters.stylua,
+
+    -- Lua formatter
+    formatters.csharpier,
 }
 
 -- Setup none-ls
