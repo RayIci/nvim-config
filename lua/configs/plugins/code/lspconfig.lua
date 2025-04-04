@@ -34,7 +34,7 @@ local on_attach = function(client, bufnr)
         { "<leader>l", group = "LSP" },
         { "<leader>l", group = "LSP", mode = "v" },
     })
-    map("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", { desc = "Code action" })
+    map({ "n", "v" }, "<leader>la", require("actions-preview").code_actions, { desc = "Code action" })
     map("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", { desc = "Rename" })
     map("n", "<leader>ll", "<cmd>lua vim.lsp.codelens.run()<cr>", { buffer = bufnr, desc = "Code lense" })
 

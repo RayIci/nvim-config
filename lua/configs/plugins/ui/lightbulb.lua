@@ -6,6 +6,8 @@ require("nvim-lightbulb").setup({
 
     -- 2. Virtual text.
     virtual_text = {
+        text = require("utils.icons").diagnostics.BoldHint,
+        lens_text = "🔎",
         enabled = true,
     },
 })

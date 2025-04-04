@@ -27,6 +27,11 @@ return {
         config = require("utils.configs").configure("ui.lightbulb"),
     },
 
+    -- Code action menu
+    {
+        "aznhe21/actions-preview.nvim",
+    },
+
     -- lualine for crazy bottom line
     {
         "nvim-lualine/lualine.nvim",
