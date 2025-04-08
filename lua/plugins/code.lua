@@ -17,6 +17,7 @@ return {
             "williamboman/mason-lspconfig.nvim",
             "jayp0521/mason-null-ls.nvim",
             "jay-babu/mason-nvim-dap.nvim",
+            "WhoIsSethDaniel/mason-tool-installer.nvim",
         },
         config = true,
     },
@@ -28,6 +29,12 @@ return {
         dependencies = {
             "nvimtools/none-ls-extras.nvim",
         },
+    },
+
+    -- Nvim lint to lint what none-ls cannot
+    {
+        "mfussenegger/nvim-lint",
+        config = require("utils.configs").configure("code.nvim-lint"),
     },
 
     -- Cmp for autocompletition
