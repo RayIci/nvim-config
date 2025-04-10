@@ -18,7 +18,7 @@ local toggle_watches = function()
     toggle_floating("watches")
 end
 local toggle_breakpoints = function()
-    toggle_floating("breakpoint ")
+    toggle_floating("breakpoints")
 end
 local toggle_repl = function()
     toggle_floating("repl")
