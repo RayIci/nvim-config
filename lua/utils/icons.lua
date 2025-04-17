@@ -117,6 +117,8 @@ return {
         Lightbulb = "",
         LineLeft = "▏",
         LineMiddle = "│",
+        LineRight = "▕",
+        LineDashedIndent = "┊",
         List = "",
         Lock = "",
         NewFile = "",

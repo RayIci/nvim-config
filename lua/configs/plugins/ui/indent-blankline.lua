@@ -17,6 +17,6 @@ require("ibl").setup({
         show_exact_scope = false,
     },
     indent = {
-        char = icons.ui.LineMiddle,
+        char = icons.ui.LineDashedIndent, -- ┊, -- ┊ ⠇ ¦ ▏ -- https://www.compart.om/en/unicode/U+250A
     },
 })
