@@ -108,4 +108,12 @@ return {
     {
         "mbbill/undotree",
     },
+
+    -- yank cycle and picker
+    -- needs to be loaded after snacks
+    {
+        "gbprod/yanky.nvim",
+        dependencies = { "folke/snacks.nvim" },
+        config = require("utils.configs").configure("misc.yanky"),
+    },
 }
