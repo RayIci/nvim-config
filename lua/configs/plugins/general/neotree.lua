@@ -71,9 +71,9 @@ require("neo-tree").setup({
             expander_highlight = "NeoTreeExpander",
         },
         icon = {
-            folder_closed = icons.ui.Folder,
-            folder_open = icons.ui.FolderOpen,
-            folder_empty = icons.ui.EmptyFolderOpen,
+            folder_closed = icons.ui.ChevronShortRight, -- icons.ui.Folder,
+            folder_open = icons.ui.ChevronShortDown,
+            folder_empty = icons.ui.ChevronShortDown, -- icons.ui.EmptyFolder,
             provider = function(icon, node, _) -- default icon provider utilizes nvim-web-devicons if available
                 if node.type == "file" or node.type == "terminal" then
                     local success, web_devicons = pcall(require, "nvim-web-devicons")
