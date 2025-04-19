@@ -2,7 +2,7 @@ local mason_packages = {
     -- DIAGNOSTICS/LINTERS
     "hadolint", -- Dockerfile linter
     "sqlfluff", -- SQL linter
-    "eslint_d", -- ts/js linter
+    -- "eslint_d", -- ts/js linter
 
     -- FORMATTERS
     "prettier", -- ts/js formatter
@@ -48,7 +48,7 @@ local sources = {
     }),
 
     -- Typescript/Javascript linter
-    require("none-ls.diagnostics.eslint_d"),
+    -- require("none-ls.diagnostics.eslint_d"),
 
     -- FORMATTERS
 
