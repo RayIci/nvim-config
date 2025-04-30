@@ -12,14 +12,7 @@ return {
         },
     },
 
-    -- Formatting
-    {
-        "stevearc/conform.nvim",
-        config = function()
-            require("configs.plugins.code.conform")
-        end, 
-    },
-
+    -- Replaced null-ls with conform and nvim-lint
     -- None ls for diagnostics and formatting
     -- {
     --     "nvimtools/none-ls.nvim",
@@ -28,6 +21,14 @@ return {
     --         "nvimtools/none-ls-extras.nvim",
     --     },
     -- },
+
+    -- Formatting
+    {
+        "stevearc/conform.nvim",
+        config = function()
+            require("configs.plugins.code.conform")
+        end,
+    },
 
     -- Nvim lint to lint what none-ls cannot
     {
