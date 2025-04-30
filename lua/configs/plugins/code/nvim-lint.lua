@@ -9,6 +9,12 @@ local lint = require("lint")
 -- Setup configurations for linters
 local mason_bin_path = require("configs.mason").mason_bin_path()
 lint.linters.flake8.cmd = mason_bin_path .. "flake8"
+lint.linters.sqlfluff.args = {
+    "--dialect",
+    "postgres",
+    "--exclude-rules",
+    "layout.indent,layout.cte_bracket,layout.select_targets,layout.spacing",
+}
 
 -- Setup lint for filetypes
 -- use `:= vim.bo.filetype` to understand the file type

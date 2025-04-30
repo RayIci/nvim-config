@@ -24,8 +24,18 @@ local formatters_by_ft = {
     cpp = { "clang-format" },
 }
 
+local formatters = {
+    isort = {
+        prepend_args = { "--profile", "black" },
+    },
+    shfmt = {
+        args = { "-i", "4" },
+    },
+}
+
 conform.setup({
     formatters_by_ft = formatters_by_ft,
+    formatters = formatters
 })
 
 local map = require("utils.keymaps").map
