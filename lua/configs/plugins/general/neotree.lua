@@ -6,7 +6,7 @@ require("which-key").add({
     { "<leader>gs", "<cmd>Neotree git_status position=float <cr>", desc = "Git status" },
 })
 
-local position = "left"
+local position = "right"
 local indent_size = 3
 local window_width = 60
 
