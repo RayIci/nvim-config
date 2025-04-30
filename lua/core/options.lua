@@ -55,3 +55,4 @@ vim.opt.runtimepath:remove("/usr/share/vim/vimfiles") -- Separate Vim plugins fr
 
 vim.g.netrw_banner = 0
 vim.g.netrw_mouse = 2
+vim.opt.colorcolumn = "100" -- line length marker
