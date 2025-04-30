@@ -13,7 +13,7 @@ lint.linters.flake8.cmd = mason_bin_path .. "flake8"
 -- Setup lint for filetypes
 -- use `:= vim.bo.filetype` to understand the file type
 lint.linters_by_ft = {
-    python = { "flake8" },
+    -- python = { "flake8" },
     javascript = { "eslint" },
     javascriptreact = { "eslint" },
     typescript = { "eslint" },
