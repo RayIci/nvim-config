@@ -1,4 +1,6 @@
 return {
+    require("configs.mason").mason_lazy_plugin,
+
     -- Treesitter for syntax hilighting
     {
         "nvim-treesitter/nvim-treesitter",
@@ -10,26 +12,22 @@ return {
         },
     },
 
-    -- Mason to manage packages
+    -- Formatting
     {
-        "williamboman/mason.nvim",
-        dependencies = {
-            "williamboman/mason-lspconfig.nvim",
-            "jayp0521/mason-null-ls.nvim",
-            "jay-babu/mason-nvim-dap.nvim",
-            "WhoIsSethDaniel/mason-tool-installer.nvim",
-        },
-        config = true,
+        "stevearc/conform.nvim",
+        config = function()
+            require("configs.plugins.code.conform")
+        end, 
     },
 
     -- None ls for diagnostics and formatting
-    {
-        "nvimtools/none-ls.nvim",
-        config = require("utils.configs").configure("code.none-ls"),
-        dependencies = {
-            "nvimtools/none-ls-extras.nvim",
-        },
-    },
+    -- {
+    --     "nvimtools/none-ls.nvim",
+    --     config = require("utils.configs").configure("code.none-ls"),
+    --     dependencies = {
+    --         "nvimtools/none-ls-extras.nvim",
+    --     },
+    -- },
 
     -- Nvim lint to lint what none-ls cannot
     {

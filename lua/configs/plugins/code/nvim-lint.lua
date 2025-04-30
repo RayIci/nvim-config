@@ -1,24 +1,13 @@
--- Install linters from mason package manager using a tool for ensure installed
-local mason_packages = {
-    "flake8",
-}
-
--- TODO: Make mason install packages a general configuration
--- meaning -> abstract all amson ensure_isntalled also for other plugins
-require("mason-tool-installer").setup({
-    ensure_installed = mason_packages,
-    run_on_start = true,
-    integrations = {
-        ["mason-lspconfig"] = false,
-        ["mason-null-ls"] = false,
-        ["mason-nvim-dap"] = false,
-    },
-})
+local register_package = require("configs.mason").register_package
+register_package("diagnostic", "hadolint")
+register_package("diagnostic", "sqlfluff")
+register_package("diagnostic", "flake8")
+register_package("diagnostic", "eslint_d")
 
 local lint = require("lint")
 
 -- Setup configurations for linters
-local mason_bin_path = require("utils.mason").mason_bin_path()
+local mason_bin_path = require("configs.mason").mason_bin_path()
 lint.linters.flake8.cmd = mason_bin_path .. "flake8"
 
 -- Setup lint for filetypes
@@ -29,6 +18,12 @@ lint.linters_by_ft = {
     javascriptreact = { "eslint" },
     typescript = { "eslint" },
     typescriptreact = { "eslint" },
+    html = { "eslint" },
+    css = { "eslint" },
+    scss = { "eslint" },
+    json = { "eslint" },
+    dockerfile = { "hadolint" },
+    sql = { "sqlfluff" },
 }
 
 -- Lint autocmd

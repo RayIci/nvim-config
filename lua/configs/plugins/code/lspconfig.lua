@@ -1,22 +1,16 @@
 -- Setup mason lsp packages
-local mason_packages = {
-    "pyright", -- Python
-    "ts_ls", -- Typescript
-    "tailwindcss", -- Tailwindcss
-    "texlab", -- Latex
-    "omnisharp", -- c#
-    "clangd", -- C and C++
-    "cmake", -- cmake
-    "docker_compose_language_service", -- Docker compose
-    "dockerls", -- Docker
-    "lua_ls", -- Lua
-    "sqlls", -- SQL
-}
-
-require("mason-lspconfig").setup({
-    automatic_installation = true,
-    ensure_installed = mason_packages,
-})
+local register_package = require("configs.mason").register_package
+register_package("lsp", "pyright")
+register_package("lsp", "ts_ls")
+register_package("lsp", "tailwindcss")
+register_package("lsp", "texlab")
+register_package("lsp", "omnisharp")
+register_package("lsp", "clangd")
+register_package("lsp", "cmake")
+register_package("lsp", "docker_compose_language_service")
+register_package("lsp", "dockerls")
+register_package("lsp", "lua_ls")
+register_package("lsp", "sqlls")
 
 local map = require("utils.keymaps").map
 map("n", "<leader>li", "<cmd>LspInfo<cr>", { desc = "Info" })

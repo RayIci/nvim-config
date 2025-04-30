@@ -1,13 +1,7 @@
 -- Setup mason packages
-local mason_packages = {
-    "python",
-    "netcoredbg",
-}
-
-require("mason-nvim-dap").setup({
-    ensure_installed = mason_packages,
-    automatic_installation = true,
-})
+local register_package = require("configs.mason").register_package
+register_package("dap", "python")
+register_package("dap", "netcoredbg")
 
 -- Setup breakpoints persist
 require("persistent-breakpoints").setup({
@@ -20,8 +14,8 @@ require("nvim-dap-virtual-text").setup({
 })
 
 -- DAP configurations
-local mason_path = require("utils.mason").mason_data_path()
-local mason_bin_path = require("utils.mason").mason_bin_path()
+local mason_path = require("configs.mason").mason_data_path()
+local mason_bin_path = require("configs.mason").mason_bin_path()
 
 -- Python
 require("dap-python").setup(mason_path .. "packages/debugpy/venv/bin/python")

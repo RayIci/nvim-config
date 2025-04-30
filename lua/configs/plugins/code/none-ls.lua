@@ -1,26 +1,16 @@
-local mason_packages = {
-    -- DIAGNOSTICS/LINTERS
-    "hadolint", -- Dockerfile linter
-    "sqlfluff", -- SQL linter
-    -- "eslint_d", -- ts/js linter
+local register_package = require("configs.mason").register_package
 
-    -- FORMATTERS
-    "prettier", -- ts/js formatter
-    "shfmt", -- Shell formatter
-    "black", -- Python formatter
-    "isort", -- Python import sorter
-    "clang-format", -- C & C++ formatter
-    "rustywind", -- tailwind classes organizer
-    "sqlfmt", -- SQL formatter
-    "stylua", -- Lua formatter
-    "csharpier ", -- C# formatter
-}
-
--- Mason packages install
-require("mason-null-ls").setup({
-    ensure_installed = mason_packages,
-    automatic_installation = true,
-})
+register_package("diagnostic", "hadolint")
+register_package("diagnostic", "sqlfluff")
+register_package("formatter", "prettier")
+register_package("formatter", "shfmt")
+register_package("formatter", "black")
+register_package("formatter", "isort")
+register_package("formatter", "clang-format")
+register_package("formatter", "rustywind")
+register_package("formatter", "sqlfmt")
+register_package("formatter", "stylua")
+register_package("formatter", "csharpier")
 
 -- Keymaps
 local map = require("utils.keymaps").map
