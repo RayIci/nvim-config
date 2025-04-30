@@ -35,7 +35,7 @@ local formatters = {
 
 conform.setup({
     formatters_by_ft = formatters_by_ft,
-    formatters = formatters
+    formatters = formatters,
 })
 
 local map = require("utils.keymaps").map
