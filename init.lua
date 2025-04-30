@@ -14,6 +14,7 @@ require("configs.autocmds")
 require("configs.diagnostics")
 require("configs.highlight")
 require("configs.folding")
+require("configs.mason").isntall_packages() -- Install all packages that are needed to be installed
 
 -- CORE KEYMAPS --
 -- This need to be executed after the lazy configurations
