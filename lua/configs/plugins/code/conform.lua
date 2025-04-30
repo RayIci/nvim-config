@@ -16,6 +16,7 @@ local formatters_by_ft = {
     python = { "black", "isort" },
     javascript = { "prettier" },
     typescript = { "prettier" },
+    json = { "prettier" },
     rust = { "rustywind" },
     sql = { "sqlfmt" },
     sh = { "shfmt" },
