@@ -77,6 +77,7 @@ cmp.setup({
     completion = { completeopt = "menu,menuone,noinsert" },
     mapping = cmp.mapping.preset.insert(cmp_keymaps),
     sources = {
+        { name = "calc" },
         { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "buffer" },
