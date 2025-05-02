@@ -2,7 +2,7 @@ local register_package = require("configs.mason").register_package
 register_package("diagnostic", "hadolint")
 register_package("diagnostic", "sqlfluff")
 register_package("diagnostic", "flake8")
-register_package("diagnostic", "eslint_d")
+-- register_package("diagnostic", "eslint_d")
 
 local lint = require("lint")
 
