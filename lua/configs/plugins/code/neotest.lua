@@ -4,10 +4,6 @@ local adapters = {
 
 require("neotest").setup({
     adapters = adapters,
-    cache = {
-        enabled = true,
-        path = vim.fn.stdpath("cache") .. "/neotest",
-    },
 })
 
 require("which-key").add({
