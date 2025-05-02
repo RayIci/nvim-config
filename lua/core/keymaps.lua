@@ -116,7 +116,7 @@ add({
     { "<leader>o", group = "Options" },
     { "<leader>ow", "<cmd>set wrap!<cr>", desc = "Toggle line wrap" },
     { "<leader>oc", "<cmd>set cursorline!<cr>", desc = "Toggle cursor line" },
-    { "<leader>ot", "<cmd>set list!<cr>", desc = "Toggle list" },
+    { "<leader>oL", "<cmd>set list!<cr>", desc = "Toggle list" },
 
     { "<leader>ol", group = "Colorcolumn" },
     { "<leader>ole", "<cmd>lua vim.opt.colorcolumn = '100'<cr>", desc = "Enable" },
