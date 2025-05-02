@@ -24,10 +24,6 @@ lint.linters_by_ft = {
     javascriptreact = { "eslint" },
     typescript = { "eslint" },
     typescriptreact = { "eslint" },
-    html = { "eslint" },
-    css = { "eslint" },
-    scss = { "eslint" },
-    json = { "eslint" },
     dockerfile = { "hadolint" },
     sql = { "sqlfluff" },
 }
