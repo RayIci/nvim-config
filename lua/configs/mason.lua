@@ -41,6 +41,7 @@ function M.isntall_packages()
 
     -- Concat all packages
     local ensure_installed = require("utils.tables").concat_lists(M.__diagnostic_packages, M.__formatter_packages, M.__lsp_packages, M.__dap_packages)
+    require("mason").setup()
     require("mason-tool-installer").setup({
         ensure_installed = ensure_installed,
         run_on_start = true,
