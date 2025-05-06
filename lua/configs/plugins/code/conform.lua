@@ -16,7 +16,12 @@ local formatters_by_ft = {
     python = { "black", "isort" },
     javascript = { "prettier" },
     typescript = { "prettier" },
+    typescriptreact = { "prettier" },
+    javascriptreact = { "prettier" },
     json = { "prettier" },
+    css = { "prettier" },
+    scss = { "prettier" },
+    html = { "prettier" },
     rust = { "rustywind" },
     sql = { "sqlfmt" },
     sh = { "shfmt" },
@@ -37,6 +42,11 @@ local formatters = {
 conform.setup({
     formatters_by_ft = formatters_by_ft,
     formatters = formatters,
+    timeout_ms = 0,
+    format_after_save = {
+        lsp_format = "fallback",
+        async = true,
+    },
 })
 
 local map = require("utils.keymaps").map
@@ -51,10 +61,3 @@ map("x", "<leader>f", function()
         },
     })
 end, { desc = "Format selection" })
-
-vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = "*",
-    callback = function(args)
-        require("conform").format({ bufnr = args.buf, async = true, lsp_fallback = true })
-    end,
-})
