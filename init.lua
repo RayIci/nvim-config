@@ -5,4 +5,7 @@ require("mnvim")
 require("options")
 require("keymaps")
 
+-- Setup coding 
+require("coding-server-configurations")
+
 mnvim.setup()

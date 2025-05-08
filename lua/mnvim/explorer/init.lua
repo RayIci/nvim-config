@@ -41,11 +41,11 @@ M.actions.open_explorer = function ()
 end
 
 M.actions.open_buffer_explorer = function ()
-    vim.cmd("Neotree buffers position=float") 
+    vim.cmd("Neotree buffers") 
 end
 
 M.actions.open_git_explorer = function ()
-    vim.cmd("Neotree git_status position=float") 
+    vim.cmd("Neotree git_status") 
 end
 
 _G.mnvim.explorer = M

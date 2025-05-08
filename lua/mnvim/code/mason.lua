@@ -1,6 +1,6 @@
 local M = {}
 
-local diagnostic_packages = {}
+local linters_packages = {}
 local formatter_packages = {}
 local dap_packages = {}
 local lsp_packages = {}
@@ -23,7 +23,7 @@ function M.install_packages()
 
     -- Concat all packages
     local ensure_installed = require("mnvim.utils.tables").concat_lists(
-        diagnostic_packages,
+        linters_packages,
         formatter_packages,
         lsp_packages,
         dap_packages
@@ -40,13 +40,13 @@ function M.install_packages()
     })
 end
 
----@alias PackageKind "diagnostic" | "formatter" | "lsp" | "dap"
+---@alias PackageKind "linter" | "formatter" | "lsp" | "dap"
 
 ---@param kind PackageKind
 ---@param package string | table
 function M.register_package(kind, package)
-    if kind == "diagnostic" then
-        table.insert(diagnostic_packages, package)
+    if kind == "linter" then
+        table.insert(linters_packages, package)
     elseif kind == "formatter" then
         table.insert(formatter_packages, package)
     elseif kind == "lsp" then
