@@ -1,19 +1,21 @@
+-- Public method API table
 local M = {}
 
--- Lazy path
-M.lazy_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+-- Private method table
+local P = {}
 
--- Plugin list
-M._plugins = {}
+
+local lazy_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local plugins = {}
 
 ---Install and setup lazy nvim with the plugins
-function M.setup()
+function P.install_plugins()
     -- Check if lazy.nvim is installed
     -- If not, clone it from the repository
     -- and add it to the runtime path
-    if not (vim.uv or vim.loop).fs_stat(M.lazy_path) then
+    if not (vim.uv or vim.loop).fs_stat(lazy_path) then
         local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-        local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, M.lazy_path })
+        local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazy_path })
 
         if vim.v.shell_error ~= 0 then
             vim.api.nvim_echo({
@@ -25,10 +27,10 @@ function M.setup()
             os.exit(1)
         end
     end
-    vim.opt.rtp:prepend(M.lazy_path)
+    vim.opt.rtp:prepend(lazy_path)
 
     require("lazy").setup({
-        spec = M._plugins,
+        spec = plugins,
         defaults = {
             lazy = false,
         },
@@ -50,18 +52,8 @@ function M.setup()
         },
     })
 
-    -- Execute the registered events when plugins are loaded
-    for _, func in pairs(M._on_plugins_loaded) do
-        func()
-    end
-end
-
-M._on_plugins_loaded = {}
-
----Register a function to be called when plugins are loaded
----@param function_callback function register a function that will be called when plugins are loaded
-function M.on_plugins_loaded(function_callback)
-    table.insert(M._on_plugins_loaded, function_callback)
+    local event_manager = require("mnvim.event-manager")
+    event_manager.dispatch_events("plugins-loaded")
 end
 
 ---Register a plugin with lazy.nvim
@@ -71,23 +63,23 @@ function M.register(plugin)
         return
     end
 
-    table.insert(M._plugins, plugin)
+    table.insert(plugins, plugin)
 end
 
 ---Register a module of plugin with lazy.nvim
 ---@param module string the lua plugin module with the lua folder structure (like "code.plugins")
 function M.register_module(module)
-    table.insert(M._plugins, { import = module })
+    table.insert(plugins, { import = module })
 end
 
 ---Register a custom plugin with lazy.nvim
 ---Example:
----
 ---register_custom("~/.config/nvim/custom-plugins/python-df.nvim", function() require "python-df".setup() end)
 ---@param direcotry string the directory of the plugin
 ---@param config_funciton function the function to be called when the plugin is loaded
 function M.register_custom(direcotry, config_funciton)
-    table.insert(M._plugins, { import = direcotry, config = config_funciton })
+    table.insert(plugins, { import = direcotry, config = config_funciton })
 end
 
 _G.mnvim.plugins = M
+return P

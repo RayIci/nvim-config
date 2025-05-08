@@ -1,5 +1,3 @@
-mnvim.explorer.window.position = "right"
-
 vim.cmd("let g:netrw_banner = 0 ")
 
 vim.opt.guicursor = ""
