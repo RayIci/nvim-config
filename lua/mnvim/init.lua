@@ -7,7 +7,7 @@ _G.mnvim = {}
 local event_manager = require("mnvim.event-manager")
 -- Initialize the plugins manager used to register plugins into
 -- in the backend it uses lazy to handle the plugins
-local plugin_manager = require("mnvim.plugin-manager")
+local plugin_manager = require("mnvim.lazy")
 
 -- Initialize keymaps functionalities 
 require("mnvim.keymaps")

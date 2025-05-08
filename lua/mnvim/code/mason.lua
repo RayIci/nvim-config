@@ -17,7 +17,7 @@ function M.get_mason_bin_path()
     return M.mason_data_path .. "bin/"
 end
 
-function M.install_packages()
+function M.config()
     -- Add packages to vim PATH
     vim.env.PATH = M.get_mason_data_path() .. "bin:" .. vim.env.PATH
 

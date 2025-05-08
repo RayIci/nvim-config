@@ -9,5 +9,6 @@ return {
         "jay-babu/mason-nvim-dap.nvim",
         "mfussenegger/nvim-dap",
         "WhoIsSethDaniel/mason-tool-installer.nvim",
-    }
+    },
+    config = require("mnvim.code.mason").config
 }

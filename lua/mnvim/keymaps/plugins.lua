@@ -14,6 +14,7 @@ return {
                 end,
                 desc = "Buffer Local Keymaps (which-key)",
             },
-        }
+        },
+        config = require("mnvim.keymaps.which-key").config
     }
 }

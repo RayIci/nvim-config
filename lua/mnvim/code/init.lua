@@ -184,13 +184,5 @@ M.linters.configure_linter = nvim_lint.configure_linter
 M.linters.register_for_filetype = nvim_lint.register_for_filetype
 M.show_error_if_linter_not_found = true
 
-----------------------------------------------------------------
--- Install the code packages as soon as the plugins are installed
--- This is needed since the package manager is mason and then
--- needs to be firstly installed as a plugin by the plugins manager
-mnvim.events.register("plugins-loaded", function ()
-    mason.install_packages()
-end)
-
 _G.mnvim.code = {}
 _G.mnvim.code = M
