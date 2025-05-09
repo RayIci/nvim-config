@@ -16,6 +16,18 @@ map("n", '<leader>be', mnvim.explorer.actions.open_buffer_explorer, { desc = 'Op
 map("n", "<leader>f", mnvim.code.formatters.actions.format, { desc = "Format file" })
 map("x", "<leader>f", mnvim.code.formatters.actions.format_range, { desc = "Format selection" })
 
+-- Diagnostics
+map("n", "[d", mnvim.diagnostics.actions.prev_diagnostics, { desc = "Previous diagnostic" })
+map("n", "]d", mnvim.diagnostics.actions.next_diagnostics, { desc = "Next diagnostic" })
+map("n", "[e", mnvim.diagnostics.actions.prev_error, { desc = "Previous error" })
+map("n", "]e", mnvim.diagnostics.actions.next_error, { desc = "Next error" })
+map("n", "[w", mnvim.diagnostics.actions.prev_warning, { desc = "Previous warning" })
+map("n", "]w", mnvim.diagnostics.actions.next_warning, { desc = "Next warning" })
+map("n", "[i", mnvim.diagnostics.actions.prev_info, { desc = "Previous info" })
+map("n", "]i", mnvim.diagnostics.actions.next_info, { desc = "Next info" })
+map("n", "[h", mnvim.diagnostics.actions.prev_hint, { desc = "Previous hint" })
+map("n", "]h", mnvim.diagnostics.actions.next_hint, { desc = "Next hint" })
+
 --------------------------------------------------------------------------------------------
 -- LSP (on attach)
 --------------------------------------------------------------------------------------------

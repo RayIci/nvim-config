@@ -15,13 +15,17 @@ require("mnvim.keymaps")
 -- Add UI
 require("mnvim.ui")
 
--- Add Explorer
+-- Add Explorer functionalities
 require("mnvim.explorer")
 
 -- Add Coding functionalities
 require("mnvim.code")
 
+-- Add Diagnostics functionalities
+local diagnostics = require("mnvim.diagnostics")
+
 -- The setup function used to run mnvim 
 _G.mnvim.setup = function()
     plugin_manager.install_plugins()
+    diagnostics.config()
 end
