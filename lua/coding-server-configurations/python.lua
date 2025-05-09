@@ -15,6 +15,7 @@ mnvim.code.lsp.register("pyright", {
 
 mnvim.code.packages.install("formatter", "black")
 mnvim.code.packages.install("formatter", "isort")
+mnvim.code.formatters.configure_formatter("isort", { prepend_args = { "--profile", "black" } })
 mnvim.code.formatters.register_for_filetype("python", "black")
 mnvim.code.formatters.register_for_filetype("python", "isort")
 
@@ -28,4 +29,3 @@ mnvim.plugins.register({
         require("dap-python").setup(mnvim.code.packages.get_data_path() .. "packages/debugpy/venv/bin/python")
     end
 })
-
