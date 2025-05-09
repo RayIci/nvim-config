@@ -6,6 +6,11 @@ mapgroup('<leader>g', 'Git')
 mapgroup('<leader>b', 'Buffers')
 mapgroup('<leader>l', 'LSP', { "v", "n" })
 mapgroup('<leader>d', 'Debug')
+mapgroup("<leader>j", "Tabs")
+mapgroup("<leader>x", "Close")
+mapgroup("<leader>q", "Lists")
+mapgroup("<leader>o", "Options")
+mapgroup("<leader>ol", "Colorcolumn")
 
 -- Explorer
 map("n", '<leader>e', mnvim.explorer.actions.open_explorer, { desc = 'Open explorer' })
@@ -15,6 +20,95 @@ map("n", '<leader>be', mnvim.explorer.actions.open_buffer_explorer, { desc = 'Op
 -- Formatting
 map("n", "<leader>f", mnvim.code.formatters.actions.format, { desc = "Format file" })
 map("x", "<leader>f", mnvim.code.formatters.actions.format_range, { desc = "Format selection" })
+
+-- Disable space behaviour in normal and visual mode
+map({ "n", "v" }, "<space>", "<nop>")
+
+-- Keep last yanked when pasting
+map("v", "p", '"_dP', { desc = "Paste" })
+
+-- Center next and previous position
+map("n", "<c-i>", "<c-i>zz", { desc = "Next position" })
+map("n", "<c-o>", "<c-o>zz", { desc = "Prev position" })
+
+-- Remap ctrl+c to esc (used for copilot to clear virtual text when using ctrl+c)
+map("i", "<c-c>", "<esc>", { desc = "Ctrl+c to esc" })
+
+-- Remap to nothing alt+space (since idk why but if you press it default is exit insert)
+map("i", "<a-space>", "<nop>")
+
+-- File save
+map("n", "<c-s>", "<cmd>w<cr>", { desc = "Save file" })
+map("n", "<c-a>", "<cmd>noautocmd w<cr>", { desc = "Save without formatting" })
+
+-- Deletion
+map({ "n", "x", "v" }, "x", '"_x', { desc = "Delete single char (no buff save)" })
+
+-- Vertical scroll and center
+map("n", "<c-d>", "<c-d>zz", { desc = "Scroll down" })
+map("n", "<c-u>", "<c-u>zz", { desc = "Scroll up" })
+
+-- Find and center
+map("n", "n", "nzzzv", { desc = "Find next" })
+map("n", "N", "Nzzzv", { desc = "Find previous" })
+
+-- Remove find
+map("n", "<c-x>", "<cmd>noh<cr>", { desc = "Clear find" })
+
+-- Windows management
+map("n", "<leader>v", "<c-w>v", { desc = "Split window vertically" })
+map("n", "<leader>h", "<c-w>s", { desc = "Split window hrizontally" })
+map("n", "<leader>=", "<c-w>=", { desc = "Split window reset Size" })
+
+-- Move between windows
+map("n", "<c-h>", "<cmd>wincmd h<cr>", { desc = "Move on left window" })
+map("n", "<c-j>", "<cmd>wincmd j<cr>", { desc = "Move on bottom window" })
+map("n", "<c-k>", "<cmd>wincmd k<cr>", { desc = "Move on up window" })
+map("n", "<c-l>", "<cmd>wincmd l<cr>", { desc = "Move on right window" })
+
+-- Move code line Up, Down
+map("n", "J", "<cmd>m .+1<cr>==", { desc = "Move line up" })
+map("n", "K", "<cmd>m .-2<cr>==", { desc = "Move line down" })
+map("v", "J", ":m '> +1<cr>gv=gv", { desc = "Move line up" })
+map("v", "K", ":m '< -2<cr>gv=gv", { desc = "Move line down" })
+
+-- Resize with arrows
+map("n", "<Up>", [[<cmd>horizontal resize +5<cr>]], { desc = "Resize horizontal (-)" })
+map("n", "<Down>", [[<cmd>horizontal resize -5<cr>]], { desc = "Resize horizontal (+)" })
+map("n", "<Left>", [[<cmd>vertical resize +2<cr>]], { desc = "Resize vertical (+)" })
+map("n", "<Right>", [[<cmd>vertical resize -2<cr>]], { desc = "Resize vertical (-)" })
+
+-- Buffers
+map("n", "<leader>bn", "<cmd>enew<cr>", { desc = "New" })
+
+-- Tabs
+map("n", "<leader>jn", "<cmd>tabnew<cr>", { desc = "New" })
+map("n", "<leader><Tab>", "<cmd>tabn<cr>", { desc = "Tab next" })
+map("n", "<leader><S-Tab>", "<cmd>tabp<cr>", { desc = "Tab previous" })
+map("n", "<leader>js", "<cmd>tab split<cr>", { desc = "Split" })
+
+-- Close keys
+map("n", "<leader>xw", ":Bdelete<cr>", { desc = "Buffer close" })
+map("n", "<leader>xf", ":Bdelete!<cr>", { desc = "Buffer close force (no save)" })
+map("n", "<leader>xa", ":bufdo :Bdelete<cr>", { desc = "Buffer close all" })
+map("n", "<leader>xs", "<cmd>close<CR>", { desc = "Split close" })
+map("n", "<leader>xj", "<cmd>tabclose<cr>", { desc = "Tab close" })
+
+-- Stay in indent mode
+map("v", "<", "<gv", { desc = "Indent left" })
+map("v", ">", ">gv", { desc = "Indent right" })
+
+-- Quickfix and loclist
+map("n", "<leader>qq", "<cmd>Copen<cr>", { desc = "Quickfix open" })
+map("n", "<leader>ql", "<cmd>Lopen<cr>", { desc = "Loclist open" })
+
+-- General options
+map("n", "<leader>ow", "<cmd>set wrap!<cr>", { desc = "Toggle line wrap" })
+map("n", "<leader>oc", "<cmd>set cursorline!<cr>", { desc = "Toggle cursor line" })
+map("n", "<leader>oL", "<cmd>set list!<cr>", { desc = "Toggle list" })
+
+map("n", "<leader>ole", "<cmd>lua vim.opt.colorcolumn = '100'<cr>", { desc = "Enable" })
+map("n", "<leader>old", "<cmd>lua vim.opt.colorcolumn = ''<cr>", { desc = "Disable" })
 
 -- Diagnostics
 map("n", "[d", mnvim.diagnostics.actions.prev_diagnostics, { desc = "Previous diagnostic" })
