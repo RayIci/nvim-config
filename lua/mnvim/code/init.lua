@@ -7,17 +7,14 @@ M.linters = {}
 M.formatters = {}
 M.dap = {}
 M.treesitter = {}
-M.treesitter.indent = {}
-M.treesitter.incremental_selection = {}
-M.treesitter.highlight = {}
-M.packages = {}
-M.packages.actions = {}
 M.autocompletion = {}
-M.autocompletion.keymaps = {}
+M.packages = {}
 
 ----------------------------------------------------------------
 --- Mason: Package Manager
 ----------------------------------------------------------------
+M.packages.actions = {}
+
 ---Open the package manager ui
 function M.packages.actions.open_ui()
     vim.cmd("Mason")
@@ -45,6 +42,10 @@ end
 ----------------------------------------------------------------
 --- Treesitter: Syntax Highlighting & Other
 ----------------------------------------------------------------
+M.treesitter.indent = {}
+M.treesitter.highlight = {}
+M.treesitter.incremental_selection = {}
+
 ---@type string[]
 M.treesitter.install = {}
 ---@type string[]
@@ -118,6 +119,8 @@ end
 ----------------------------------------------------------------
 --- CMP: Autocompletion
 ----------------------------------------------------------------
+M.autocompletion.keymaps = {}
+
 --- @type number default scroll amount
 M.autocompletion.scroll_docs_amount = 4
 
@@ -177,12 +180,47 @@ M.formatters.actions.format = conform.format
 M.formatters.actions.format_range = conform.format_range
 
 -------------------------------------------------------------------
---- Linters 
+--- Linters
 ----------------------------------------------------------------
 local nvim_lint = require("mnvim.code.nvim-lint")
 M.linters.configure_linter = nvim_lint.configure_linter
 M.linters.register_for_filetype = nvim_lint.register_for_filetype
 M.show_error_if_linter_not_found = true
+
+----------------------------------------------------------------
+--- DAP: Debug Adapter Protocol
+----------------------------------------------------------------
+M.dap.actions = {}
+
+local dap = require("mnvim.code.dap")
+
+---@alias VirtualTextPosition "line-end"
+---@type VirtualTextPosition|nil The position of the virtual text
+M.dap.virtual_text_position = "line-end"
+
+M.dap.actions.adapter_add = dap.add_adapter
+M.dap.actions.configuration_add = dap.add_configuration
+
+M.dap.actions.virtual_text_toggle = dap.toggle_virtual_text
+
+M.dap.actions.continue = dap.continue
+M.dap.actions.step_over = dap.step_over
+M.dap.actions.step_into = dap.step_into
+M.dap.actions.step_out = dap.step_out
+
+M.dap.actions.breakpoint_toggle = dap.breakpoint_toggle
+M.dap.actions.breakpoint_conditional_add = dap.breakpoint_conditional_add
+M.dap.actions.breakepoint_logpoint_add = dap.breakepoint_logpoint_add
+M.dap.actions.breakpoints_clear = dap.breakpoints_clear
+
+M.dap.actions.repl_toggle = dap.repl_toggle
+M.dap.actions.console_toggle = dap.console_toggle
+
+M.dap.actions.run = dap.run
+M.dap.actions.run_last = dap.run_last
+M.dap.actions.terminate = dap.terminate
+M.dap.actions.pause = dap.pause
+
 
 _G.mnvim.code = {}
 _G.mnvim.code = M

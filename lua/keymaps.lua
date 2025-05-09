@@ -4,31 +4,54 @@ local mapgroup = mnvim.keymaps.map_group
 -- Groups
 mapgroup('<leader>g', 'Git')
 mapgroup('<leader>b', 'Buffers')
+mapgroup('<leader>l', 'LSP', { "v", "n" })
+mapgroup('<leader>d', 'Debug')
 
 -- Explorer
-map("n", '<leader>e', mnvim.explorer.actions.open_explorer, { desc = 'Open Explorer' })
-map("n", '<leader>ge', mnvim.explorer.actions.open_git_explorer, { desc = 'Open Git Explorer' })
-map("n", '<leader>be', mnvim.explorer.actions.open_buffer_explorer, { desc = 'Open Buffer Explorer' })
+map("n", '<leader>e', mnvim.explorer.actions.open_explorer, { desc = 'Open explorer' })
+map("n", '<leader>ge', mnvim.explorer.actions.open_git_explorer, { desc = 'Open git explorer' })
+map("n", '<leader>be', mnvim.explorer.actions.open_buffer_explorer, { desc = 'Open buffer explorer' })
 
 -- Formatting
 map("n", "<leader>f", mnvim.code.formatters.actions.format, { desc = "Format file" })
 map("x", "<leader>f", mnvim.code.formatters.actions.format_range, { desc = "Format selection" })
 
+--------------------------------------------------------------------------------------------
 -- LSP (on attach)
+--------------------------------------------------------------------------------------------
 mnvim.code.lsp.add_on_attach_function(function (client, bufnr)
-    map("n", "gD", mnvim.code.lsp.actions.declaration, { buffer = bufnr, desc = "Go declaration" })
-    map("n", "gd", mnvim.code.lsp.actions.definition, { buffer = bufnr, desc = "Go definition" })
-    map("n", "gI", mnvim.code.lsp.actions.implementation, { buffer = bufnr, desc = "Go implementation" })
-    map("n", "gr", mnvim.code.lsp.actions.references, { buffer = bufnr, desc = "Go references" })
-    map({ "n", "i" }, "<M-h>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { buffer = bufnr, desc = "Signature help" })
-
-    require("which-key").add({
-        { "<leader>l", group = "LSP" },
-        { "<leader>l", group = "LSP", mode = "v" },
-    })
-    map({ "n", "v" }, "<leader>la", mnvim.code.lsp.actions.code_action, { desc = "Code action" })
-    map("n", "<leader>lr", mnvim.code.lsp.actions.rename, { desc = "Rename" })
-    map("n", "<leader>ll", mnvim.code.lsp.actions.code_lens, { buffer = bufnr, desc = "Code lense" })
-
-    map("n", "H", mnvim.code.lsp.actions.hover, { buffer = bufnr, desc = "Hover" })
+    local lsp = mnvim.code.lsp.actions
+    map("n", "gD", lsp.declaration, { buffer = bufnr, desc = "Go declaration" })
+    map("n", "gd", lsp.definition, { buffer = bufnr, desc = "Go definition" })
+    map("n", "gI", lsp.implementation, { buffer = bufnr, desc = "Go implementation" })
+    map("n", "gr", lsp.references, { buffer = bufnr, desc = "Go references" })
+    map({ "n", "i" }, "<M-h>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature help" })
+    map({ "n", "v" }, "<leader>la", lsp.code_action, { desc = "Code action" })
+    map("n", "<leader>lr", lsp.rename, { desc = "Rename" })
+    map("n", "<leader>ll", lsp.code_lens, { buffer = bufnr, desc = "Code lense" })
+    map("n", "H", lsp.hover, { buffer = bufnr, desc = "Hover" })
 end)
+
+--------------------------------------------------------------------------------------------
+-- DAP keymaps
+--------------------------------------------------------------------------------------------
+local dap = mnvim.code.dap.actions
+map("n", "<leader>dT", dap.virtual_text_toggle, { desc = "Toggle virtual text" })
+
+map("n", "<c-b>", dap.breakpoint_toggle, { desc = "Breakpoint toggle" })
+map("n", "<leader>db", dap.breakpoint_toggle, { desc = "Breakpoint toggle" })
+map("n", "<leader>dl", dap.breakepoint_logpoint_add, { desc = "Breakepoint log" })
+map("n", "<leader>dj", dap.breakpoint_conditional_add, { desc = "Breakepoint conditional" })
+map("n", "<leader>xb", dap.breakpoints_clear, { desc = "Breakepoint clear all" })
+
+map("n", "<leader>dr", dap.run_last, { desc = "Run last" })
+map("n", "<leader>dp", dap.pause, { desc = "Pause" })
+map("n", "<leader>dk", dap.terminate, { desc = "Terminate" })
+
+map("n", "<leader>dc", dap.continue, { desc = "Continue" })
+map("n", "<F5>", dap.continue, { desc = "Debugger: continue" })
+map("n", "<F1>", dap.step_into, { desc = "Debugger: step into" })
+map("n", "<F2>", dap.step_over, { desc = "Debugger: step over" })
+map("n", "<F3>", dap.step_out, { desc = "Debugger: step out" })
+
+map("n", "<leader>dR", dap.repl_toggle, { desc = "Repl toggle" })

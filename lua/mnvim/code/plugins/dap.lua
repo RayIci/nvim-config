@@ -6,10 +6,7 @@ return {
         "theHamsta/nvim-dap-virtual-text",
 
         -- Brakepoint persist
-        "Weissle/persistent-breakpoints.nvim",
-
-        -- Dap language specific packages
-        "mfussenegger/nvim-dap-python",
-        "NicholasMata/nvim-dap-cs",
+        -- "Weissle/persistent-breakpoints.nvim",
     },
+    config = require("mnvim.code.dap").config
 }

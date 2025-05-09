@@ -20,3 +20,12 @@ mnvim.code.formatters.register_for_filetype("python", "isort")
 
 mnvim.code.packages.install("linter", "flake8")
 mnvim.code.linters.register_for_filetype("python", "flake8")
+
+mnvim.code.packages.install("dap", "debugpy")
+mnvim.plugins.register({
+    "mfussenegger/nvim-dap-python",
+    config = function ()
+        require("dap-python").setup(mnvim.code.packages.get_data_path() .. "packages/debugpy/venv/bin/python")
+    end
+})
+
