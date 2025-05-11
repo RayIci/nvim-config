@@ -4,7 +4,6 @@ local M = {}
 -- Private method table
 local P = {}
 
-
 local lazy_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 local plugins = {}
 
@@ -20,7 +19,7 @@ function P.install_plugins()
         if vim.v.shell_error ~= 0 then
             vim.api.nvim_echo({
                 { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-                { out,                            "WarningMsg" },
+                { out, "WarningMsg" },
                 { "\nPress any key to exit..." },
             }, true, {})
             vim.fn.getchar()
@@ -51,14 +50,11 @@ function P.install_plugins()
             },
         },
     })
-
-    local event_manager = require("mnvim.event-manager")
-    event_manager.dispatch_events("plugins-loaded")
 end
 
 ---Register a plugin with lazy.nvim
 ---@param plugin table the plugin to be registered
-function M.register(plugin)
+function M.install(plugin)
     if plugin == nil or plugin == {} then
         return
     end
@@ -68,7 +64,7 @@ end
 
 ---Register a module of plugin with lazy.nvim
 ---@param module string the lua plugin module with the lua folder structure (like "code.plugins")
-function M.register_module(module)
+function M.install_module(module)
     table.insert(plugins, { import = module })
 end
 
@@ -77,7 +73,7 @@ end
 ---register_custom("~/.config/nvim/custom-plugins/python-df.nvim", function() require "python-df".setup() end)
 ---@param direcotry string the directory of the plugin
 ---@param config_funciton function the function to be called when the plugin is loaded
-function M.register_custom(direcotry, config_funciton)
+function M.install_custom(direcotry, config_funciton)
     table.insert(plugins, { import = direcotry, config = config_funciton })
 end
 

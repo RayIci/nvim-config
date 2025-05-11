@@ -27,27 +27,27 @@ local conditions = {
     end,
 }
 
-mnvim.ui.statusline.insert_left({
+mnvim.statusline.insert_left({
     "mode",
     padding = { left = 1, right = 1 },
 })
 
-mnvim.ui.statusline.insert_left({
+mnvim.statusline.insert_left({
     "filesize",
     cond = conditions.buffer_not_empty,
 })
 
-mnvim.ui.statusline.insert_left({
+mnvim.statusline.insert_left({
     "filename",
     cond = conditions.buffer_not_empty,
     color = { gui = "bold" },
 })
 
-mnvim.ui.statusline.insert_left({ "location" })
+mnvim.statusline.insert_left({ "location" })
 
-mnvim.ui.statusline.insert_left({ "progress" })
+mnvim.statusline.insert_left({ "progress" })
 
-mnvim.ui.statusline.insert_left({
+mnvim.statusline.insert_left({
     "diagnostics",
     sources = { "nvim_diagnostic" },
     symbols = { error = icons.diagnostics.BoldError .. " ", warn = icons.diagnostics.BoldWarning .. " ", info = icons.diagnostics.BoldInformation .. " " },
@@ -58,20 +58,20 @@ mnvim.ui.statusline.insert_left({
     },
 })
 
-mnvim.ui.statusline.insert_left({
+mnvim.statusline.insert_left({
     "macro_recording",
     "%S",
 })
 
 -- Insert mid section. You can make any number of sections in neovim :)
 -- for lualine it's any number greater then 2
-mnvim.ui.statusline.insert_left({
+mnvim.statusline.insert_left({
     function()
         return "%="
     end,
 })
 
-mnvim.ui.statusline.insert_right({
+mnvim.statusline.insert_right({
     function()
         local venv = os.getenv("VIRTUAL_ENV")
         return venv and "(" .. icons.code.python .. " " .. vim.fn.fnamemodify(venv, ":t") .. ")" or ""
@@ -79,7 +79,7 @@ mnvim.ui.statusline.insert_right({
     color = { fg = colors.cyan },
 })
 
-mnvim.ui.statusline.insert_right({
+mnvim.statusline.insert_right({
     -- Lsp server name .
     function()
         local msg = "No Active Lsp"
@@ -101,25 +101,25 @@ mnvim.ui.statusline.insert_right({
 })
 
 -- Add components to right sections
-mnvim.ui.statusline.insert_right({
+mnvim.statusline.insert_right({
     "o:encoding", -- option component same as &encoding in viml
     fmt = string.upper, -- I'm not sure why it's upper case either ;)
     cond = conditions.hide_in_width,
 })
 
-mnvim.ui.statusline.insert_right({
+mnvim.statusline.insert_right({
     "fileformat",
     fmt = string.upper,
     icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
 })
 
-mnvim.ui.statusline.insert_right({
+mnvim.statusline.insert_right({
     "branch",
     icon = icons.git.Branch,
     color = { fg = colors.violet, gui = "bold" },
 })
 
-mnvim.ui.statusline.insert_right({
+mnvim.statusline.insert_right({
     "diff",
     -- Is it me or the symbol for modified us really weird
     symbols = { added = " ", modified = "󰝤 ", removed = " " },

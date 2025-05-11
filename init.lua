@@ -3,8 +3,10 @@ vim.g.maplocalleader = " "
 require("mnvim")
 
 -- Setup coding
+require("configurations")
 require("coding-server-configurations")
 require("statusline")
+require("theme")
 
 mnvim.setup()
 

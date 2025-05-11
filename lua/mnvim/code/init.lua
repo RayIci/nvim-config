@@ -1,4 +1,4 @@
-mnvim.plugins.register_module("mnvim.code.plugins")
+mnvim.plugins.install_module("mnvim.code.plugins")
 local mason = require("mnvim.code.mason")
 
 local M = {}
@@ -77,7 +77,6 @@ M.treesitter.incremental_selection.keymaps = {
     node_decremental = nil, -- TODO: Set a keymap
 }
 
-
 ----------------------------------------------------------------
 --- LSP: Language Server Protocol
 ----------------------------------------------------------------
@@ -91,7 +90,7 @@ M.lsp.actions.references = vim.lsp.buf.references
 M.lsp.actions.hover = vim.lsp.buf.hover
 M.lsp.actions.rename = vim.lsp.buf.rename
 M.lsp.actions.code_lens = vim.lsp.codelens.run
-M.lsp.actions.code_action = function ()
+M.lsp.actions.code_action = function()
     require("actions-preview").code_actions()
 end
 
@@ -105,14 +104,14 @@ M.lsp.modify_capabilities = nil
 ---set a on_attach function for each registered server.
 ---@param on_attach function function with first argument the client and the buffer
 ---number as second argument
-M.lsp.add_on_attach_function = function (on_attach)
+M.lsp.add_on_attach_function = function(on_attach)
     lspconfig.add_on_attach_function(on_attach)
 end
 
 ---Register an lsp
 ---@param lsp_server string The lsp server name
 ---@param lsp_config LspConfig | nil
-M.lsp.register = function (lsp_server, lsp_config)
+M.lsp.register = function(lsp_server, lsp_config)
     lspconfig.register_lsp_server(lsp_server, lsp_config)
 end
 
@@ -220,7 +219,6 @@ M.dap.actions.run = dap.run
 M.dap.actions.run_last = dap.run_last
 M.dap.actions.terminate = dap.terminate
 M.dap.actions.pause = dap.pause
-
 
 _G.mnvim.code = {}
 _G.mnvim.code = M

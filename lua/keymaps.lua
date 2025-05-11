@@ -2,10 +2,10 @@ local map = mnvim.keymaps.map
 local mapgroup = mnvim.keymaps.map_group
 
 -- Groups
-mapgroup('<leader>g', 'Git')
-mapgroup('<leader>b', 'Buffers')
-mapgroup('<leader>l', 'LSP', { "v", "n" })
-mapgroup('<leader>d', 'Debug')
+mapgroup("<leader>g", "Git")
+mapgroup("<leader>b", "Buffers")
+mapgroup("<leader>l", "LSP", { "v", "n" })
+mapgroup("<leader>d", "Debug")
 mapgroup("<leader>j", "Tabs")
 mapgroup("<leader>x", "Close")
 mapgroup("<leader>q", "Lists")
@@ -13,16 +13,16 @@ mapgroup("<leader>o", "Options")
 mapgroup("<leader>ol", "Colorcolumn")
 
 -- Explorer
-map("n", '<leader>e', mnvim.explorer.actions.open_explorer, { desc = 'Open explorer' })
-map("n", '<leader>ge', mnvim.explorer.actions.open_git_explorer, { desc = 'Open git explorer' })
-map("n", '<leader>be', mnvim.explorer.actions.open_buffer_explorer, { desc = 'Open buffer explorer' })
+map("n", "<leader>e", mnvim.explorer.actions.open_explorer, { desc = "Open explorer" })
+map("n", "<leader>ge", mnvim.explorer.actions.open_git_explorer, { desc = "Open git explorer" })
+map("n", "<leader>be", mnvim.explorer.actions.open_buffer_explorer, { desc = "Open buffer explorer" })
 
 -- Formatting
 map("n", "<leader>f", mnvim.code.formatters.actions.format, { desc = "Format file" })
 map("x", "<leader>f", mnvim.code.formatters.actions.format_range, { desc = "Format selection" })
 
 -- Disable space behaviour in normal and visual mode
-map({ "n", "v" }, "<space>", "<nop>")
+map({ "n", "v" }, "<space>", "<nop>", {})
 
 -- Keep last yanked when pasting
 map("v", "p", '"_dP', { desc = "Paste" })
@@ -35,7 +35,7 @@ map("n", "<c-o>", "<c-o>zz", { desc = "Prev position" })
 map("i", "<c-c>", "<esc>", { desc = "Ctrl+c to esc" })
 
 -- Remap to nothing alt+space (since idk why but if you press it default is exit insert)
-map("i", "<a-space>", "<nop>")
+map("i", "<a-space>", "<nop>", {})
 
 -- File save
 map("n", "<c-s>", "<cmd>w<cr>", { desc = "Save file" })
@@ -79,16 +79,16 @@ map("n", "<Left>", [[<cmd>vertical resize +2<cr>]], { desc = "Resize vertical (+
 map("n", "<Right>", [[<cmd>vertical resize -2<cr>]], { desc = "Resize vertical (-)" })
 
 -- Buffers
-map("n", "<leader>xw", mnvim.ui.buffers.actions.close, { desc = "Buffer close" })
-map("n", "<leader>xf", mnvim.ui.buffers.actions.close_force, { desc = "Buffer close force (no save)" })
-map("n", "<leader>xa", mnvim.ui.buffers.actions.close_all, { desc = "Buffer close all" })
-map("n", "<leader>xA", mnvim.ui.buffers.actions.close_all_but_this_one, { desc = "Buffer close all but this one" })
-map("n", "<leader>bn", mnvim.ui.buffers.actions.new, { desc = "New" })
-map("n", "<c-left>", mnvim.ui.buffers.actions.move_previous, { desc = "Buffer move previous" })
-map("n", "<c-right>", mnvim.ui.buffers.actions.move_next, { desc = "Buffer move next" })
-map("n", "<leader>bp", mnvim.ui.buffers.actions.pin_toggle, { desc = "Pin toggle" })
-map("n", "<tab>", mnvim.ui.buffers.actions.next, { desc = "Buffer next" })
-map("n", "<s-tab>", mnvim.ui.buffers.actions.previous, { desc = "Buffer previous" })
+map("n", "<leader>xw", mnvim.buffers.actions.close, { desc = "Buffer close" })
+map("n", "<leader>xf", mnvim.buffers.actions.close_force, { desc = "Buffer close force (no save)" })
+map("n", "<leader>xa", mnvim.buffers.actions.close_all, { desc = "Buffer close all" })
+map("n", "<leader>xA", mnvim.buffers.actions.close_all_but_this_one, { desc = "Buffer close all but this one" })
+map("n", "<leader>bn", mnvim.buffers.actions.new, { desc = "New" })
+map("n", "<c-left>", mnvim.buffers.actions.move_previous, { desc = "Buffer move previous" })
+map("n", "<c-right>", mnvim.buffers.actions.move_next, { desc = "Buffer move next" })
+map("n", "<leader>bp", mnvim.buffers.actions.pin_toggle, { desc = "Pin toggle" })
+map("n", "<tab>", mnvim.buffers.actions.next, { desc = "Buffer next" })
+map("n", "<s-tab>", mnvim.buffers.actions.previous, { desc = "Buffer previous" })
 
 -- Tabs
 map("n", "<leader>jn", "<cmd>tabnew<cr>", { desc = "New" })
@@ -131,7 +131,7 @@ map("n", "]h", mnvim.diagnostics.actions.next_hint, { desc = "Next hint" })
 --------------------------------------------------------------------------------------------
 -- LSP (on attach)
 --------------------------------------------------------------------------------------------
-mnvim.code.lsp.add_on_attach_function(function (client, bufnr)
+mnvim.code.lsp.add_on_attach_function(function(_, bufnr)
     local lsp = mnvim.code.lsp.actions
     map("n", "gD", lsp.declaration, { buffer = bufnr, desc = "Go declaration" })
     map("n", "gd", lsp.definition, { buffer = bufnr, desc = "Go definition" })

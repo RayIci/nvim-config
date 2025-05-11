@@ -23,9 +23,9 @@ mnvim.code.packages.install("linter", "flake8")
 mnvim.code.linters.register_for_filetype("python", "flake8")
 
 mnvim.code.packages.install("dap", "debugpy")
-mnvim.plugins.register({
+mnvim.plugins.install({
     "mfussenegger/nvim-dap-python",
-    config = function ()
+    config = function()
         require("dap-python").setup(mnvim.code.packages.get_data_path() .. "packages/debugpy/venv/bin/python")
-    end
+    end,
 })

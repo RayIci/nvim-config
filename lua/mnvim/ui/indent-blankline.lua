@@ -1,7 +1,12 @@
-local M = {}
+----------------------------------------------------------------------
+--- Indent Blankline
+----------------------------------------------------------------------
+_G.mnvim.indentation = {}
 
-M.exclude_filetypes = {}
-M.indent_char = ""
+---@type string char used as indent chart
+mnvim.indentation.indent_char = mnvim.ui.icons.ui.LineDashedIndent
+---@type string[] list of filetypes to exclude
+mnvim.indentation.exclude_filetypes = {}
 
 local default_exclude_filetypes = {
     "help",
@@ -13,20 +18,22 @@ local default_exclude_filetypes = {
     "Trouble",
 }
 
-function M.config()
-    require("ibl").setup({
-        exclude = {
-            filetypes = require("mnvim.utils.tables").concat_lists(default_exclude_filetypes, mnvim.ui.indentation.exclude_filetypes),
-        },
-        scope = {
-            show_start = false,
-            show_end = false,
-            show_exact_scope = false,
-        },
-        indent = {
-            char = mnvim.ui.indentation.indent_char,
-        },
-    })
-end
-
-return M
+mnvim.plugins.install({
+    "lukas-reineke/indent-blankline.nvim",
+    config = function()
+        require("ibl").setup({
+            exclude = {
+                filetypes = require("mnvim.utils.tables").concat_lists(default_exclude_filetypes, mnvim.indentation.exclude_filetypes),
+            },
+            scope = {
+                show_start = false,
+                show_end = false,
+                show_exact_scope = false,
+            },
+            indent = {
+                char = mnvim.indentation.indent_char,
+            },
+        })
+    end,
+    main = "ibl",
+})

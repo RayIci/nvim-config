@@ -1,30 +1,23 @@
 _G.mnvim = {}
 
--- Require the initial functionalities 
+-- Require the initial functionalities
 -- Do not change the order of the plugins require
 
--- Initialize the event manager used to handle mnvim events 
-local event_manager = require("mnvim.event-manager")
 -- Initialize the plugins manager used to register plugins into
 -- in the backend it uses lazy to handle the plugins
 local plugin_manager = require("mnvim.lazy")
 
--- Initialize keymaps functionalities 
 require("mnvim.keymaps")
-
--- Add UI
 require("mnvim.ui")
-
--- Add Explorer functionalities
 require("mnvim.explorer")
-
--- Add Coding functionalities
 require("mnvim.code")
+require("mnvim.session")
+require("mnvim.buffers")
 
 -- Add Diagnostics functionalities
 local diagnostics = require("mnvim.diagnostics")
 
--- The setup function used to run mnvim 
+-- The setup function used to run mnvim
 _G.mnvim.setup = function()
     plugin_manager.install_plugins()
     diagnostics.config()
