@@ -45,7 +45,7 @@ vim.opt.splitbelow = true --split horizontal window to the bottom
 vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 vim.o.timeoutlen = 100
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "100"
 
 -- clipboard
 vim.opt.clipboard:append("unnamedplus") --use system clipboard as default

@@ -24,11 +24,7 @@ function M.register_for_filetype(filetype, formatter, opts)
         formatters_by_ft[filetype] = {}
     end
 
-    formatters_by_ft[filetype] = require('mnvim.utils.tables').concat_lists(
-        formatters_by_ft[filetype],
-        formatter,
-        opts
-    )
+    formatters_by_ft[filetype] = require("mnvim.utils.tables").concat_lists(formatters_by_ft[filetype], formatter, opts)
 end
 
 -- Configure conform
@@ -47,7 +43,7 @@ function M.config()
 end
 
 function M.format()
-    require('conform').format({ async = true, lsp_fallback = true })
+    require("conform").format({ async = true, lsp_fallback = true })
 end
 
 function M.format_range()
@@ -55,7 +51,7 @@ function M.format_range()
         async = true,
         lsp_fallback = true,
         range = {
-            start = vim.api.nvim_buf_get_mark(0, "<"),   -- inizio selezione visual
+            start = vim.api.nvim_buf_get_mark(0, "<"), -- inizio selezione visual
             ["end"] = vim.api.nvim_buf_get_mark(0, ">"), -- fine selezione visual
         },
     })
