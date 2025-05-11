@@ -79,7 +79,16 @@ map("n", "<Left>", [[<cmd>vertical resize +2<cr>]], { desc = "Resize vertical (+
 map("n", "<Right>", [[<cmd>vertical resize -2<cr>]], { desc = "Resize vertical (-)" })
 
 -- Buffers
-map("n", "<leader>bn", "<cmd>enew<cr>", { desc = "New" })
+map("n", "<leader>xw", mnvim.ui.buffers.actions.close, { desc = "Buffer close" })
+map("n", "<leader>xf", mnvim.ui.buffers.actions.close_force, { desc = "Buffer close force (no save)" })
+map("n", "<leader>xa", mnvim.ui.buffers.actions.close_all, { desc = "Buffer close all" })
+map("n", "<leader>xA", mnvim.ui.buffers.actions.close_all_but_this_one, { desc = "Buffer close all but this one" })
+map("n", "<leader>bn", mnvim.ui.buffers.actions.new, { desc = "New" })
+map("n", "<c-left>", mnvim.ui.buffers.actions.move_previous, { desc = "Buffer move previous" })
+map("n", "<c-right>", mnvim.ui.buffers.actions.move_next, { desc = "Buffer move next" })
+map("n", "<leader>bp", mnvim.ui.buffers.actions.pin_toggle, { desc = "Pin toggle" })
+map("n", "<tab>", mnvim.ui.buffers.actions.next, { desc = "Buffer next" })
+map("n", "<s-tab>", mnvim.ui.buffers.actions.previous, { desc = "Buffer previous" })
 
 -- Tabs
 map("n", "<leader>jn", "<cmd>tabnew<cr>", { desc = "New" })
@@ -88,9 +97,6 @@ map("n", "<leader><S-Tab>", "<cmd>tabp<cr>", { desc = "Tab previous" })
 map("n", "<leader>js", "<cmd>tab split<cr>", { desc = "Split" })
 
 -- Close keys
-map("n", "<leader>xw", ":Bdelete<cr>", { desc = "Buffer close" })
-map("n", "<leader>xf", ":Bdelete!<cr>", { desc = "Buffer close force (no save)" })
-map("n", "<leader>xa", ":bufdo :Bdelete<cr>", { desc = "Buffer close all" })
 map("n", "<leader>xs", "<cmd>close<CR>", { desc = "Split close" })
 map("n", "<leader>xj", "<cmd>tabclose<cr>", { desc = "Tab close" })
 
