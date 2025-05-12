@@ -3,7 +3,8 @@ _G.mnvim.statusline = {}
 -- Those are needed by lualine so that we always have ONE lualine
 -- even if we have multiple split opened.
 vim.o.laststatus = 3
-vim.o.cmdheight = 0
+-- vim.o.cmdheight = 0  this line needs to be disabled since if
+--                      you enable it moving block of lines doesnt work
 
 local lualine_c = {}
 local lualine_x = {}
