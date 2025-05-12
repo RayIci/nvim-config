@@ -14,6 +14,7 @@ require("mnvim.explorer")
 require("mnvim.code")
 require("mnvim.session")
 require("mnvim.buffers")
+require("mnvim.core")
 
 -- Add Diagnostics functionalities
 local diagnostics = require("mnvim.diagnostics")
