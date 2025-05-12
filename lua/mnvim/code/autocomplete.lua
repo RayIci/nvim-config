@@ -1,5 +1,52 @@
--- Cmp for autocompletition
-return {
+_G.mnvim.code.autocompletion = {}
+_G.mnvim.code.autocompletion.keymaps = {}
+
+--- @type number default scroll amount
+mnvim.code.autocompletion.scroll_docs_amount = 4
+
+---@class AutocompletionKeymaps
+---@field next_item string|nil
+---@field prev_item string|nil
+---@field scroll_docs_down string|nil
+---@field scroll_docs_up string|nil
+---@field select_item string|nil
+---@field complete string|nil
+---@field abort string|nil
+---@field signature_help string|nil
+---@field select_next_item string|nil
+---@field select_prev_item string|nil
+
+---@type AutocompletionKeymaps default keymaps
+mnvim.code.autocompletion.keymaps.default = {
+    next_item = "<c-j>",
+    prev_item = "<c-k>",
+    scroll_docs_down = "<c-u>",
+    scroll_docs_up = "<c-d>",
+    select_item = "<enter>",
+    complete = "<c-space>",
+    abort = "<c-a>",
+    signature_help = "<c-s>",
+    select_next_item = "<c-l>",
+    select_prev_item = "<c-h>",
+}
+
+---@class AutocompletionKeymapsCmdLine
+---@field next_item string|nil
+---@field prev_item string|nil
+---@field select_item string|nil
+---@field complete string|nil
+---@field abort string|nil
+
+---@type AutocompletionKeymapsCmdLine cmd line keymaps
+mnvim.code.autocompletion.keymaps.cmd_line = {
+    next_item = "<c-j>",
+    prev_item = "<c-k>",
+    select_item = "<c-y>",
+    abort = "<c-a>",
+}
+
+
+mnvim.plugins.install({
     "hrsh7th/nvim-cmp",
     dependencies = {
         -- other dependencies
@@ -153,4 +200,4 @@ return {
             matching = { disallow_symbol_nonprefix_matching = false },
         })
     end
-}
+})
