@@ -8,6 +8,7 @@ _G.mnvim = {}
 local plugin_manager = require("mnvim.lazy")
 
 require("mnvim.keymaps")
+require("mnvim.telescope")
 require("mnvim.ui")
 require("mnvim.explorer")
 require("mnvim.code")

@@ -11,6 +11,7 @@ mapgroup("<leader>x", "Close")
 mapgroup("<leader>q", "Lists")
 mapgroup("<leader>o", "Options")
 mapgroup("<leader>ol", "Colorcolumn")
+mapgroup("<leader>p", "Pickers")
 
 -- Explorer
 map("n", "<leader>e", mnvim.explorer.actions.open_explorer, { desc = "Open explorer" })
@@ -30,6 +31,9 @@ map("v", "p", '"_dP', { desc = "Paste" })
 -- Center next and previous position
 map("n", "<c-i>", "<c-i>zz", { desc = "Next position" })
 map("n", "<c-o>", "<c-o>zz", { desc = "Prev position" })
+
+-- Session
+map("n", "<leader>s", mnvim.session.actions.select, { desc = "Session select" })
 
 -- Remap ctrl+c to esc (used for copilot to clear virtual text when using ctrl+c)
 map("i", "<c-c>", "<esc>", { desc = "Ctrl+c to esc" })
@@ -167,3 +171,15 @@ map("n", "<F2>", dap.step_over, { desc = "Debugger: step over" })
 map("n", "<F3>", dap.step_out, { desc = "Debugger: step out" })
 
 map("n", "<leader>dR", dap.repl_toggle, { desc = "Repl toggle" })
+
+--------------------------------------------------------------------------------------------
+-- Pickers
+--------------------------------------------------------------------------------------------
+map("n", "<leader><leader>", mnvim.telescope.actions.pick_file, { desc = "Pick file" })
+map("n", "pg", mnvim.telescope.actions.grep_files, { desc = "Grep files" })
+map("n", "pp", mnvim.telescope.actions.pick_resume, { desc = "Grep files" })
+map("n", "pb", mnvim.telescope.actions.pick_buffer, { desc = "Grep files" })
+map("n", "ph", mnvim.telescope.actions.pick_help_tag, { desc = "Grep files" })
+map("n", "pn", mnvim.telescope.actions.pick_notification, { desc = "Grep files" })
+map("n", "pm", mnvim.telescope.actions.pick_mark, { desc = "Grep files" })
+map("n", "pt", mnvim.telescope.actions.pick_todo, { desc = "Grep files" })
