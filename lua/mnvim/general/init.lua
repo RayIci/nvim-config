@@ -14,6 +14,7 @@ _G.mnvim.terminal.keymaps = {}
 _G.mnvim.terminal.actions = {}
 require("mnvim.general.terminal")
 
+require("mnvim.general.mini")
 require("mnvim.general.snacks")
 require("mnvim.general.noice")
 require("mnvim.general.misc")

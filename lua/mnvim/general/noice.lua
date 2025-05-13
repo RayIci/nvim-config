@@ -100,3 +100,9 @@ mnvim.plugins.install({
         },
     },
 })
+
+-- Note: This is not a telescope thing and should not stay here.
+--       But by convention all the pickers are under the telescope `namespace`.
+function mnvim.telescope.actions.pick_notification()
+    vim.cmd("Noice")
+end

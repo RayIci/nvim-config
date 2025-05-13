@@ -28,10 +28,6 @@ function mnvim.telescope.actions.pick_help_tag()
     vim.cmd("Telescope help_tags")
 end
 
-function mnvim.telescope.actions.pick_notification()
-    vim.cmd("Telescope notify")
-end
-
 function mnvim.telescope.actions.pick_mark()
     vim.cmd("Telescope marks")
 end
@@ -50,8 +46,16 @@ mnvim.plugins.install({
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope-live-grep-args.nvim",
+        "nvim-telescope/telescope-ui-select.nvim",
     },
     config = function()
+        extensions["ui-select"] = {
+            require("telescope.themes").get_dropdown({
+                winblend = 10,
+                border = true,
+                previewer = true,
+            }),
+        }
         require("telescope").setup({
             defaults = {
                 border = true,
@@ -113,5 +117,6 @@ mnvim.plugins.install({
 
         -- Telescope Extensions
         require("telescope").load_extension("live_grep_args") -- Add live grep arguments to telescope file grep
+        require("telescope").load_extension("ui-select")
     end,
 })
