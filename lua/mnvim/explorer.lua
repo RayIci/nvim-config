@@ -79,8 +79,21 @@ mnvim.plugins.install({
         -- TODO: Remove this and place the remaining icons into explorer icons
         local icons = mnvim.ui.icons
 
+        vim.api.nvim_create_autocmd("VimLeavePre", {
+            callback = function()
+                for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+                    if vim.api.nvim_buf_is_loaded(buf) then
+                        local name = vim.api.nvim_buf_get_name(buf)
+                        if name:match("neo%-tree") then
+                            pcall(vim.api.nvim_buf_delete, buf, { force = true })
+                        end
+                    end
+                end
+            end,
+        })
+
         require("neo-tree").setup({
-            close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
+            close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
             popup_border_style = "rounded",
             enable_git_status = true,
             enable_diagnostics = true,
