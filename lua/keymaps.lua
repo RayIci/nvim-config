@@ -11,6 +11,7 @@ mapgroup("<leader>x", "Close")
 mapgroup("<leader>q", "Lists")
 mapgroup("<leader>o", "Options")
 mapgroup("<leader>ol", "Colorcolumn")
+mapgroup("<leader>ob", "Background")
 mapgroup("<leader>p", "Pickers")
 
 -- Formatting
@@ -91,6 +92,9 @@ map("n", "<leader>ow", "<cmd>set wrap!<cr>", { desc = "Toggle line wrap" })
 map("n", "<leader>oc", "<cmd>set cursorline!<cr>", { desc = "Toggle cursor line" })
 map("n", "<leader>oL", "<cmd>set list!<cr>", { desc = "Toggle list" })
 map("n", "<leader>ot", mnvim.themes.actions.select, { desc = "Theme select" })
+
+map("n", "<leader>obd", '<cmd>lua vim.o.background = "dark"<cr>', { desc = "Dark" })
+map("n", "<leader>obl", '<cmd>lua vim.o.background = "light"<cr>', { desc = "Light" })
 
 map("n", "<leader>ole", "<cmd>lua vim.opt.colorcolumn = '100'<cr>", { desc = "Enable" })
 map("n", "<leader>old", "<cmd>lua vim.opt.colorcolumn = ''<cr>", { desc = "Disable" })
