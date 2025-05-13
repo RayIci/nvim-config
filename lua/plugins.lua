@@ -74,3 +74,97 @@ map("n", "<leader>kl", "<cmd>Trouble loclist toggle<cr>", { desc = "Location lis
 map("n", "<leader>kq", "<cmd>Trouble qflist toggle<cr>", { desc = "Quickfix list" })
 map("n", "<leader>kd", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostic toggle" })
 map("n", "<leader>kD", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Diagnostic buffer toggle" })
+
+-- SPECTER: find replace
+mnvim.plugins.install({
+    "nvim-pack/nvim-spectre",
+    config = function()
+        mapgroup("<leader>S", "Finder")
+        map("n", "<leader>Ss", "<cmd>lua require('spectre').toggle()<cr>", { desc = "Specter toggle" })
+        map("n", "<leader>Sw", "<cmd>lua require('spectre').open_visual({select_word=true})<CR>", { desc = "Specter search word" })
+        -- TODO: Should review since not working
+        -- map("v", "<leader>Sw", "<esc><cmd>lua require('spectre').open_visual()<CR>", { desc = "Specter search selected word" })
+        map("n", "<leader>Sf", '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', { desc = "Specter search in file" })
+    end,
+})
+
+-- BETTER ESCAPE
+mnvim.plugins.install({
+    "max397574/better-escape.nvim",
+    config = function()
+        require("better_escape").setup({
+            timeout = vim.o.timeoutlen,
+            default_mappings = false,
+            mappings = {
+                i = {
+                    j = {
+                        -- These can all also be functions
+                        k = "<Esc>",
+                        j = "<Esc>",
+                    },
+                },
+                c = {},
+                t = {},
+                v = {},
+                s = {},
+            },
+        })
+    end,
+})
+
+-- COPILOT
+mnvim.plugins.install({
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+        { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
+        { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+    },
+    build = "make tiktoken", -- Only on MacOS or Linux
+    config = function()
+        mapgroup("<leader>C", "Copilot chat")
+        map({ "v", "n" }, "<leader>Cc", "<cmd>CopilotChatToggle<cr>", { desc = "Open chat toggle" })
+        map({ "v", "n" }, "<leader>Cs", "<cmd>CopilotChatStop<cr>", { desc = "Stop output" })
+        map({ "v", "n" }, "<leader>Cr", "<cmd>CopilotChatReset<cr>", { desc = "Reset output" })
+        map({ "v", "n" }, "<leader>Cp", "<cmd>CopilotChatPrompts<cr>", { desc = "Show prompts" })
+
+        -- Github copilot keymaps
+        map("i", "<c-t>", 'copilot#Accept("\\<CR>")', { desc = "Copilot accept", expr = true, replace_keycodes = false })
+        map("i", "<c-y>", "<Plug>(copilot-accept-word)", { desc = "Copilot accept word" })
+        vim.g.copilot_no_tab_map = true
+
+        require("CopilotChat").setup({
+            mappings = {
+                close = {
+                    normal = "q",
+                    insert = "",
+                },
+            },
+        })
+    end,
+})
+
+-- YANKY
+mnvim.plugins.install({
+    "gbprod/yanky.nvim",
+    dependencies = { "folke/snacks.nvim" },
+    config = function()
+        require("yanky").setup({})
+
+        map({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", { desc = "Paste after" })
+        map({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", { desc = "Paste before" })
+        map({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)", { desc = "Paste g after" })
+        map({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)", { desc = "Paste g before" })
+
+        map("n", "<c-p>", "<Plug>(YankyPreviousEntry)", { desc = "Cycle previous yank" })
+        map("n", "<c-y>", "<Plug>(YankyNextEntry)", { desc = "Cycle next yank" })
+        map({ "n", "x" }, "<leader>p", Snacks.picker.yanky, { desc = "Yank select" })
+    end,
+})
+
+-- BETTER QF
+mnvim.plugins.install({
+    "yorickpeterse/nvim-pqf",
+    config = function()
+        require("pqf").setup()
+    end,
+})
