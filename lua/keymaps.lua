@@ -14,6 +14,7 @@ mapgroup("<leader>o", "Options")
 mapgroup("<leader>ol", "Colorcolumn")
 mapgroup("<leader>ob", "Background")
 mapgroup("<leader>p", "Pickers")
+mapgroup("<leader>T", "Terminal")
 
 -- Formatting
 map("n", "<leader>f", mnvim.code.formatters.actions.format, { desc = "Format file" })
@@ -220,3 +221,10 @@ map("n", "<leader>cq", mnvim.git.conflicts.actions.quickfix, { desc = "Get all c
 --------------------------------------------------------------------------------------------
 map("n", "<leader>]t", mnvim.comments.actions.next_todo, { desc = "Next todo" })
 map("n", "<leader>[t", mnvim.comments.actions.prev_todo, { desc = "Prev todo" })
+
+--------------------------------------------------------------------------------------------
+-- Terminal
+--------------------------------------------------------------------------------------------
+map("n", "<leader>Tf", mnvim.terminal.actions.new_floating, { desc = "Floating" })
+map("n", "<leader>Th", mnvim.terminal.actions.new_horizontal, { desc = "Horizontal" })
+map("n", "<leader>Tv", mnvim.terminal.actions.new_vertical, { desc = "Vertical" })

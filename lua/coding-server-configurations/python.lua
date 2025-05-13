@@ -29,3 +29,16 @@ mnvim.plugins.install({
         require("dap-python").setup(mnvim.code.packages.get_data_path() .. "packages/debugpy/venv/bin/python")
     end,
 })
+
+mnvim.terminal.on_terminal_opens(function(terminal)
+    local path_venv = os.getenv("VIRTUAL_ENV")
+    if path_venv ~= nil then
+        if mnvim.utils.os.is_windows() then
+            vim.api.nvim_chan_send(terminal.job_id, path_venv .. "\\Scripts\\activate\n")
+            vim.api.nvim_chan_send(terminal.job_id, "cls\n")
+        else
+            vim.api.nvim_chan_send(terminal.job_id, "source " .. path_venv .. "/bin/activate\n")
+            vim.api.nvim_chan_send(terminal.job_id, "clear\n")
+        end
+    end
+end)

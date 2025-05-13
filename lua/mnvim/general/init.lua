@@ -9,6 +9,11 @@ require("mnvim.general.themes")
 _G.mnvim.comments = {}
 require("mnvim.general.todo-comments")
 
+_G.mnvim.terminal = {}
+_G.mnvim.terminal.keymaps = {}
+_G.mnvim.terminal.actions = {}
+require("mnvim.general.terminal")
+
 require("mnvim.general.snacks")
 require("mnvim.general.noice")
 require("mnvim.general.misc")
