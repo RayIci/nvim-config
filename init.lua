@@ -6,6 +6,7 @@ require("mnvim")
 require("configurations")
 require("coding-server-configurations")
 require("statusline")
+require("plugins")
 require("theme")
 
 mnvim.setup()
