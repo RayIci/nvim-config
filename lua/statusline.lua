@@ -98,14 +98,6 @@ mnvim.statusline.insert_left({
 })
 
 mnvim.statusline.insert_right({
-    function()
-        local venv = os.getenv("VIRTUAL_ENV")
-        return venv and "(" .. icons.code.python .. " " .. vim.fn.fnamemodify(venv, ":t") .. ")" or ""
-    end,
-    color = { fg = colors.cyan },
-})
-
-mnvim.statusline.insert_right({
     -- Lsp server name .
     function()
         local msg = "No Active Lsp"

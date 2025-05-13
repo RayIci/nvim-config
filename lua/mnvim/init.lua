@@ -7,6 +7,7 @@ _G.mnvim = {}
 -- in the backend it uses lazy to handle the plugins
 local plugin_manager = require("mnvim.lazy")
 
+require("mnvim.utils")
 require("mnvim.keymaps")
 require("mnvim.telescope")
 require("mnvim.ui")

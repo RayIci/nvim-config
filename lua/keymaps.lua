@@ -14,6 +14,7 @@ mapgroup("<leader>o", "Options")
 mapgroup("<leader>ol", "Colorcolumn")
 mapgroup("<leader>ob", "Background")
 mapgroup("<leader>p", "Pickers")
+mapgroup("<leader>t", "Terminal")
 mapgroup("<leader>T", "Terminal")
 
 -- Formatting
@@ -39,9 +40,10 @@ map("i", "<c-c>", "<esc>", { desc = "Ctrl+c to esc" })
 -- Remap to nothing alt+space (since idk why but if you press it default is exit insert)
 map("i", "<a-space>", "<nop>", {})
 
--- File save
+-- File save and quit
 map("n", "<c-s>", "<cmd>w<cr>", { desc = "Save file" })
 map("n", "<c-a>", "<cmd>noautocmd w<cr>", { desc = "Save without formatting" })
+map("n", "<c-q>", "<cmd>q<cr>", { desc = "Quit" })
 
 -- Deletion
 map({ "n", "x", "v" }, "x", '"_x', { desc = "Delete single char (no buff save)" })
@@ -240,9 +242,29 @@ map("n", "<leader>Th", mnvim.terminal.actions.new_horizontal, { desc = "Horizont
 map("n", "<leader>Tv", mnvim.terminal.actions.new_vertical, { desc = "Vertical" })
 
 --------------------------------------------------------------------------------------------
----Automatic keymaps
+--- Test keymaps
 --------------------------------------------------------------------------------------------
+map("n", "<leader>tt", mnvim.code.test.actions.run, { desc = "Run nearest" })
+map("n", "<leader>tl", mnvim.code.test.actions.run_last, { desc = "Run last" })
+map("n", "<leader>tr", mnvim.code.test.actions.run_file, { desc = "Run file" })
+map("n", "<leader>tT", mnvim.code.test.actions.run_file, { desc = "Run all" })
+map("n", "<leader>td", mnvim.code.test.actions.run_debugging, { desc = "Run debugging" })
 
+map("n", "<leader>tk", mnvim.code.test.actions.stop, { desc = "Stop" })
+map("n", "<leader>tA", mnvim.code.test.actions.attach, { desc = "Attach" })
+
+map("n", "<leader>tw", mnvim.code.test.actions.watch_toggle, { desc = "Watch toggle" })
+map("n", "<leader>tW", mnvim.code.test.actions.watch_toggle_file, { desc = "Watch toggle file" })
+
+map("n", "<leader>tO", mnvim.code.test.actions.output_open, { desc = "Output open" })
+map("n", "<leader>xo", mnvim.code.test.actions.output_close, { desc = "Test output close" })
+map("n", "<leader>to", mnvim.code.test.actions.output_panel_toggle, { desc = "Output panel toggle" })
+
+map("n", "<leader>ts", mnvim.code.test.actions.summary_toggle, { desc = "Summary toggle" })
+
+--------------------------------------------------------------------------------------------
+--- Autocmd keymaps
+--------------------------------------------------------------------------------------------
 --- Make possible to close the quickfix window with q
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "qf", -- qf = quickfix
