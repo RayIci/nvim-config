@@ -47,11 +47,11 @@ function mnvim.buffers.actions.close_all_but_this_one()
 end
 
 function mnvim.buffers.actions.move_next()
-    vim.cmd("BufferLinemnvim.buffers.actions.veNext")
+    vim.cmd("BufferLineMoveNext")
 end
 
 function mnvim.buffers.actions.move_previous()
-    vim.cmd("BufferLinemnvim.buffers.actions.vePrev")
+    vim.cmd("BufferLineMovePrev")
 end
 
 function mnvim.buffers.actions.next()

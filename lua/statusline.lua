@@ -54,7 +54,7 @@ mnvim.statusline.insert_left({
             ["!"] = colors.red,
             t = colors.red,
         }
-        return { bg = mode_color[vim.fn.mode()] }
+        return { fg = colors.fg, bg = mode_color[vim.fn.mode()] }
     end,
 })
 

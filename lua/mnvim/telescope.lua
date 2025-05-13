@@ -36,9 +36,14 @@ function mnvim.telescope.actions.pick_mark()
     vim.cmd("Telescope marks")
 end
 
-function mnvim.telescope.actions.pick_todo()
-    vim.cmd("Telescope todos")
+local extensions = {}
+---Add an extension to telescope
+---@param extension_name string the name of the extension
+---@param extension table the table of the extension
+mnvim.telescope.extensions_add = function(extension_name, extension)
+    extensions[extension_name] = extension
 end
+
 -- Telescope actions
 mnvim.plugins.install({
     "nvim-telescope/telescope.nvim",
@@ -91,6 +96,7 @@ mnvim.plugins.install({
                     },
                 },
             },
+            extensions = extensions,
             pickers = {
                 find_files = {
                     file_ignore_patterns = mnvim.telescope.file_ignore_by_pattern,

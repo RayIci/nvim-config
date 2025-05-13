@@ -14,7 +14,7 @@ require("mnvim.explorer")
 require("mnvim.code")
 require("mnvim.session")
 require("mnvim.buffers")
-require("mnvim.core")
+require("mnvim.general")
 
 -- Add Diagnostics functionalities
 local diagnostics = require("mnvim.diagnostics")
@@ -23,4 +23,5 @@ local diagnostics = require("mnvim.diagnostics")
 _G.mnvim.setup = function()
     plugin_manager.install_plugins()
     diagnostics.config()
+    pcall(require, "mnvim.colorscheme")
 end

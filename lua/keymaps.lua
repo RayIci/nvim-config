@@ -13,11 +13,6 @@ mapgroup("<leader>o", "Options")
 mapgroup("<leader>ol", "Colorcolumn")
 mapgroup("<leader>p", "Pickers")
 
--- Explorer
-map("n", "<leader>e", mnvim.explorer.actions.open_explorer, { desc = "Open explorer" })
-map("n", "<leader>ge", mnvim.explorer.actions.open_git_explorer, { desc = "Open git explorer" })
-map("n", "<leader>be", mnvim.explorer.actions.open_buffer_explorer, { desc = "Open buffer explorer" })
-
 -- Formatting
 map("n", "<leader>f", mnvim.code.formatters.actions.format, { desc = "Format file" })
 map("x", "<leader>f", mnvim.code.formatters.actions.format_range, { desc = "Format selection" })
@@ -63,6 +58,7 @@ map("n", "<c-x>", "<cmd>noh<cr>", { desc = "Clear find" })
 map("n", "<leader>v", "<c-w>v", { desc = "Split window vertically" })
 map("n", "<leader>h", "<c-w>s", { desc = "Split window hrizontally" })
 map("n", "<leader>=", "<c-w>=", { desc = "Split window reset Size" })
+map("n", "<leader>xs", "<cmd>close<CR>", { desc = "Split close" })
 
 -- Move between windows
 map("n", "<c-h>", "<cmd>wincmd h<cr>", { desc = "Move on left window" })
@@ -82,28 +78,6 @@ map("n", "<Down>", [[<cmd>horizontal resize -5<cr>]], { desc = "Resize horizonta
 map("n", "<Left>", [[<cmd>vertical resize +2<cr>]], { desc = "Resize vertical (+)" })
 map("n", "<Right>", [[<cmd>vertical resize -2<cr>]], { desc = "Resize vertical (-)" })
 
--- Buffers
-map("n", "<leader>xw", mnvim.buffers.actions.close, { desc = "Buffer close" })
-map("n", "<leader>xf", mnvim.buffers.actions.close_force, { desc = "Buffer close force (no save)" })
-map("n", "<leader>xa", mnvim.buffers.actions.close_all, { desc = "Buffer close all" })
-map("n", "<leader>xA", mnvim.buffers.actions.close_all_but_this_one, { desc = "Buffer close all but this one" })
-map("n", "<leader>bn", mnvim.buffers.actions.new, { desc = "New" })
-map("n", "<c-left>", mnvim.buffers.actions.move_previous, { desc = "Buffer move previous" })
-map("n", "<c-right>", mnvim.buffers.actions.move_next, { desc = "Buffer move next" })
-map("n", "<leader>bp", mnvim.buffers.actions.pin_toggle, { desc = "Pin toggle" })
-map("n", "<tab>", mnvim.buffers.actions.next, { desc = "Buffer next" })
-map("n", "<s-tab>", mnvim.buffers.actions.previous, { desc = "Buffer previous" })
-
--- Tabs
-map("n", "<leader>jn", "<cmd>tabnew<cr>", { desc = "New" })
-map("n", "<leader><Tab>", "<cmd>tabn<cr>", { desc = "Tab next" })
-map("n", "<leader><S-Tab>", "<cmd>tabp<cr>", { desc = "Tab previous" })
-map("n", "<leader>js", "<cmd>tab split<cr>", { desc = "Split" })
-
--- Close keys
-map("n", "<leader>xs", "<cmd>close<CR>", { desc = "Split close" })
-map("n", "<leader>xj", "<cmd>tabclose<cr>", { desc = "Tab close" })
-
 -- Stay in indent mode
 map("v", "<", "<gv", { desc = "Indent left" })
 map("v", ">", ">gv", { desc = "Indent right" })
@@ -116,9 +90,38 @@ map("n", "<leader>ql", "<cmd>Lopen<cr>", { desc = "Loclist open" })
 map("n", "<leader>ow", "<cmd>set wrap!<cr>", { desc = "Toggle line wrap" })
 map("n", "<leader>oc", "<cmd>set cursorline!<cr>", { desc = "Toggle cursor line" })
 map("n", "<leader>oL", "<cmd>set list!<cr>", { desc = "Toggle list" })
+map("n", "<leader>ot", mnvim.themes.actions.select, { desc = "Theme select" })
 
 map("n", "<leader>ole", "<cmd>lua vim.opt.colorcolumn = '100'<cr>", { desc = "Enable" })
 map("n", "<leader>old", "<cmd>lua vim.opt.colorcolumn = ''<cr>", { desc = "Disable" })
+
+-- Tabs
+map("n", "<leader>jn", "<cmd>tabnew<cr>", { desc = "New" })
+map("n", "<leader><Tab>", "<cmd>tabn<cr>", { desc = "Tab next" })
+map("n", "<leader><S-Tab>", "<cmd>tabp<cr>", { desc = "Tab previous" })
+map("n", "<leader>js", "<cmd>tab split<cr>", { desc = "Split" })
+map("n", "<leader>xj", "<cmd>tabclose<cr>", { desc = "Tab close" })
+
+-----------------------------------------------------------------------------------------
+--- PLUGINS KEYMAPS
+-----------------------------------------------------------------------------------------
+
+-- Explorer
+map("n", "<leader>e", mnvim.explorer.actions.open_explorer, { desc = "Open explorer" })
+map("n", "<leader>ge", mnvim.explorer.actions.open_git_explorer, { desc = "Open git explorer" })
+map("n", "<leader>be", mnvim.explorer.actions.open_buffer_explorer, { desc = "Open buffer explorer" })
+
+-- Buffers
+map("n", "<leader>xw", mnvim.buffers.actions.close, { desc = "Buffer close" })
+map("n", "<leader>xf", mnvim.buffers.actions.close_force, { desc = "Buffer close force (no save)" })
+map("n", "<leader>xa", mnvim.buffers.actions.close_all, { desc = "Buffer close all" })
+map("n", "<leader>xA", mnvim.buffers.actions.close_all_but_this_one, { desc = "Buffer close all but this one" })
+map("n", "<leader>bn", mnvim.buffers.actions.new, { desc = "New" })
+map("n", "<c-left>", mnvim.buffers.actions.move_previous, { desc = "Buffer move previous" })
+map("n", "<c-right>", mnvim.buffers.actions.move_next, { desc = "Buffer move next" })
+map("n", "<leader>bp", mnvim.buffers.actions.pin_toggle, { desc = "Pin toggle" })
+map("n", "<tab>", mnvim.buffers.actions.next, { desc = "Buffer next" })
+map("n", "<s-tab>", mnvim.buffers.actions.previous, { desc = "Buffer previous" })
 
 -- Diagnostics
 map("n", "[d", mnvim.diagnostics.actions.prev_diagnostics, { desc = "Previous diagnostic" })
@@ -182,4 +185,17 @@ map("n", "<leader>pb", mnvim.telescope.actions.pick_buffer, { desc = "Pick buffe
 map("n", "<leader>ph", mnvim.telescope.actions.pick_help_tag, { desc = "Pick helper tag" })
 map("n", "<leader>pn", mnvim.telescope.actions.pick_notification, { desc = "Pick notification" })
 map("n", "<leader>pm", mnvim.telescope.actions.pick_mark, { desc = "Pick mark" })
-map("n", "<leader>pt", mnvim.telescope.actions.pick_todo, { desc = "Pick todo" })
+map("n", "<leader>pt", mnvim.comments.actions.pick_todo, { desc = "Pick todo" })
+map("n", "<leader>pk", mnvim.telescope.actions.pick_keymap, { desc = "Pick keymap" })
+
+--------------------------------------------------------------------------------------------
+-- Git
+--------------------------------------------------------------------------------------------
+map("n", "<leader>gl", mnvim.git.actions.lazygit_open, { desc = "Lazygit" })
+map("n", "<leader>gb", mnvim.git.actions.branch_select, { desc = "Branch select" })
+
+--------------------------------------------------------------------------------------------
+-- Todo Comments
+--------------------------------------------------------------------------------------------
+map("n", "<leader>]t", mnvim.comments.actions.next_todo, { desc = "Next todo" })
+map("n", "<leader>[t", mnvim.comments.actions.prev_todo, { desc = "Prev todo" })

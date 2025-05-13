@@ -7,5 +7,6 @@
 foo.*
 node_modules
 tt.*
+/lua/mnvim/colorscheme.lua
 
 *lock.json

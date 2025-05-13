@@ -19,6 +19,9 @@ mnvim.code.treesitter.highlight.max_filesize = 100 * 1024
 ---@type boolean
 mnvim.code.treesitter.indent.enabled = true
 
+---@type integer
+mnvim.code.treesitter.multiline_threshold = 1
+
 ---@type boolean
 mnvim.code.treesitter.incremental_selection.enabled = true
 
@@ -28,10 +31,10 @@ mnvim.code.treesitter.incremental_selection.enabled = true
 ---@field scope_incremental string|nil
 ---@field node_decremental string|nil
 mnvim.code.treesitter.incremental_selection.keymaps = {
-    init_selection = nil,
+    init_selection = "<c-space>",
     node_incremental = "<c-space>",
-    scope_incremental = "<c-space>",
-    node_decremental = nil, -- TODO: Set a keymap
+    scope_incremental = nil,
+    node_decremental = nil,
 }
 
 mnvim.plugins.install({
@@ -44,7 +47,8 @@ mnvim.plugins.install({
     config = function()
         -- Setup treesitter context
         require("treesitter-context").setup({
-            multiline_threshold = 1, -- Maximum number of lines to show for a single context
+            -- Maximum number of lines to show for a single context
+            multiline_threshold = mnvim.code.treesitter.multiline_threshold,
         })
 
         -- Setup repl higlights (add repl treesitter colors)
@@ -62,10 +66,13 @@ mnvim.plugins.install({
             },
             indent = { enable = mnvim.code.treesitter.indent.enabled },
             incremental_selection = {
-                init_selection = mnvim.code.treesitter.incremental_selection.keymaps.init_selection,
-                node_incremental = mnvim.code.treesitter.incremental_selection.keymaps.node_incremental,
-                scope_incremental = mnvim.code.treesitter.incremental_selection.keymaps.scope_incremental,
-                node_decremental = mnvim.code.treesitter.incremental_selection.keymaps.node_decremental,
+                enabled = true,
+                keymaps = {
+                    init_selection = mnvim.code.treesitter.incremental_selection.keymaps.init_selection,
+                    node_incremental = mnvim.code.treesitter.incremental_selection.keymaps.node_incremental,
+                    scope_incremental = mnvim.code.treesitter.incremental_selection.keymaps.scope_incremental,
+                    node_decremental = mnvim.code.treesitter.incremental_selection.keymaps.node_decremental,
+                },
             },
             disable = function(lang, buf)
                 for _, ft in pairs(mnvim.code.treesitter.highlight.disabled_filetypes) do
