@@ -134,6 +134,15 @@ mnvim.statusline.insert_right({
 })
 
 mnvim.statusline.insert_right({
+    function()
+        if vim.fn.tabpagenr("$") > 1 then
+            return "TAB: [" .. tostring(vim.fn.tabpagenr()) .. "/" .. tostring(vim.fn.tabpagenr("$")) .. "]"
+        end
+        return ""
+    end,
+})
+
+mnvim.statusline.insert_right({
     "fileformat",
     fmt = string.upper,
     icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
