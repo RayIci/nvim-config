@@ -3,6 +3,7 @@ local mapgroup = mnvim.keymaps.map_group
 
 -- Groups
 mapgroup("<leader>g", "Git")
+mapgroup("<leader>g", "Git conflict")
 mapgroup("<leader>b", "Buffers")
 mapgroup("<leader>l", "LSP", { "v", "n" })
 mapgroup("<leader>d", "Debug")
@@ -197,6 +198,22 @@ map("n", "<leader>pk", mnvim.telescope.actions.pick_keymap, { desc = "Pick keyma
 --------------------------------------------------------------------------------------------
 map("n", "<leader>gl", mnvim.git.actions.lazygit_open, { desc = "Lazygit" })
 map("n", "<leader>gb", mnvim.git.actions.branch_select, { desc = "Branch select" })
+
+map("n", "<leader>gd", mnvim.git.diffview.actions.open, { desc = "Diffview open" })
+map("n", "<leader>gD", mnvim.git.diffview.actions.close, { desc = "Diffview close" })
+map("n", "<leader>gr", mnvim.git.diffview.actions.refresh, { desc = "Diffview refresh" })
+map("n", "<leader>gf", mnvim.git.diffview.actions.history_files, { desc = "Diffview files history" })
+map("n", "<leader>gF", mnvim.git.diffview.actions.history_current_file, { desc = "Diffview current file history" })
+map("n", "<leader>gt", mnvim.git.diffview.actions.files_toggle, { desc = "Diffview toggle files" })
+map("n", "<leader>gT", mnvim.git.diffview.actions.current_file_toggle, { desc = "Diffview toggle current file" })
+
+map("n", "<leader>cc", mnvim.git.conflicts.actions.select_current, { desc = "Select the current changes" })
+map("n", "<leader>ci", mnvim.git.conflicts.actions.select_incoming, { desc = "Select the incoming changes" })
+map("n", "<leader>cb", mnvim.git.conflicts.actions.select_both, { desc = "Select both changes" })
+map("n", "<leader>cN", mnvim.git.conflicts.actions.select_none, { desc = "Select none of the changes" })
+map("n", "]c", mnvim.git.conflicts.actions.next_conflict, { desc = "Move to the next conflict" })
+map("n", "[c", mnvim.git.conflicts.actions.prev_conflict, { desc = "Move to the previous conflict" })
+map("n", "<leader>cq", mnvim.git.conflicts.actions.quickfix, { desc = "Get all conflict to quickfix" })
 
 --------------------------------------------------------------------------------------------
 -- Todo Comments

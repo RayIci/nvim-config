@@ -1,3 +1,10 @@
+mnvim.plugins.install({
+    "tpope/vim-fugitive",
+    dependencies = {
+        "tpope/vim-rhubarb",
+    },
+})
+
 ---@class GitKeymaps
 ---@field hunk HunkKeymaps
 
@@ -154,3 +161,61 @@ mnvim.plugins.install({
         end,
     },
 })
+
+_G.mnvim.git.conflicts = {}
+_G.mnvim.git.conflicts.actions = {}
+_G.mnvim.git.diffview = {}
+_G.mnvim.git.diffview.actions = {}
+mnvim.plugins.install({
+    {
+        "akinsho/git-conflict.nvim",
+        version = "*",
+    },
+    {
+        "sindrets/diffview.nvim",
+    },
+})
+
+mnvim.git.conflicts.actions.select_current = function()
+    vim.cmd("GitConflictChooseOurs")
+end
+mnvim.git.conflicts.actions.select_incoming = function()
+    vim.cmd("GitConflictChooseTheirs")
+end
+mnvim.git.conflicts.actions.select_both = function()
+    vim.cmd("GitConflictChooseBoth")
+end
+mnvim.git.conflicts.actions.select_none = function()
+    vim.cmd("GitConflictChooseNone")
+end
+mnvim.git.conflicts.actions.next_conflict = function()
+    vim.cmd("GitConflictNextConflict")
+end
+mnvim.git.conflicts.actions.prev_conflict = function()
+    vim.cmd("GitConflictPrevConflict")
+end
+mnvim.git.conflicts.actions.quickfix = function()
+    vim.cmd("GitConflictListQf")
+end
+
+mnvim.git.diffview.actions.open = function()
+    vim.cmd("DiffviewOpen")
+end
+mnvim.git.diffview.actions.close = function()
+    vim.cmd("DiffviewClose")
+end
+mnvim.git.diffview.actions.history_files = function()
+    vim.cmd("DiffviewFileHistory")
+end
+mnvim.git.diffview.actions.history_current_file = function()
+    vim.cmd("DiffviewFileHistory %")
+end
+mnvim.git.diffview.actions.refresh = function()
+    vim.cmd("DiffviewRefresh")
+end
+mnvim.git.diffview.actions.files_toggle = function()
+    vim.cmd("DiffviewToggleFiles")
+end
+mnvim.git.diffview.actions.current_file_toggle = function()
+    vim.cmd("DiffviewToggleFiles %")
+end
