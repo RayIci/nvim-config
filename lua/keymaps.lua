@@ -228,3 +228,15 @@ map("n", "<leader>[t", mnvim.comments.actions.prev_todo, { desc = "Prev todo" })
 map("n", "<leader>Tf", mnvim.terminal.actions.new_floating, { desc = "Floating" })
 map("n", "<leader>Th", mnvim.terminal.actions.new_horizontal, { desc = "Horizontal" })
 map("n", "<leader>Tv", mnvim.terminal.actions.new_vertical, { desc = "Vertical" })
+
+--------------------------------------------------------------------------------------------
+---Automatic keymaps
+--------------------------------------------------------------------------------------------
+
+--- Make possible to close the quickfix window with q
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "qf", -- qf = quickfix
+    callback = function()
+        map("n", "q", "<cmd>close<cr>", { buffer = true })
+    end,
+})

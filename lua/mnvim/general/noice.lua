@@ -14,23 +14,27 @@ mnvim.plugins.install({
                         progress = {
                             enabled = true,
                         },
-                        -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
                         override = {
                             ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
                             ["vim.lsp.util.stylize_markdown"] = true,
-                            ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+                            ["cmp.entry.get_documentation"] = true,
                         },
                         hover = {
+                            enabled = true,
                             silent = true,
+                            view = nil,
                         },
                         signature = {
                             enabled = true,
                             auto_open = {
                                 enabled = true,
-                                trigger = true, -- Automatically show signature help when typing a trigger character from the LSP
-                                luasnip = true, -- Will open signature help when jumping to Luasnip insert nodes
+                                trigger = true,
+                                luasnip = true,
                             },
-                            -- view = nil, -- when nil, use defaults from documentation
+                            view = nil,
+                        },
+                        documentation = {
+                            view = "hover",
                         },
                     },
                     cmdline = {
@@ -53,12 +57,13 @@ mnvim.plugins.install({
                     views = {
                         popupmenu = {
                             relative = "editor",
+                            border = "rounded",
                             position = {
                                 row = 8,
                                 col = "50%",
                             },
                             win_options = {
-                                winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
+                                winhighlight = { Normal = "Normal", FloatBorder = "FloatBorder" },
                             },
                         },
                         mini = {
@@ -70,6 +75,18 @@ mnvim.plugins.install({
                             position = {
                                 row = -2,
                                 col = "100%",
+                            },
+                        },
+                        hover = {
+                            border = {
+                                style = "rounded",
+                                padding = { 0, 0 },
+                            },
+                            win_options = {
+                                winhighlight = {
+                                    Normal = "NormalFloat",
+                                    FloatBorder = "FloatBorder",
+                                },
                             },
                         },
                     },
@@ -87,13 +104,6 @@ mnvim.plugins.install({
                             },
                             opts = { skip = true },
                         },
-                    },
-                    presets = {
-                        bottom_search = false, -- use a classic bottom cmdline for search
-                        command_palette = false, -- position the cmdline and popupmenu together
-                        long_message_to_split = false, -- long messages will be sent to a split
-                        inc_rename = false, -- enables an input dialog for inc-rename.nvim
-                        lsp_doc_border = true, -- add a border to hover docs and signature help
                     },
                 })
             end,

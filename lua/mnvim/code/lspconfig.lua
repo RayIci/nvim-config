@@ -2,14 +2,28 @@ _G.mnvim.code.lsp = {}
 _G.mnvim.code.lsp.actions = {}
 
 mnvim.code.lsp.actions = {}
-mnvim.code.lsp.actions.definition = vim.lsp.buf.definition
-mnvim.code.lsp.actions.declaration = vim.lsp.buf.declaration
-mnvim.code.lsp.actions.implementation = vim.lsp.buf.implementation
-mnvim.code.lsp.actions.references = vim.lsp.buf.references
-mnvim.code.lsp.actions.hover = vim.lsp.buf.hover
-mnvim.code.lsp.actions.rename = vim.lsp.buf.rename
-mnvim.code.lsp.actions.code_lens = vim.lsp.codelens.run
-mnvim.code.lsp.actions.code_action = function ()
+mnvim.code.lsp.actions.definition = function()
+    vim.lsp.buf.definition()
+end
+mnvim.code.lsp.actions.declaration = function()
+    vim.lsp.buf.declaration()
+end
+mnvim.code.lsp.actions.implementation = function()
+    vim.lsp.buf.implementation()
+end
+mnvim.code.lsp.actions.references = function()
+    vim.lsp.buf.references()
+end
+mnvim.code.lsp.actions.hover = function()
+    vim.lsp.buf.hover()
+end
+mnvim.code.lsp.actions.rename = function()
+    vim.lsp.buf.rename()
+end
+mnvim.code.lsp.actions.code_lens = function()
+    vim.lsp.codelens.run()
+end
+mnvim.code.lsp.actions.code_action = function()
     require("actions-preview").code_actions()
 end
 
@@ -41,7 +55,7 @@ function mnvim.code.lsp.register(lsp_server, lsp_config)
     lsp_config_list[lsp_server] = lsp_config or {}
 end
 
-local on_attach = function (client, bufnr)
+local on_attach = function(client, bufnr)
     -- KEYMAPS ON LSP ATTACH
 
     -- Refresh code lenses
@@ -57,7 +71,6 @@ local on_attach = function (client, bufnr)
     end
 end
 
-
 mnvim.plugins.install({
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
@@ -66,7 +79,7 @@ mnvim.plugins.install({
         "hrsh7th/cmp-nvim-lsp",
         { "antosha417/nvim-lsp-file-operations", config = true },
     },
-    config = function ()
+    config = function()
         local lspconfig = require("lspconfig")
 
         -- Set default capabilities
@@ -82,5 +95,5 @@ mnvim.plugins.install({
                 settings = lsp_config.settings or {},
             })
         end
-    end
+    end,
 })
