@@ -179,7 +179,16 @@ map("n", "<F1>", dap.step_into, { desc = "Debugger: step into" })
 map("n", "<F2>", dap.step_over, { desc = "Debugger: step over" })
 map("n", "<F3>", dap.step_out, { desc = "Debugger: step out" })
 
-map("n", "<leader>dR", dap.repl_toggle, { desc = "Repl toggle" })
+map("n", "<leader>de", dap.evaluate, { desc = "UI reset" })
+
+map("n", "<leader>dR", dap.repl_ui_toggle, { desc = "Repl toggle" })
+map("n", "<leader>dC", dap.console_ui_toggle, { desc = "Console toggle" })
+map("n", "<leader>ds", dap.scopes_ui_toggle, { desc = "Scopes toggle" })
+map("n", "<leader>dS", dap.stacks_ui_toggle, { desc = "Stacks toggle" })
+map("n", "<leader>dB", dap.breakpoints_ui_toggle, { desc = "Breakpoints toggle" })
+map("n", "<leader>dW", dap.watches_ui_toggle, { desc = "Watches toggle" })
+map("n", "<leader>dt", dap.ui_toggle, { desc = "UI toggle" })
+map("n", "<leader>dp", dap.ui_reset, { desc = "UI reset" })
 
 --------------------------------------------------------------------------------------------
 -- Pickers
@@ -193,6 +202,7 @@ map("n", "<leader>pn", mnvim.telescope.actions.pick_notification, { desc = "Pick
 map("n", "<leader>pm", mnvim.telescope.actions.pick_mark, { desc = "Pick mark" })
 map("n", "<leader>pt", mnvim.comments.actions.pick_todo, { desc = "Pick todo" })
 map("n", "<leader>pk", mnvim.telescope.actions.pick_keymap, { desc = "Pick keymap" })
+map("n", "<leader>pT", mnvim.telescope.actions.pick_terminal, { desc = "Pick terminal" })
 
 --------------------------------------------------------------------------------------------
 -- Git

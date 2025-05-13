@@ -74,3 +74,23 @@ mnvim.terminal.actions.new_vertical = function()
     local vterm = get_terminal():new({ direction = "vertical" })
     vterm:toggle()
 end
+
+mnvim.plugins.install({
+    "ryanmsnyder/toggleterm-manager.nvim",
+    dependencies = {
+        "akinsho/nvim-toggleterm.lua",
+        "nvim-telescope/telescope.nvim",
+        "nvim-lua/plenary.nvim",
+    },
+    config = true,
+    opts = {
+        titles = {
+            prompt = "Pick Term",
+            results = "Terminals",
+        },
+    },
+})
+
+mnvim.telescope.actions.pick_terminal = function()
+    vim.cmd("Telescope toggleterm_manager")
+end

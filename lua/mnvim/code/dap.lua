@@ -27,10 +27,7 @@ function mnvim.code.dap.configurate(filetype, configuration)
         configurations[filetype] = {}
     end
 
-    local merged_configurations = require("mnvim.utils.tables").concat_lists(
-        configurations[filetype],
-        configuration
-    )
+    local merged_configurations = require("mnvim.utils.tables").concat_lists(configurations[filetype], configuration)
 
     configurations[filetype] = merged_configurations
 end
@@ -64,19 +61,11 @@ function mnvim.code.dap.actions.breakpoint_conditional_add()
 end
 
 function mnvim.code.dap.actions.breakepoint_logpoint_add()
-    require("dap").set_breakpoint(nil, nil, vim.fn.input('Log point message: '))
+    require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
 end
 
 function mnvim.code.dap.actions.breakpoints_clear()
     require("dap").clear_breakpoints()
-end
-
-function mnvim.code.dap.actions.repl_toggle()
-    require("dap").repl.toggle()
-end
-
-function mnvim.code.dap.actions.console_toggle()
-    require("dap").repl.toggle()
 end
 
 function mnvim.code.dap.actions.run(config)
@@ -95,16 +84,38 @@ function mnvim.code.dap.actions.pause()
     require("dap").pause()
 end
 
+local layouts = {
+    {
+        elements = {
+            { id = "scopes", size = 0.25 },
+            { id = "breakpoints", size = 0.25 },
+            { id = "stacks", size = 0.25 },
+            { id = "watches", size = 0.25 },
+        },
+        size = 40,
+        position = "left",
+    },
+    {
+        elements = {
+            { id = "repl", size = 0.5 },
+            { id = "console", size = 0.5 },
+        },
+        size = 15,
+        position = "bottom",
+    },
+}
+
 mnvim.plugins.install({
     "mfussenegger/nvim-dap",
     dependencies = {
         -- Virtual text
         "theHamsta/nvim-dap-virtual-text",
-
+        "nvim-neotest/nvim-nio",
+        "rcarriga/nvim-dap-ui",
         -- Brakepoint persist
         -- "Weissle/persistent-breakpoints.nvim",
     },
-    config = function ()
+    config = function()
         -- Setup breakpoints persist
         -- require("persistent-breakpoints").setup({
         --     load_breakpoints_event = { "BufReadPost" },
@@ -128,10 +139,79 @@ mnvim.plugins.install({
 
         -- Setup configurations
         for filetype, configuration in pairs(configurations) do
-            dap.configurations[filetype] = require("mnvim.utils.tables").concat_lists(
-                dap.configurations[filetype] or {},
-                configuration
-            )
+            dap.configurations[filetype] = require("mnvim.utils.tables").concat_lists(dap.configurations[filetype] or {}, configuration)
         end
-    end
+
+        -- Setup dap-ui
+        require("dapui").setup({
+            layouts = layouts,
+            floating = {
+                -- border = "rounded",
+                mappings = {
+                    close = { "q", "<Esc>" },
+                },
+                max_height = 0.99,
+                max_width = 0.99,
+            },
+        })
+
+        -- Set exit insert mode from dapui terminal
+        vim.api.nvim_create_autocmd("BufWinEnter", {
+            pattern = "*dap-terminal*",
+            callback = function()
+                vim.api.nvim_buf_set_keymap(0, "t", "<Esc>", "<C-\\><C-n>", { noremap = true, silent = true })
+            end,
+        })
+
+        -- local sign = vim.fn.sign_define
+        -- local icons = mnvim.ui.icons
+        -- sign("DapBreakpoint", { text = icons.debugger.Breakpoint, texthl = "DapBreakpoint", linehl = "", numhl = "" })
+        -- sign("DapBreakpointCondition", { text = icons.debugger.BreakpointCondition, texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
+        -- sign("DapLogPoint", { text = icons.debugger.LogPoint, texthl = "DapLogPoint", linehl = "", numhl = "" })
+        -- sign("DapStopped", { text = icons.debugger.DapStopped, texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" })
+    end,
 })
+
+local toggle_floating = function(dapui_panel)
+    require("dapui").float_element(dapui_panel, {
+        enter = true,
+        width = vim.o.columns,
+        height = vim.o.lines,
+    })
+end
+
+function mnvim.code.dap.actions.repl_ui_toggle()
+    toggle_floating("repl")
+end
+
+function mnvim.code.dap.actions.console_ui_toggle()
+    toggle_floating("console")
+end
+
+function mnvim.code.dap.actions.scopes_ui_toggle()
+    toggle_floating("scopes")
+end
+
+function mnvim.code.dap.actions.stacks_ui_toggle()
+    toggle_floating("stacks")
+end
+
+function mnvim.code.dap.actions.breakpoints_ui_toggle()
+    toggle_floating("breakpoints")
+end
+
+function mnvim.code.dap.actions.watches_ui_toggle()
+    toggle_floating("watches")
+end
+
+function mnvim.code.dap.actions.ui_toggle()
+    require("dapui").toggle()
+end
+
+function mnvim.code.dap.actions.ui_reset()
+    require("dapui").open({ reset = true })
+end
+
+function mnvim.code.dap.actions.evaluate()
+    require("dapui").eval()
+end
