@@ -7,7 +7,7 @@ mnvim.code.lsp.register("pyright", {
                 autoSearchPaths = true,
                 autoImportCompletions = true,
                 useLibraryCodeForTypes = true,
-                diagnosticMode = "workspace",
+                -- diagnosticMode = "workspace",
                 typeCheckingMode = "standard",
             },
         },

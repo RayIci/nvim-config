@@ -1,0 +1,7 @@
+mnvim.code.packages.install("formatter", "prettier")
+mnvim.code.formatters.register_for_filetype("html", "prettier")
+mnvim.code.formatters.register_for_filetype("css", "prettier")
+mnvim.code.formatters.register_for_filetype("javascript", "prettier")
+mnvim.code.formatters.register_for_filetype("typescript", "prettier")
+mnvim.code.formatters.register_for_filetype("typescriptreact", "prettier")
+mnvim.code.formatters.register_for_filetype("javascriptreact", "prettier")

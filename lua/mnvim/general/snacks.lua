@@ -17,3 +17,11 @@ end
 mnvim.telescope.actions.pick_keymap = function()
     require("snacks").picker.keymaps({ layout = layout })
 end
+
+mnvim.buffers.actions.scratch = function()
+    require("snacks").scratch()
+end
+
+mnvim.telescope.actions.pick_scratch_buffer = function()
+    require("snacks").scratch.select()
+end

@@ -1,2 +1,5 @@
 require("coding-server-configurations.python")
 require("coding-server-configurations.lua")
+require("coding-server-configurations.misc")
+require("coding-server-configurations.docker")
+require("coding-server-configurations.web")

@@ -130,6 +130,8 @@ map("n", "<c-right>", mnvim.buffers.actions.move_next, { desc = "Buffer move nex
 map("n", "<leader>bp", mnvim.buffers.actions.pin_toggle, { desc = "Pin toggle" })
 map("n", "<tab>", mnvim.buffers.actions.next, { desc = "Buffer next" })
 map("n", "<s-tab>", mnvim.buffers.actions.previous, { desc = "Buffer previous" })
+map("n", "<leader>bs", mnvim.buffers.actions.scratch, { desc = "Scratch buffer" })
+map("n", "<leader>bS", mnvim.telescope.actions.pick_scratch_buffer, { desc = "Pick scratch buffer" })
 
 -- Diagnostics
 map("n", "[d", mnvim.diagnostics.actions.prev_diagnostics, { desc = "Previous diagnostic" })
