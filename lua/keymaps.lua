@@ -3,7 +3,7 @@ local mapgroup = mnvim.keymaps.map_group
 
 -- Groups
 mapgroup("<leader>g", "Git")
-mapgroup("<leader>g", "Git conflict")
+mapgroup("<leader>c", "Git conflict")
 mapgroup("<leader>b", "Buffers")
 mapgroup("<leader>l", "LSP", { "v", "n" })
 mapgroup("<leader>d", "Debug")
@@ -233,8 +233,8 @@ map("n", "<leader>cq", mnvim.git.conflicts.actions.quickfix, { desc = "Get all c
 --------------------------------------------------------------------------------------------
 -- Todo Comments
 --------------------------------------------------------------------------------------------
-map("n", "<leader>]t", mnvim.comments.actions.next_todo, { desc = "Next todo" })
-map("n", "<leader>[t", mnvim.comments.actions.prev_todo, { desc = "Prev todo" })
+map("n", "]t", mnvim.comments.actions.next_todo, { desc = "Next todo" })
+map("n", "[t", mnvim.comments.actions.prev_todo, { desc = "Prev todo" })
 
 --------------------------------------------------------------------------------------------
 -- Terminal

@@ -51,6 +51,9 @@ mnvim.plugins.install({
     config = function()
         extensions["ui-select"] = {
             require("telescope.themes").get_dropdown({
+                layout_config = {
+                    width = 0.8,
+                },
                 winblend = 10,
                 border = true,
                 previewer = true,

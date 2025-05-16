@@ -89,11 +89,14 @@ mnvim.plugins.install({
         end
 
         for lsp_server, lsp_config in pairs(lsp_config_list) do
-            lspconfig[lsp_server].setup({
+            local opts = {
                 on_attach = lsp_config.on_attach or on_attach,
                 capabilities = default_capabilities,
-                settings = lsp_config.settings or {},
-            })
+            }
+            if lsp_config ~= nil then
+                opts = vim.tbl_deep_extend("force", opts, lsp_config)
+            end
+            lspconfig[lsp_server].setup(opts)
         end
     end,
 })

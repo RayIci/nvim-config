@@ -23,4 +23,8 @@ mnvim.plugins.install({
         "projekt0n/github-nvim-theme",
         name = "github",
     },
+    {
+        "olimorris/onedarkpro.nvim",
+        name = "onedarkpro",
+    },
 })

@@ -27,9 +27,7 @@ function mnvim.code.dap.configurate(filetype, configuration)
         configurations[filetype] = {}
     end
 
-    local merged_configurations = require("mnvim.utils.tables").concat_lists(configurations[filetype], configuration)
-
-    configurations[filetype] = merged_configurations
+    table.insert(configurations[filetype], configuration)
 end
 
 function mnvim.code.dap.actions.virtual_text_toggle()
@@ -139,6 +137,8 @@ mnvim.plugins.install({
 
         -- Setup configurations
         for filetype, configuration in pairs(configurations) do
+            vim.print("dap.configurations", filetype)
+            vim.print(configuration)
             dap.configurations[filetype] = require("mnvim.utils.tables").concat_lists(dap.configurations[filetype] or {}, configuration)
         end
 
