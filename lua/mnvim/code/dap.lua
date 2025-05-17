@@ -112,6 +112,9 @@ mnvim.plugins.install({
         "rcarriga/nvim-dap-ui",
         -- Brakepoint persist
         -- "Weissle/persistent-breakpoints.nvim",
+
+        -- overseer for task management
+        "stevearc/overseer.nvim",
     },
     config = function()
         -- Setup breakpoints persist
@@ -161,6 +164,14 @@ mnvim.plugins.install({
             callback = function()
                 vim.api.nvim_buf_set_keymap(0, "t", "<Esc>", "<C-\\><C-n>", { noremap = true, silent = true })
             end,
+        })
+
+        -- Setup overseer
+        -- with dap it checks in the .vscode/launch.json file for the
+        -- preLaunchTask and postDebugTask
+        -- TODO: Move it to overseer plugin (runner section)
+        require("overseer").setup({
+            dap = true,
         })
 
         -- local sign = vim.fn.sign_define
