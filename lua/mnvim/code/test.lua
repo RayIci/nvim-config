@@ -13,6 +13,7 @@ mnvim.plugins.install({
     "nvim-neotest/neotest",
     dependencies = {
         "nvim-neotest/nvim-nio",
+        "stevearc/overseer.nvim",
         "nvim-lua/plenary.nvim",
         "antoinemadec/FixCursorHold.nvim",
         "nvim-treesitter/nvim-treesitter",
@@ -25,6 +26,9 @@ mnvim.plugins.install({
 
         require("neotest").setup({
             adapters = parsed_adapters,
+            consumers = {
+                overseer = require("neotest.consumers.overseer"),
+            },
         })
     end,
 })
