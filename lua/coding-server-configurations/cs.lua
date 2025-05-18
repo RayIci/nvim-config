@@ -23,6 +23,10 @@ mnvim.code.lsp.register("omnisharp", {
 
 mnvim.code.packages.install("formatter", "csharpier")
 mnvim.code.formatters.register_for_filetype("cs", "csharpier")
+mnvim.code.formatters.configure_formatter("csharpier", {
+    command = "csharpier",
+    args = { "format" },
+})
 
 mnvim.code.packages.install("dap", "netcoredbg")
 mnvim.plugins.install({
