@@ -1,5 +1,6 @@
 _G.mnvim.code = {}
 
+require("mnvim.code.runner")
 require("mnvim.code.mason")
 require("mnvim.code.treesitter")
 require("mnvim.code.lspconfig")

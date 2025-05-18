@@ -6,6 +6,7 @@ mapgroup("<leader>g", "Git")
 mapgroup("<leader>c", "Git conflict")
 mapgroup("<leader>b", "Buffers")
 mapgroup("<leader>l", "LSP", { "v", "n" })
+mapgroup("<leader>r", "Runner")
 mapgroup("<leader>d", "Debug")
 mapgroup("<leader>j", "Tabs")
 mapgroup("<leader>x", "Close")
@@ -263,6 +264,12 @@ map("n", "<leader>xo", mnvim.code.test.actions.output_close, { desc = "Test outp
 map("n", "<leader>to", mnvim.code.test.actions.output_panel_toggle, { desc = "Output panel toggle" })
 
 map("n", "<leader>ts", mnvim.code.test.actions.summary_toggle, { desc = "Summary toggle" })
+
+--------------------------------------------------------------------------------------------
+--- Runner
+--------------------------------------------------------------------------------------------
+map("n", "<leader>rr", mnvim.code.runner.actions.run, { desc = "Run" })
+map("n", "<leader>ru", mnvim.code.runner.actions.ui_toggle, { desc = "Toggle ui" })
 
 --------------------------------------------------------------------------------------------
 --- Autocmd keymaps

@@ -169,10 +169,7 @@ mnvim.plugins.install({
         -- Setup overseer
         -- with dap it checks in the .vscode/launch.json file for the
         -- preLaunchTask and postDebugTask
-        -- TODO: Move it to overseer plugin (runner section)
-        require("overseer").setup({
-            dap = true,
-        })
+        require("overseer").enable_dap()
 
         -- local sign = vim.fn.sign_define
         -- local icons = mnvim.ui.icons
