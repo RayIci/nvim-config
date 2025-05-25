@@ -82,6 +82,9 @@ mnvim.plugins.install({
                                 style = "rounded",
                                 padding = { 0, 0 },
                             },
+                            position = {
+                                row = 2,
+                            },
                             win_options = {
                                 winhighlight = {
                                     Normal = "NormalFloat",
