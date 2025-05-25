@@ -45,7 +45,6 @@ mnvim.code.autocompletion.keymaps.cmd_line = {
     abort = "<c-a>",
 }
 
-
 mnvim.plugins.install({
     "hrsh7th/nvim-cmp",
     dependencies = {
@@ -64,7 +63,7 @@ mnvim.plugins.install({
         "saadparwaiz1/cmp_luasnip",
         {
             "L3MON4D3/LuaSnip",
-            build = (function ()
+            build = (function()
                 if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
                     return
                 end
@@ -73,14 +72,14 @@ mnvim.plugins.install({
             dependencies = {
                 {
                     "rafamadriz/friendly-snippets",
-                    config = function ()
+                    config = function()
                         require("luasnip.loaders.from_vscode").lazy_load()
                     end,
                 },
             },
         },
     },
-    config = function ()
+    config = function()
         local luasnip = require("luasnip")
         local cmp = require("cmp")
 
@@ -98,18 +97,18 @@ mnvim.plugins.install({
             [dk.select_item] = cmp.mapping.confirm({ select = true }),
             [dk.complete] = cmp.mapping.complete({}),
             [dk.abort] = cmp.mapping.abort(),
-            [dk.signature_help] = cmp.mapping(function (fallback)
+            [dk.signature_help] = cmp.mapping(function(fallback)
                 if cmp.visible() then
                     cmp.abort()
                 end
                 vim.lsp.buf.signature_help()
             end, { "i", "s" }),
-            [dk.select_next_item] = cmp.mapping(function ()
+            [dk.select_next_item] = cmp.mapping(function()
                 if luasnip.expand_or_locally_jumpable() then
                     luasnip.expand_or_jump()
                 end
             end, { "i", "s" }),
-            [dk.select_prev_item] = cmp.mapping(function ()
+            [dk.select_prev_item] = cmp.mapping(function()
                 if luasnip.locally_jumpable(-1) then
                     luasnip.jump(-1)
                 end
@@ -118,28 +117,28 @@ mnvim.plugins.install({
 
         -- Default cmp keymaps for cmd line
         local cmd_line_keymaps = {
-            [cmdk.next_item] = cmp.mapping(function (fallback)
+            [cmdk.next_item] = cmp.mapping(function(fallback)
                 if cmp.visible() then
                     cmp.select_next_item()
                 else
                     fallback()
                 end
             end, { "c" }),
-            [cmdk.prev_item] = cmp.mapping(function (fallback)
+            [cmdk.prev_item] = cmp.mapping(function(fallback)
                 if cmp.visible() then
                     cmp.select_prev_item()
                 else
                     fallback()
                 end
             end, { "c" }),
-            [cmdk.abort] = cmp.mapping(function (fallback)
+            [cmdk.abort] = cmp.mapping(function(fallback)
                 if cmp.visible() then
                     cmp.abort()
                 else
                     fallback()
                 end
             end, { "c" }),
-            [cmdk.select_item] = cmp.mapping(function (fallback)
+            [cmdk.select_item] = cmp.mapping(function(fallback)
                 if cmp.visible() then
                     cmp.confirm()
                 else
@@ -156,7 +155,7 @@ mnvim.plugins.install({
                 documentation = cmp.config.window.bordered(),
             },
             snippet = {
-                expand = function (args)
+                expand = function(args)
                     luasnip.lsp_expand(args.body)
                 end,
             },
@@ -199,5 +198,5 @@ mnvim.plugins.install({
             },
             matching = { disallow_symbol_nonprefix_matching = false },
         })
-    end
+    end,
 })
