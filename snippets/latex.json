@@ -1,0 +1,63 @@
+{
+  "Image (single)": {
+    "prefix": "img",
+    "body": [
+      "\\begin{figure}[H]",
+      "    \\centering",
+      "    \\includegraphics[width=0.6\\textwidth]{${1:path/to/image}}",
+      "    \\caption{${2:Caption}}",
+      "    \\label{fig:${3:label}}",
+      "\\end{figure}"
+    ],
+    "description": "Insert a single image"
+  },
+
+  "Images side by side": {
+    "prefix": "imgrow",
+    "body": [
+      "\\begin{figure}[H]",
+      "    \\centering",
+      "    \\begin{minipage}{0.48\\textwidth}",
+      "        \\centering",
+      "        \\includegraphics[width=\\textwidth]{${1:path/to/image1}}",
+      "        \\caption{${2:Caption 1}}",
+      "        \\label{fig:${3:label1}}",
+      "    \\end{minipage}",
+      "    \\hfill",
+      "    \\begin{minipage}{0.48\\textwidth}",
+      "        \\centering",
+      "        \\includegraphics[width=\\textwidth]{${4:path/to/image2}}",
+      "        \\caption{${5:Caption 2}}",
+      "        \\label{fig:${6:label2}}",
+      "    \\end{minipage}",
+      "\\end{figure}"
+    ],
+    "description": "Insert two images side by side"
+  },
+
+  "Images stacked": {
+    "prefix": "imgcol",
+    "body": [
+      "\\begin{figure}[H]",
+      "    \\centering",
+      "    \\begin{subfigure}{0.8\\textwidth}",
+      "        \\centering",
+      "        \\includegraphics[width=\\textwidth]{${1:path/to/image1}}",
+      "        \\caption{${2:Subcaption 1}}",
+      "    \\end{subfigure}",
+      "",
+      "    \\vspace{1em}",
+      "",
+      "    \\begin{subfigure}{0.8\\textwidth}",
+      "        \\centering",
+      "        \\includegraphics[width=\\textwidth]{${3:path/to/image2}}",
+      "        \\caption{${4:Subcaption 2}}",
+      "    \\end{subfigure}",
+      "",
+      "    \\caption{${5:Main caption}}",
+      "    \\label{fig:${6:mainlabel}}",
+      "\\end{figure}"
+    ],
+    "description": "Insert two stacked images with one caption"
+  }
+}
