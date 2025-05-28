@@ -58,7 +58,6 @@ mnvim.plugins.install({
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-cmdline",
         "hrsh7th/cmp-calc",
-        "hrsh7th/cmp-nvim-lsp-signature-help",
 
         -- luasnip engine dependencies
         "saadparwaiz1/cmp_luasnip",
@@ -163,7 +162,6 @@ mnvim.plugins.install({
             completion = { completeopt = "menu,menuone,noinsert" },
             mapping = cmp.mapping.preset.insert(cmp_keymaps),
             sources = {
-                { name = "nvim_lsp_signature_help" },
                 { name = "calc" },
                 { name = "nvim_lsp" },
                 { name = "luasnip" },
