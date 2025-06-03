@@ -67,7 +67,7 @@ mnvim.plugins.install({
 })
 
 -- When toggling the terminal activate the virtual environment
-mnvim.terminal.on_terminal_opens(function(terminal)
+mnvim.terminal.on_terminal_creates(function(terminal)
     local path_venv = os.getenv("VIRTUAL_ENV")
     if path_venv ~= nil then
         if mnvim.utils.os.is_windows() then
