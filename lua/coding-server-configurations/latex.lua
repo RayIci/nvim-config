@@ -15,6 +15,10 @@ mnvim.plugins.install({
 
         -- Path to pdf viewer
         vim.g.vimtex_view_general_viewer = "/mnt/c/Users/Alex/AppData/Local/SumatraPDF/SumatraPDF.exe"
+        vim.g.vimtex_quickfix_ignore_filters = {
+            "Underfull",
+            "Overfull",
+        }
     end,
 })
 
