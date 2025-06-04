@@ -112,36 +112,61 @@ mnvim.plugins.install({
     end,
 })
 
--- COPILOT
+-- CODE COMPANION | COPILOT AI
 mnvim.plugins.install({
-    "CopilotC-Nvim/CopilotChat.nvim",
+    "olimorris/codecompanion.nvim",
+    opts = {},
     dependencies = {
-        { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
-        { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
-    },
-    build = "make tiktoken", -- Only on MacOS or Linux
-    config = function()
-        mapgroup("<leader>C", "Copilot chat")
-        map({ "v", "n" }, "<leader>Cc", "<cmd>CopilotChatToggle<cr>", { desc = "Open chat toggle" })
-        map({ "v", "n" }, "<leader>Cs", "<cmd>CopilotChatStop<cr>", { desc = "Stop output" })
-        map({ "v", "n" }, "<leader>Cr", "<cmd>CopilotChatReset<cr>", { desc = "Reset output" })
-        map({ "v", "n" }, "<leader>Cp", "<cmd>CopilotChatPrompts<cr>", { desc = "Show prompts" })
-
-        -- Github copilot keymaps
-        map("i", "<c-t>", 'copilot#Accept("\\<CR>")', { desc = "Copilot accept", expr = true, replace_keycodes = false })
-        map("i", "<c-y>", "<Plug>(copilot-accept-word)", { desc = "Copilot accept word" })
-        vim.g.copilot_no_tab_map = true
-
-        require("CopilotChat").setup({
-            mappings = {
-                close = {
-                    normal = "q",
-                    insert = "",
+        "nvim-lua/plenary.nvim",
+        "nvim-treesitter/nvim-treesitter",
+        {
+            -- Copy images with :PasteImage
+            "HakonHarnes/img-clip.nvim",
+            opts = {
+                filetypes = {
+                    codecompanion = {
+                        prompt_for_file_name = false,
+                        template = "[Image]($FILE_PATH)",
+                        use_absolute_path = true,
+                    },
                 },
             },
-        })
-    end,
+        },
+    },
 })
+
+mnvim.code.autocompletion.add_source(1, { name = "codecompanion" })
+
+-- COPILOT
+-- mnvim.plugins.install({
+--     "CopilotC-Nvim/CopilotChat.nvim",
+--     dependencies = {
+--         { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
+--         { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+--     },
+--     build = "make tiktoken", -- Only on MacOS or Linux
+--     config = function()
+--         mapgroup("<leader>C", "Copilot chat")
+--         map({ "v", "n" }, "<leader>Cc", "<cmd>CopilotChatToggle<cr>", { desc = "Open chat toggle" })
+--         map({ "v", "n" }, "<leader>Cs", "<cmd>CopilotChatStop<cr>", { desc = "Stop output" })
+--         map({ "v", "n" }, "<leader>Cr", "<cmd>CopilotChatReset<cr>", { desc = "Reset output" })
+--         map({ "v", "n" }, "<leader>Cp", "<cmd>CopilotChatPrompts<cr>", { desc = "Show prompts" })
+--
+--         -- Github copilot keymaps
+--         map("i", "<c-t>", 'copilot#Accept("\\<CR>")', { desc = "Copilot accept", expr = true, replace_keycodes = false })
+--         map("i", "<c-y>", "<Plug>(copilot-accept-word)", { desc = "Copilot accept word" })
+--         vim.g.copilot_no_tab_map = true
+--
+--         require("CopilotChat").setup({
+--             mappings = {
+--                 close = {
+--                     normal = "q",
+--                     insert = "",
+--                 },
+--             },
+--         })
+--     end,
+-- })
 
 -- YANKY
 mnvim.plugins.install({

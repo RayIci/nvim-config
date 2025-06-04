@@ -45,6 +45,24 @@ mnvim.code.autocompletion.keymaps.cmd_line = {
     abort = "<c-a>",
 }
 
+local sources = {
+    { name = "calc" },
+    { name = "nvim_lsp" },
+    { name = "luasnip" },
+    { name = "buffer" },
+    { name = "path" },
+}
+
+---@class Source
+---@field name string
+
+---Add a source to the autocompletion
+---@param position integer The position of the source in the autocompletion box
+---@param source Source The source of the autocompletion
+mnvim.code.autocompletion.add_source = function(position, source)
+    table.insert(sources, position, source)
+end
+
 mnvim.plugins.install({
     "hrsh7th/nvim-cmp",
     dependencies = {
