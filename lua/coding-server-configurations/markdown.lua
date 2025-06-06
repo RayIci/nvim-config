@@ -18,7 +18,7 @@ mnvim.plugins.install({
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {
         preview = {
-            filetypes = { "markdown", "vimwiki", "copilot-chat" },
+            filetypes = { "markdown", "vimwiki", "copilot-chat", "codecompanion", "Avante" },
             ignore_buftypes = {},
         },
     },
