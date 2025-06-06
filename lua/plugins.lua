@@ -112,11 +112,36 @@ mnvim.plugins.install({
     end,
 })
 
--- COPILOT
+-- COPILOT (AUTOSUGGESTIONS)
+mnvim.plugins.install({
+    "zbirenbaum/copilot.lua",
+    config = function()
+        require("copilot").setup({
+            -- copilot_model = "claude-3.7-sonnet",
+            suggestion = {
+                enabled = true,
+                auto_trigger = true,
+                keymap = {
+                    prev = "<c-[>",
+                    next = "<c-]>",
+                    dismiss = "<c-a>",
+                },
+            },
+            panel = {
+                enabled = false,
+            },
+        })
+
+        map("i", "<c-t>", require("copilot.suggestion").accept_line, { desc = "Copilot accept line" })
+        map("i", "<c-y>", require("copilot.suggestion").accept_word, { desc = "Copilot accept word" })
+    end,
+})
+
+-- COPILOT CHAT
 mnvim.plugins.install({
     "CopilotC-Nvim/CopilotChat.nvim",
     dependencies = {
-        { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
+        "zbirenbaum/copilot.lua",
         { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
     },
     build = "make tiktoken", -- Only on MacOS or Linux
@@ -127,20 +152,221 @@ mnvim.plugins.install({
         map({ "v", "n" }, "<leader>Cr", "<cmd>CopilotChatReset<cr>", { desc = "Reset output" })
         map({ "v", "n" }, "<leader>Cp", "<cmd>CopilotChatPrompts<cr>", { desc = "Show prompts" })
 
-        -- Github copilot keymaps
-        map("i", "<c-t>", 'copilot#Accept("\\<CR>")', { desc = "Copilot accept", expr = true, replace_keycodes = false })
-        map("i", "<c-y>", "<Plug>(copilot-accept-word)", { desc = "Copilot accept word" })
-        vim.g.copilot_no_tab_map = true
-
         require("CopilotChat").setup({
             mappings = {
+                -- model = "claude-3.7-sonnet",
                 close = {
                     normal = "q",
                     insert = "",
                 },
+                show_diffs = {
+                    full_diff = true,
+                },
             },
         })
     end,
+})
+
+mnvim.plugins.install({
+    "olimorris/codecompanion.nvim",
+    opts = {},
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+        "nvim-treesitter/nvim-treesitter",
+        "ravitemer/mcphub.nvim",
+        {
+            "echasnovski/mini.diff",
+            config = function()
+                local diff = require("mini.diff")
+                diff.setup({
+                    source = diff.gen_source.none(),
+                })
+            end,
+        },
+        {
+            "HakonHarnes/img-clip.nvim",
+            opts = {
+                filetypes = {
+                    codecompanion = {
+                        prompt_for_file_name = false,
+                        template = "[Image]($FILE_PATH)",
+                        use_absolute_path = true,
+                    },
+                },
+            },
+        },
+    },
+    config = function()
+        require("codecompanion").setup({
+            strategies = {
+                chat = {
+                    adapter = "copilot",
+                    -- model = "qwen2.5-coder:7b",
+                    keymaps = {
+                        close = {
+                            modes = {
+                                n = "q",
+                                i = "nil",
+                            },
+                        },
+                    },
+                },
+                inline = {
+                    adapter = "copilot",
+                    -- model = "qwen2.5-coder:7b",
+                },
+                cmd = {
+                    adapter = "copilot",
+                    -- model = "qwen2.5-coder:7b",
+                },
+            },
+            display = {
+                diff = {
+                    provider = "mini_diff", -- default|mini_diff
+                },
+            },
+            extensions = {
+                mcphub = {
+                    callback = "mcphub.extensions.codecompanion",
+                    opts = {
+                        make_vars = true,
+                        make_slash_commands = true,
+                        show_result_in_chat = true,
+                    },
+                },
+            },
+        })
+    end,
+})
+
+-- AVANTE: AI code completion
+mnvim.plugins.install({
+    "yetone/avante.nvim",
+    event = "VeryLazy",
+    version = false,
+    opts = {
+        provider = "ollama",
+        providers = {
+            copilot = {
+                model = "claude-3.7-sonnet",
+            },
+            ollama = {
+                -- model = "qwen2.5-coder:14b",
+                model = "qwen2.5-coder:7b",
+            },
+        },
+        mappings = {
+            diff = {
+                ours = "co",
+                theirs = "ct",
+                all_theirs = "ca",
+                both = "cb",
+                cursor = "cc",
+                next = "]x",
+                prev = "[x",
+            },
+            suggestion = {
+                accept = "<M-l>",
+                next = "<M-]>",
+                prev = "<M-[>",
+                dismiss = "<C-]>",
+            },
+            jump = {
+                next = "]]",
+                prev = "[[",
+            },
+            submit = {
+                normal = "<CR>",
+                insert = "<C-o>",
+            },
+            cancel = {
+                normal = { "<C-c>", "<Esc>", "q" },
+                insert = { "<C-c>" },
+            },
+            sidebar = {
+                apply_all = "<leader>aA",
+                apply_cursor = "<leader>aa",
+                retry_user_request = "r",
+                edit_user_request = "e",
+                switch_windows = "<Tab>",
+                reverse_switch_windows = "<S-Tab>",
+                remove_file = "d",
+                add_file = "@",
+                close = { "<Esc>", "q" },
+                close_from_input = nil, -- e.g., { normal = "<Esc>", insert = "<C-d>" }
+            },
+        },
+        windows = {
+            width = 45,
+            input = {
+                prefix = "> ",
+                height = 8,
+            },
+            edit = {
+                start_insert = true,
+            },
+            ask = {
+                start_insert = false,
+            },
+        },
+    },
+
+    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+    build = "make",
+    -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+    dependencies = {
+        "nvim-treesitter/nvim-treesitter",
+        "nvim-lua/plenary.nvim",
+        "MunifTanjim/nui.nvim",
+        --- The below dependencies are optional,
+        "echasnovski/mini.pick", -- for file_selector provider mini.pick
+        "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+        "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+        "ibhagwan/fzf-lua", -- for file_selector provider fzf
+        "stevearc/dressing.nvim", -- for input provider dressing
+        "folke/snacks.nvim", -- for input provider snacks
+        "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+        {
+            "zbirenbaum/copilot.lua",
+            config = function()
+                require("copilot").setup({
+                    -- copilot_model = "claude-3.7-sonnet",
+                    suggestion = {
+                        enabled = true,
+                        auto_trigger = true,
+                        keymap = {
+                            prev = "<c-[>",
+                            next = "<c-]>",
+                            dismiss = "<c-a>",
+                        },
+                    },
+                    panel = {
+                        enabled = false,
+                    },
+                })
+
+                map("i", "<c-t>", require("copilot.suggestion").accept_line, { desc = "Copilot accept line" })
+                map("i", "<c-y>", require("copilot.suggestion").accept_word, { desc = "Copilot accept word" })
+            end,
+        },
+        {
+            -- support for image pasting
+            "HakonHarnes/img-clip.nvim",
+            event = "VeryLazy",
+            opts = {
+                -- recommended settings
+                default = {
+                    embed_image_as_base64 = false,
+                    prompt_for_file_name = false,
+                    drag_and_drop = {
+                        insert_mode = true,
+                    },
+                    -- required for Windows users
+                    use_absolute_path = true,
+                },
+            },
+        },
+    },
 })
 
 -- YANKY

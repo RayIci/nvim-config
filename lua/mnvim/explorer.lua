@@ -189,7 +189,36 @@ mnvim.plugins.install({
             -- A list of functions, each representing a global custom command
             -- that will be available in all sources (if not overridden in `opts[source_name].commands`)
             -- see `:h neo-tree-custom-commands-global`
-            commands = {},
+            commands = {
+                -- TODO: Refactor this. It should get the possibility to add custom commands
+                --       and custom mappings from mnvim global variable
+
+                -- TODO: Move it as soon as the refactor is done to plugins where avante is defined
+                prova = function(state)
+                    vim.print(state)
+                end,
+                avante_add_files = function(state)
+                    local node = state.tree:get_node()
+                    local filepath = node:get_id()
+                    local relative_path = require("avante.utils").relative_path(filepath)
+
+                    local sidebar = require("avante").get()
+
+                    local open = sidebar:is_open()
+                    -- ensure avante sidebar is open
+                    if not open then
+                        require("avante.api").ask()
+                        sidebar = require("avante").get()
+                    end
+
+                    sidebar.file_selector:add_selected_file(relative_path)
+
+                    -- remove neo tree buffer
+                    if not open then
+                        sidebar.file_selector:remove_selected_file("neo-tree filesystem [1]")
+                    end
+                end,
+            },
             window = {
                 position = explorer.window.position,
                 width = explorer.window.width,
@@ -198,6 +227,13 @@ mnvim.plugins.install({
                     nowait = true,
                 },
                 mappings = {
+                    -- TODO: Refactor to add possibility to add custom mappings from mnvim global variable
+
+                    -- TODO: Move it as soon as the refactor is done to plugins where avante is defined
+                    ["oa"] = { "avante_add_files", config = { title = "Avante Add Files", prefix_key = "oa" } },
+
+                    ["op"] = { "prova", config = { title = "Prova", prefix_key = "op" } },
+
                     ["<space>"] = { "toggle_node", nowait = false }, -- nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
                     ["<2-LeftMouse>"] = "open",
                     ["<cr>"] = "open",
