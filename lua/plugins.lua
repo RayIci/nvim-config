@@ -167,22 +167,76 @@ mnvim.plugins.install({
     end,
 })
 
+-- MINI DIFF
+mnvim.plugins.install({
+    "echasnovski/mini.diff",
+    config = function()
+        require("mini.diff").setup({
+            enable = true,
+            -- source = require("mini.diff").gen_source.none(),
+            view = {
+                signs = {
+                    add = "+",
+                    change = "~",
+                    delete = "-",
+                },
+            },
+            mappings = {
+                -- Apply hunks inside a visual/operator region
+                apply = "gh",
+
+                -- Reset hunks inside a visual/operator region
+                reset = "gH",
+
+                -- Hunk range textobject to be used inside operator
+                -- Works also in Visual mode if mapping differs from apply and reset
+                textobject = "gh",
+
+                -- Go to hunk range in corresponding direction
+                goto_first = "[H",
+                goto_prev = "[p",
+                goto_next = "]p",
+                goto_last = "]H",
+            },
+        })
+    end,
+})
+
+-- CODE COMPANION: AI code companion
+-- needs:
+--  uv: https://docs.astral.sh/uv/getting-started/installation/#installation-methods
+--  vectorcode: https://github.com/Davidyz/VectorCode/blob/main/docs/cli.md#installation
+--  pipx: https://github.com/pypa/pipx
+--  mcp-hub: https://ravitemer.github.io/mcphub.nvim/installation.html
 mnvim.plugins.install({
     "olimorris/codecompanion.nvim",
     opts = {},
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-treesitter/nvim-treesitter",
-        "ravitemer/mcphub.nvim",
+        "ravitemer/codecompanion-history.nvim",
         {
-            "echasnovski/mini.diff",
-            config = function()
-                local diff = require("mini.diff")
-                diff.setup({
-                    source = diff.gen_source.none(),
-                })
-            end,
+            "ravitemer/mcphub.nvim", -- Manage MCP servers
+            cmd = "MCPHub",
+            build = "npm install -g mcp-hub@latest",
+            config = true,
         },
+        {
+            "Davidyz/VectorCode", -- Index and search code in your repositories
+            version = "*",
+            build = "pipx upgrade vectorcode",
+            dependencies = { "nvim-lua/plenary.nvim" },
+        },
+        -- Change when changed globally diff provider
+        -- {
+        --     "echasnovski/mini.diff",
+        --     config = function()
+        --         local diff = require("mini.diff")
+        --         diff.setup({
+        --             source = diff.gen_source.none(),
+        --         })
+        --     end,
+        -- },
         {
             "HakonHarnes/img-clip.nvim",
             opts = {
@@ -201,6 +255,7 @@ mnvim.plugins.install({
             strategies = {
                 chat = {
                     adapter = "copilot",
+                    -- model = "claude-3.7-sonnet",
                     -- model = "qwen2.5-coder:7b",
                     keymaps = {
                         close = {
@@ -221,11 +276,31 @@ mnvim.plugins.install({
                 },
             },
             display = {
-                diff = {
-                    provider = "mini_diff", -- default|mini_diff
-                },
+                -- Change degault diff provider
+                -- diff = {
+                --     provider = "mini_diff", -- default|mini_diff
+                -- },
             },
             extensions = {
+                history = {
+                    enabled = true,
+                    opts = {
+                        keymap = "<leader>ahh",
+                        save_chat_keymap = "<leader>ahs",
+                        auto_save = false,
+                        auto_generate_title = false,
+                        continue_last_chat = false,
+                        delete_on_clearing_chat = false,
+                        picker = "snacks",
+                        enable_logging = false,
+                        dir_to_save = vim.fn.stdpath("data") .. "/codecompanion-history",
+                    },
+                },
+                vectorcode = {
+                    opts = {
+                        add_tool = true,
+                    },
+                },
                 mcphub = {
                     callback = "mcphub.extensions.codecompanion",
                     opts = {
@@ -236,138 +311,146 @@ mnvim.plugins.install({
                 },
             },
         })
+
+        mapgroup("<leader>a", "Code Companion")
+        map({ "n", "v" }, "<leader>aA", "<cmd>CodeCompanionActions<cr>", { desc = "Open the action palette" })
+        map({ "n", "v" }, "<leader>aa", "<cmd>CodeCompanionChat<cr>", { desc = "Toggle a chat buffer" })
+        map("v", "<leader>ap", function()
+            vim.fn.feedkeys(":CodeCompanion ")
+        end, { desc = "Ask for input and send to CodeCompanion" })
     end,
 })
 
 -- AVANTE: AI code completion
-mnvim.plugins.install({
-    "yetone/avante.nvim",
-    event = "VeryLazy",
-    version = false,
-    opts = {
-        provider = "ollama",
-        providers = {
-            copilot = {
-                model = "claude-3.7-sonnet",
-            },
-            ollama = {
-                -- model = "qwen2.5-coder:14b",
-                model = "qwen2.5-coder:7b",
-            },
-        },
-        mappings = {
-            diff = {
-                ours = "co",
-                theirs = "ct",
-                all_theirs = "ca",
-                both = "cb",
-                cursor = "cc",
-                next = "]x",
-                prev = "[x",
-            },
-            suggestion = {
-                accept = "<M-l>",
-                next = "<M-]>",
-                prev = "<M-[>",
-                dismiss = "<C-]>",
-            },
-            jump = {
-                next = "]]",
-                prev = "[[",
-            },
-            submit = {
-                normal = "<CR>",
-                insert = "<C-o>",
-            },
-            cancel = {
-                normal = { "<C-c>", "<Esc>", "q" },
-                insert = { "<C-c>" },
-            },
-            sidebar = {
-                apply_all = "<leader>aA",
-                apply_cursor = "<leader>aa",
-                retry_user_request = "r",
-                edit_user_request = "e",
-                switch_windows = "<Tab>",
-                reverse_switch_windows = "<S-Tab>",
-                remove_file = "d",
-                add_file = "@",
-                close = { "<Esc>", "q" },
-                close_from_input = nil, -- e.g., { normal = "<Esc>", insert = "<C-d>" }
-            },
-        },
-        windows = {
-            width = 45,
-            input = {
-                prefix = "> ",
-                height = 8,
-            },
-            edit = {
-                start_insert = true,
-            },
-            ask = {
-                start_insert = false,
-            },
-        },
-    },
-
-    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-    build = "make",
-    -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
-    dependencies = {
-        "nvim-treesitter/nvim-treesitter",
-        "nvim-lua/plenary.nvim",
-        "MunifTanjim/nui.nvim",
-        --- The below dependencies are optional,
-        "echasnovski/mini.pick", -- for file_selector provider mini.pick
-        "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-        "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
-        "ibhagwan/fzf-lua", -- for file_selector provider fzf
-        "stevearc/dressing.nvim", -- for input provider dressing
-        "folke/snacks.nvim", -- for input provider snacks
-        "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-        {
-            "zbirenbaum/copilot.lua",
-            config = function()
-                require("copilot").setup({
-                    -- copilot_model = "claude-3.7-sonnet",
-                    suggestion = {
-                        enabled = true,
-                        auto_trigger = true,
-                        keymap = {
-                            prev = "<c-[>",
-                            next = "<c-]>",
-                            dismiss = "<c-a>",
-                        },
-                    },
-                    panel = {
-                        enabled = false,
-                    },
-                })
-
-                map("i", "<c-t>", require("copilot.suggestion").accept_line, { desc = "Copilot accept line" })
-                map("i", "<c-y>", require("copilot.suggestion").accept_word, { desc = "Copilot accept word" })
-            end,
-        },
-        {
-            -- support for image pasting
-            "HakonHarnes/img-clip.nvim",
-            event = "VeryLazy",
-            opts = {
-                -- recommended settings
-                default = {
-                    embed_image_as_base64 = false,
-                    prompt_for_file_name = false,
-                    drag_and_drop = {
-                        insert_mode = true,
-                    },
-                    -- required for Windows users
-                    use_absolute_path = true,
-                },
-            },
-        },
-    },
-})
+-- mnvim.plugins.install({
+--     "yetone/avante.nvim",
+--     event = "VeryLazy",
+--     version = false,
+--     opts = {
+--         mode = "legacy", -- "legacy" | "agentic"
+--         provider = "ollama", -- "ollama" | "copilot"
+--         providers = {
+--             copilot = {
+--                 model = "claude-3.7-sonnet",
+--             },
+--             ollama = {
+--                 -- model = "qwen2.5-coder:14b",
+--                 model = "qwen2.5-coder:7b",
+--             },
+--         },
+--         mappings = {
+--             diff = {
+--                 ours = "co",
+--                 theirs = "ct",
+--                 all_theirs = "ca",
+--                 both = "cb",
+--                 cursor = "cc",
+--                 next = "]x",
+--                 prev = "[x",
+--             },
+--             suggestion = {
+--                 accept = "<M-l>",
+--                 next = "<M-]>",
+--                 prev = "<M-[>",
+--                 dismiss = "<C-]>",
+--             },
+--             jump = {
+--                 next = "]]",
+--                 prev = "[[",
+--             },
+--             submit = {
+--                 normal = "<CR>",
+--                 insert = "<C-o>",
+--             },
+--             cancel = {
+--                 normal = { "<C-c>", "<Esc>", "q" },
+--                 insert = { "<C-c>" },
+--             },
+--             sidebar = {
+--                 apply_all = "A",
+--                 apply_cursor = "a",
+--                 retry_user_request = "r",
+--                 edit_user_request = "e",
+--                 switch_windows = "<Tab>",
+--                 reverse_switch_windows = "<S-Tab>",
+--                 remove_file = "d",
+--                 add_file = "@",
+--                 close = { "<Esc>", "q" },
+--                 close_from_input = nil, -- e.g., { normal = "<Esc>", insert = "<C-d>" }
+--             },
+--         },
+--         windows = {
+--             width = 45,
+--             input = {
+--                 prefix = "> ",
+--                 height = 8,
+--             },
+--             edit = {
+--                 start_insert = true,
+--             },
+--             ask = {
+--                 start_insert = false,
+--             },
+--         },
+--     },
+--
+--     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+--     build = "make",
+--     -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+--     dependencies = {
+--         "nvim-treesitter/nvim-treesitter",
+--         "nvim-lua/plenary.nvim",
+--         "MunifTanjim/nui.nvim",
+--         --- The below dependencies are optional,
+--         "echasnovski/mini.pick", -- for file_selector provider mini.pick
+--         "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+--         "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+--         "ibhagwan/fzf-lua", -- for file_selector provider fzf
+--         "stevearc/dressing.nvim", -- for input provider dressing
+--         "folke/snacks.nvim", -- for input provider snacks
+--         "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+--         {
+--             "zbirenbaum/copilot.lua",
+--             config = function()
+--                 require("copilot").setup({
+--                     -- copilot_model = "claude-3.7-sonnet",
+--                     suggestion = {
+--                         enabled = true,
+--                         auto_trigger = true,
+--                         keymap = {
+--                             prev = "<c-[>",
+--                             next = "<c-]>",
+--                             dismiss = "<c-a>",
+--                         },
+--                     },
+--                     panel = {
+--                         enabled = false,
+--                     },
+--                 })
+--
+--                 map("i", "<c-t>", require("copilot.suggestion").accept_line, { desc = "Copilot accept line" })
+--                 map("i", "<c-y>", require("copilot.suggestion").accept_word, { desc = "Copilot accept word" })
+--             end,
+--         },
+--         {
+--             -- support for image pasting
+--             "HakonHarnes/img-clip.nvim",
+--             event = "VeryLazy",
+--             opts = {
+--                 -- recommended settings
+--                 default = {
+--                     embed_image_as_base64 = false,
+--                     prompt_for_file_name = false,
+--                     drag_and_drop = {
+--                         insert_mode = true,
+--                     },
+--                     -- required for Windows users
+--                     use_absolute_path = true,
+--                 },
+--             },
+--         },
+--     },
+-- })
 
 -- YANKY
 mnvim.plugins.install({
