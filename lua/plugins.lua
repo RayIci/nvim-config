@@ -114,26 +114,12 @@ mnvim.plugins.install({
 
 -- COPILOT (AUTOSUGGESTIONS)
 mnvim.plugins.install({
-    "zbirenbaum/copilot.lua",
+    "github/copilot.vim",
     config = function()
-        require("copilot").setup({
-            -- copilot_model = "claude-3.7-sonnet",
-            suggestion = {
-                enabled = true,
-                auto_trigger = true,
-                keymap = {
-                    prev = "<c-[>",
-                    next = "<c-]>",
-                    dismiss = "<c-a>",
-                },
-            },
-            panel = {
-                enabled = false,
-            },
-        })
-
-        map("i", "<c-t>", require("copilot.suggestion").accept_line, { desc = "Copilot accept line" })
-        map("i", "<c-y>", require("copilot.suggestion").accept_word, { desc = "Copilot accept word" })
+        -- Github copilot keymaps
+        map("i", "<c-t>", 'copilot#Accept("\\<CR>")', { desc = "Copilot accept line", expr = true, replace_keycodes = false })
+        map("i", "<c-y>", "<Plug>(copilot-accept-word)", { desc = "Copilot accept word" })
+        vim.g.copilot_no_tab_map = true
     end,
 })
 
@@ -141,7 +127,7 @@ mnvim.plugins.install({
 mnvim.plugins.install({
     "CopilotC-Nvim/CopilotChat.nvim",
     dependencies = {
-        "zbirenbaum/copilot.lua",
+        { "github/copilot.vim" },
         { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
     },
     build = "make tiktoken", -- Only on MacOS or Linux
@@ -167,11 +153,12 @@ mnvim.plugins.install({
     end,
 })
 
--- MINI DIFF
+-- MINI DIFF: Used for Code Companion
 mnvim.plugins.install({
     "echasnovski/mini.diff",
     config = function()
         require("mini.diff").setup({
+            source = require("mini.diff").gen_source.none(),
             enable = true,
             -- source = require("mini.diff").gen_source.none(),
             view = {
@@ -210,46 +197,6 @@ mnvim.plugins.install({
 --  mcp-hub: https://ravitemer.github.io/mcphub.nvim/installation.html
 mnvim.plugins.install({
     "olimorris/codecompanion.nvim",
-    opts = {},
-    dependencies = {
-        "nvim-lua/plenary.nvim",
-        "nvim-treesitter/nvim-treesitter",
-        "ravitemer/codecompanion-history.nvim",
-        {
-            "ravitemer/mcphub.nvim", -- Manage MCP servers
-            cmd = "MCPHub",
-            build = "npm install -g mcp-hub@latest",
-            config = true,
-        },
-        {
-            "Davidyz/VectorCode", -- Index and search code in your repositories
-            version = "*",
-            build = "pipx upgrade vectorcode",
-            dependencies = { "nvim-lua/plenary.nvim" },
-        },
-        -- Change when changed globally diff provider
-        -- {
-        --     "echasnovski/mini.diff",
-        --     config = function()
-        --         local diff = require("mini.diff")
-        --         diff.setup({
-        --             source = diff.gen_source.none(),
-        --         })
-        --     end,
-        -- },
-        {
-            "HakonHarnes/img-clip.nvim",
-            opts = {
-                filetypes = {
-                    codecompanion = {
-                        prompt_for_file_name = false,
-                        template = "[Image]($FILE_PATH)",
-                        use_absolute_path = true,
-                    },
-                },
-            },
-        },
-    },
     config = function()
         require("codecompanion").setup({
             strategies = {
@@ -260,7 +207,7 @@ mnvim.plugins.install({
                     keymaps = {
                         close = {
                             modes = {
-                                n = "q",
+                                n = "<c-q>",
                                 i = "nil",
                             },
                         },
@@ -277,18 +224,18 @@ mnvim.plugins.install({
             },
             display = {
                 -- Change degault diff provider
-                -- diff = {
-                --     provider = "mini_diff", -- default|mini_diff
-                -- },
+                diff = {
+                    provider = "mini_diff", -- default|mini_diff
+                },
             },
             extensions = {
                 history = {
                     enabled = true,
                     opts = {
-                        keymap = "<leader>ahh",
-                        save_chat_keymap = "<leader>ahs",
-                        auto_save = false,
-                        auto_generate_title = false,
+                        keymap = "<leader>ah",
+                        save_chat_keymap = "<leader>as",
+                        auto_save = true,
+                        auto_generate_title = true,
                         continue_last_chat = false,
                         delete_on_clearing_chat = false,
                         picker = "snacks",
@@ -314,13 +261,87 @@ mnvim.plugins.install({
 
         mapgroup("<leader>a", "Code Companion")
         map({ "n", "v" }, "<leader>aA", "<cmd>CodeCompanionActions<cr>", { desc = "Open the action palette" })
-        map({ "n", "v" }, "<leader>aa", "<cmd>CodeCompanionChat<cr>", { desc = "Toggle a chat buffer" })
+        map({ "n", "v" }, "<leader>an", "<cmd>CodeCompanionChat<cr>", { desc = "New chat buffer" })
+        map({ "n", "v" }, "<leader>aa", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Toggle chat buffer" })
         map("v", "<leader>ap", function()
             vim.fn.feedkeys(":CodeCompanion ")
         end, { desc = "Ask for input and send to CodeCompanion" })
     end,
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+        "nvim-treesitter/nvim-treesitter",
+        "ravitemer/codecompanion-history.nvim",
+        "stevearc/dressing.nvim",
+        {
+            "ravitemer/mcphub.nvim", -- Manage MCP servers
+            cmd = "MCPHub",
+            build = "npm install -g mcp-hub@latest",
+            config = true,
+        },
+        {
+            "Davidyz/VectorCode", -- Index and search code in your repositories
+            version = "*",
+            build = "pipx upgrade vectorcode",
+            dependencies = { "nvim-lua/plenary.nvim" },
+        },
+        {
+            "HakonHarnes/img-clip.nvim",
+            opts = {
+                filetypes = {
+                    codecompanion = {
+                        prompt_for_file_name = false,
+                        template = "[Image]($FILE_PATH)",
+                        use_absolute_path = true,
+                    },
+                },
+            },
+        },
+    },
 })
 
+-- YANKY
+mnvim.plugins.install({
+    "gbprod/yanky.nvim",
+    dependencies = { "folke/snacks.nvim" },
+    config = function()
+        require("yanky").setup({})
+
+        map({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", { desc = "Paste after" })
+        map({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", { desc = "Paste before" })
+        map({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)", { desc = "Paste g after" })
+        map({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)", { desc = "Paste g before" })
+
+        map("n", "<c-p>", "<Plug>(YankyPreviousEntry)", { desc = "Cycle previous yank" })
+        map("n", "<c-y>", "<Plug>(YankyNextEntry)", { desc = "Cycle next yank" })
+        map({ "n", "x" }, "<leader>p", Snacks.picker.yanky, { desc = "Yank select" })
+    end,
+})
+
+-- BETTER QF
+mnvim.plugins.install({
+    "yorickpeterse/nvim-pqf",
+    config = function()
+        require("pqf").setup()
+    end,
+})
+
+-- SMOOTH CURSOR
+mnvim.plugins.install({
+    "sphamba/smear-cursor.nvim",
+    opts = {
+        -- stiffness = 0.5,
+        -- trailing_stiffness = 0.49,
+
+        stiffness = 0.8, -- 0.6      [0, 1]
+        trailing_stiffness = 0.5, -- 0.4      [0, 1]
+        stiffness_insert_mode = 0.6, -- 0.4      [0, 1]
+        trailing_stiffness_insert_mode = 0.6, -- 0.4      [0, 1]
+        distance_stop_animating = 0.5, -- 0.1      > 0
+    },
+})
+
+-- BACKUP PLUGINS ---------------------------------------------------------------------------------
+--
 -- AVANTE: AI code completion
 -- mnvim.plugins.install({
 --     "yetone/avante.nvim",
@@ -451,44 +472,3 @@ mnvim.plugins.install({
 --         },
 --     },
 -- })
-
--- YANKY
-mnvim.plugins.install({
-    "gbprod/yanky.nvim",
-    dependencies = { "folke/snacks.nvim" },
-    config = function()
-        require("yanky").setup({})
-
-        map({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", { desc = "Paste after" })
-        map({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", { desc = "Paste before" })
-        map({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)", { desc = "Paste g after" })
-        map({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)", { desc = "Paste g before" })
-
-        map("n", "<c-p>", "<Plug>(YankyPreviousEntry)", { desc = "Cycle previous yank" })
-        map("n", "<c-y>", "<Plug>(YankyNextEntry)", { desc = "Cycle next yank" })
-        map({ "n", "x" }, "<leader>p", Snacks.picker.yanky, { desc = "Yank select" })
-    end,
-})
-
--- BETTER QF
-mnvim.plugins.install({
-    "yorickpeterse/nvim-pqf",
-    config = function()
-        require("pqf").setup()
-    end,
-})
-
--- SMOOTH CURSOR
-mnvim.plugins.install({
-    "sphamba/smear-cursor.nvim",
-    opts = {
-        -- stiffness = 0.5,
-        -- trailing_stiffness = 0.49,
-
-        stiffness = 0.8, -- 0.6      [0, 1]
-        trailing_stiffness = 0.5, -- 0.4      [0, 1]
-        stiffness_insert_mode = 0.6, -- 0.4      [0, 1]
-        trailing_stiffness_insert_mode = 0.6, -- 0.4      [0, 1]
-        distance_stop_animating = 0.5, -- 0.1      > 0
-    },
-})

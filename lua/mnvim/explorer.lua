@@ -194,30 +194,27 @@ mnvim.plugins.install({
                 --       and custom mappings from mnvim global variable
 
                 -- TODO: Move it as soon as the refactor is done to plugins where avante is defined
-                prova = function(state)
-                    vim.print(state)
-                end,
-                avante_add_files = function(state)
-                    local node = state.tree:get_node()
-                    local filepath = node:get_id()
-                    local relative_path = require("avante.utils").relative_path(filepath)
-
-                    local sidebar = require("avante").get()
-
-                    local open = sidebar:is_open()
-                    -- ensure avante sidebar is open
-                    if not open then
-                        require("avante.api").ask()
-                        sidebar = require("avante").get()
-                    end
-
-                    sidebar.file_selector:add_selected_file(relative_path)
-
-                    -- remove neo tree buffer
-                    if not open then
-                        sidebar.file_selector:remove_selected_file("neo-tree filesystem [1]")
-                    end
-                end,
+                -- avante_add_files = function(state)
+                --     local node = state.tree:get_node()
+                --     local filepath = node:get_id()
+                --     local relative_path = require("avante.utils").relative_path(filepath)
+                --
+                --     local sidebar = require("avante").get()
+                --
+                --     local open = sidebar:is_open()
+                --     -- ensure avante sidebar is open
+                --     if not open then
+                --         require("avante.api").ask()
+                --         sidebar = require("avante").get()
+                --     end
+                --
+                --     sidebar.file_selector:add_selected_file(relative_path)
+                --
+                --     -- remove neo tree buffer
+                --     if not open then
+                --         sidebar.file_selector:remove_selected_file("neo-tree filesystem [1]")
+                --     end
+                -- end,
             },
             window = {
                 position = explorer.window.position,
@@ -230,9 +227,7 @@ mnvim.plugins.install({
                     -- TODO: Refactor to add possibility to add custom mappings from mnvim global variable
 
                     -- TODO: Move it as soon as the refactor is done to plugins where avante is defined
-                    ["oa"] = { "avante_add_files", config = { title = "Avante Add Files", prefix_key = "oa" } },
-
-                    ["op"] = { "prova", config = { title = "Prova", prefix_key = "op" } },
+                    -- ["oa"] = { "avante_add_files", config = { title = "Avante Add Files", prefix_key = "oa" } },
 
                     ["<space>"] = { "toggle_node", nowait = false }, -- nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
                     ["<2-LeftMouse>"] = "open",
