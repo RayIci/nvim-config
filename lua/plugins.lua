@@ -370,9 +370,54 @@ mnvim.plugins.install({
         stiffness = 0.8, -- 0.6      [0, 1]
         trailing_stiffness = 0.5, -- 0.4      [0, 1]
         stiffness_insert_mode = 0.6, -- 0.4      [0, 1]
-        trailing_stiffness_insert_mode = 0.6, -- 0.4      [0, 1]
+        trailing_stiffness_insert_mode = 0.6, -- 0.4      u0, 1u
         distance_stop_animating = 0.5, -- 0.1      > 0
     },
+})
+
+-- UFO: folding plugin
+mnvim.plugins.install({
+    "kevinhwang91/nvim-ufo",
+    dependencies = { "kevinhwang91/promise-async", "luukvbaal/statuscol.nvim" },
+    config = function()
+        require("ufo").setup({
+            close_fold_kinds_for_ft = {},
+            close_fold_kinds = {},
+            open_fold_hl_timeout = 10,
+            enable_get_fold_virt_text = true,
+            provider_selector = function(bufnr, filetype, buftype)
+                return { "treesitter", "indent" }
+            end,
+        })
+
+        local builtin = require("statuscol.builtin")
+        require("statuscol").setup({
+            ft_ignore = { "neo-tree", "neotree" },
+            setopt = true,
+            relculright = true,
+            segments = {
+                { text = { builtin.foldfunc, " " }, click = "v:lua.ScFa", hl = "Comment" },
+                { text = { "%s" }, click = "v:lua.ScSa" },
+                { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+            },
+        })
+
+        vim.o.foldcolumn = "1" -- '0' is not bad
+        vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+        vim.o.foldlevelstart = 99
+        vim.o.foldenable = true
+        vim.opt.fillchars = {
+            fold = " ",
+            foldopen = mnvim.ui.icons.ui.ChevronShortDown,
+            foldclose = mnvim.ui.icons.ui.ChevronRight,
+            foldsep = " ",
+        }
+
+        map("n", "zR", require("ufo").openAllFolds, { desc = "Open folds" })
+        map("n", "zr", require("ufo").openFoldsExceptKinds, { desc = "Fold less" })
+        map("n", "zM", require("ufo").closeAllFolds, { desc = "Close folds" })
+        map("n", "zm", require("ufo").closeFoldsWith, { desc = "Fold more" })
+    end,
 })
 
 -- BACKUP PLUGINS ---------------------------------------------------------------------------------

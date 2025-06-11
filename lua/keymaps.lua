@@ -17,6 +17,12 @@ mapgroup("<leader>ob", "Background")
 mapgroup("<leader>p", "Pickers")
 mapgroup("<leader>t", "Terminal")
 mapgroup("<leader>T", "Terminal")
+mapgroup("<leader>G", "Get")
+
+-----------------------------------------------------------------------------------------
+
+-- Get
+map("n", "<leader>Gb", "<cmd>:= vim.bo.filetype<cr>", { desc = "Buffer file Type" })
 
 -- Formatting
 map("n", "<leader>f", mnvim.code.formatters.actions.format, { desc = "Format file" })
