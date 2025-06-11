@@ -408,7 +408,7 @@ mnvim.plugins.install({
         vim.o.foldenable = true
         vim.opt.fillchars = {
             fold = " ",
-            foldopen = mnvim.ui.icons.ui.ChevronShortDown,
+            foldopen = mnvim.ui.icons.ui.ChevronDown,
             foldclose = mnvim.ui.icons.ui.ChevronRight,
             foldsep = " ",
         }
