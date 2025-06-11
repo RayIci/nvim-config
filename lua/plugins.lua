@@ -201,9 +201,15 @@ mnvim.plugins.install({
         require("codecompanion").setup({
             strategies = {
                 chat = {
-                    adapter = "copilot",
-                    -- model = "claude-3.7-sonnet",
-                    -- model = "qwen2.5-coder:7b",
+                    adapter = {
+                        ----------------------------
+                        name = "copilot",
+                        model = "gpt-4.1",
+                        ----------------------------
+                        --- name = "ollama",
+                        --- model = "qwen2.5-coder:7b",
+                        ----------------------------
+                    },
                     keymaps = {
                         close = {
                             modes = {
@@ -222,10 +228,38 @@ mnvim.plugins.install({
                     -- model = "qwen2.5-coder:7b",
                 },
             },
+            adapters = {
+                opts = {
+                    show_model_choices = true,
+                },
+                -- Define your custom adapters here
+            },
             display = {
                 -- Change degault diff provider
                 diff = {
                     provider = "mini_diff", -- default|mini_diff
+                },
+                chat = {
+                    show_settings = true,
+                },
+            },
+            prompt_library = {
+                ["Boilerplate HTML"] = {
+                    strategy = "inline",
+                    description = "Generate some boilerplate HTML",
+                    opts = {
+                        mapping = "<leader>ao",
+                    },
+                    prompts = {
+                        {
+                            role = "system",
+                            content = "You are an expert HTML programmer",
+                        },
+                        {
+                            role = "user",
+                            content = "<user_prompt>Please generate some HTML boilerplate for me. Return the code only and no markdown codeblocks</user_prompt>",
+                        },
+                    },
                 },
             },
             extensions = {
@@ -260,10 +294,11 @@ mnvim.plugins.install({
         })
 
         mapgroup("<leader>a", "Code Companion")
-        map({ "n", "v" }, "<leader>aA", "<cmd>CodeCompanionActions<cr>", { desc = "Open the action palette" })
+        map({ "n", "v" }, "<leader>ap", "<cmd>CodeCompanionActions<cr>", { desc = "Open the action palette" })
         map({ "n", "v" }, "<leader>an", "<cmd>CodeCompanionChat<cr>", { desc = "New chat buffer" })
         map({ "n", "v" }, "<leader>aa", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Toggle chat buffer" })
-        map("v", "<leader>ap", function()
+        map({ "v" }, "<leader>aA", "<cmd>CodeCompanionChat Add<cr>", { desc = "Add to chat buffer" })
+        map("v", "<leader>ai", function()
             vim.fn.feedkeys(":CodeCompanion ")
         end, { desc = "Ask for input and send to CodeCompanion" })
     end,
