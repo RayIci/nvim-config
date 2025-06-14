@@ -420,6 +420,15 @@ mnvim.plugins.install({
     end,
 })
 
+-- COLORIZER: Hex color highlighting
+mnvim.plugins.install({
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+        vim.opt.termguicolors = true
+        require("colorizer").setup()
+    end,
+})
+
 -- BACKUP PLUGINS ---------------------------------------------------------------------------------
 --
 -- AVANTE: AI code completion
