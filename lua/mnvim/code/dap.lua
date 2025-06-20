@@ -166,6 +166,25 @@ mnvim.plugins.install({
             end,
         })
 
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = "dap-repl",
+            callback = function()
+                --
+                -- Make possible to sent lines to repl using enter in normal mode
+                vim.keymap.set("n", "<CR>", function()
+                    vim.cmd("normal! $a") -- Fine riga + insert
+                    local keys = vim.api.nvim_replace_termcodes("\r<Esc>", true, false, true)
+                    vim.api.nvim_feedkeys(keys, "n", false)
+                end, { buffer = true })
+                --
+                -- Make possible to clear the repl using <C-l>
+                vim.keymap.set("n", "<C-l>", function()
+                    local bufnr = vim.api.nvim_get_current_buf()
+                    vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, {})
+                end, { buffer = true, desc = "Clear DAP REPL" })
+            end,
+        })
+
         -- Setup overseer
         -- with dap it checks in the .vscode/launch.json file for the
         -- preLaunchTask and postDebugTask
