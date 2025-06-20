@@ -315,8 +315,9 @@ mnvim.plugins.install({
         },
         {
             "Davidyz/VectorCode", -- Index and search code in your repositories
-            version = "*",
-            build = "pipx upgrade vectorcode",
+            -- Change the version to 6 since it does not have problems with codecompanion
+            version = "0.6.*",
+            -- build = "pipx upgrade vectorcode",
             dependencies = { "nvim-lua/plenary.nvim" },
         },
         {
