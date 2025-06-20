@@ -58,7 +58,7 @@ mnvim.plugins.install({
         require("nvim-treesitter.configs").setup({
             ignore_install = mnvim.code.treesitter.ignore,
             auto_install = true,
-            ensure_installed = mnvim.code.treesitter.install,
+            ensure_installed = mnvim.utils.tables.concat_lists(mnvim.code.treesitter.install, { "dap_repl" }),
             sync_install = false,
             highlight = {
                 enable = mnvim.code.treesitter.highlight.enabled,
