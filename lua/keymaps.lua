@@ -105,7 +105,7 @@ map("n", "<leader>obl", '<cmd>lua vim.o.background = "light"<cr>', { desc = "Lig
 
 map("n", "<leader>ole", "<cmd>lua vim.opt.colorcolumn = '100'<cr>", { desc = "Enable" })
 map("n", "<leader>old", "<cmd>lua vim.opt.colorcolumn = ''<cr>", { desc = "Disable" })
-map("n", "<leader>ot", "<cmd>:= vim.bo.filetype<cr>", { desc = "Buffer file Type" })
+map("n", "<leader>oT", "<cmd>:= vim.bo.filetype<cr>", { desc = "Buffer file Type" })
 
 -- Tabs
 map("n", "<leader>jn", "<cmd>tabnew<cr>", { desc = "New" })
