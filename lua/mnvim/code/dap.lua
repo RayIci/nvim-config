@@ -178,7 +178,7 @@ mnvim.plugins.install({
                 end, { buffer = true })
                 --
                 -- Make possible to clear the repl using <C-l>
-                vim.keymap.set("n", "<C-l>", function()
+                vim.keymap.set("n", "L", function()
                     local bufnr = vim.api.nvim_get_current_buf()
                     vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, {})
                 end, { buffer = true, desc = "Clear DAP REPL" })
