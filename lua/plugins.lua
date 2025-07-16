@@ -218,6 +218,12 @@ mnvim.plugins.install({
                             },
                         },
                     },
+                    tool = {
+                        opts = {
+                            auto_submit_errors = true,
+                            auto_submit_success = true,
+                        },
+                    },
                 },
                 inline = {
                     adapter = "copilot",
@@ -244,23 +250,23 @@ mnvim.plugins.install({
                 },
             },
             prompt_library = {
-                ["Boilerplate HTML"] = {
-                    strategy = "inline",
-                    description = "Generate some boilerplate HTML",
-                    opts = {
-                        mapping = "<leader>ao",
-                    },
-                    prompts = {
-                        {
-                            role = "system",
-                            content = "You are an expert HTML programmer",
-                        },
-                        {
-                            role = "user",
-                            content = "<user_prompt>Please generate some HTML boilerplate for me. Return the code only and no markdown codeblocks</user_prompt>",
-                        },
-                    },
-                },
+                -- ["Boilerplate HTML"] = {
+                --     strategy = "inline",
+                --     description = "Generate some boilerplate HTML",
+                --     opts = {
+                --         mapping = "<leader>ao",
+                --     },
+                --     prompts = {
+                --         {
+                --             role = "system",
+                --             content = "You are an expert HTML programmer",
+                --         },
+                --         {
+                --             role = "user",
+                --             content = "<user_prompt>Please generate some HTML boilerplate for me. Return the code only and no markdown codeblocks</user_prompt>",
+                --         },
+                --     },
+                -- },
             },
             extensions = {
                 history = {
