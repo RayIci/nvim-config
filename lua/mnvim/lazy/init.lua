@@ -37,6 +37,10 @@ function P.install_plugins()
             enabled = true, -- check for plugin updates periodically
             notify = false, -- notify on update
         },
+        experimental = {
+            check_rtp_message = false, -- disable the message about rtp plugins
+            check_rtp = true,
+        },
         performance = {
             rtp = {
                 -- disable some rtp plugins
