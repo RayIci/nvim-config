@@ -462,6 +462,18 @@ mnvim.plugins.install({
     "arthurxavierx/vim-caser",
 })
 
+-- VSCODE BARBECUE
+mnvim.plugins.install({
+    "utilyre/barbecue.nvim",
+    name = "barbecue",
+    version = "*",
+    dependencies = {
+        "SmiteshP/nvim-navic",
+        "nvim-tree/nvim-web-devicons",
+    },
+    opts = {},
+})
+
 -- BACKUP PLUGINS ---------------------------------------------------------------------------------
 --
 -- AVANTE: AI code completion
