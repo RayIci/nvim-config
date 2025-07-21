@@ -12,7 +12,7 @@ mnvim.plugins.install({
         name = "catppuccin",
     },
     {
-        "navarasu/onedark.nvim",
+        "joshdick/onedark.vim",
         name = "onedark",
     },
     {
