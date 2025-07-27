@@ -15,6 +15,7 @@ mnvim.plugins.install({
 mnvim.plugins.install({
     "OXY2DEV/markview.nvim",
     lazy = false,
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {
         preview = {
             filetypes = { "markdown", "vimwiki", "copilot-chat", "codecompanion", "Avante" },

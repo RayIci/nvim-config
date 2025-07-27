@@ -43,6 +43,7 @@ mnvim.plugins.install({
     dependencies = {
         "LiadOz/nvim-dap-repl-highlights",
         "nvim-treesitter/nvim-treesitter-context",
+        "OXY2DEV/markview.nvim",
     },
     config = function()
         -- Setup treesitter context
