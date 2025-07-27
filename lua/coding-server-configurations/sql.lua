@@ -6,6 +6,6 @@ mnvim.code.formatters.register_for_filetype("sql", "sql_formatter")
 mnvim.code.formatters.configure_formatter("sql_formatter", {
     prepend_args = {
         "--language",
-        "postgres",
+        "postgresql",
     },
 })
