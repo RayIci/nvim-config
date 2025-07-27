@@ -96,7 +96,8 @@ mnvim.plugins.install({
             if lsp_config ~= nil then
                 opts = vim.tbl_deep_extend("force", opts, lsp_config)
             end
-            lspconfig[lsp_server].setup(opts)
+            vim.lsp.enable(lsp_server)
+            vim.lsp.config(lsp_server, opts)
         end
     end,
 })
