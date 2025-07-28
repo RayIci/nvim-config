@@ -18,7 +18,7 @@ mnvim.explorer.window = {}
 ---@type Position default explorer position
 mnvim.explorer.window.position = "left"
 --- @type integer default explorer width
-mnvim.explorer.window.width = 60
+mnvim.explorer.window.width = 80
 
 mnvim.explorer.indent = {}
 --- @type integer default indent size
