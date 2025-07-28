@@ -39,10 +39,7 @@ mnvim.plugins.install({
         "scottmckendry/cyberdream.nvim",
         name = "cyberdream",
         config = function()
-            require("cyberdream").setup({
-                theme = "dark",
-                transparent = true,
-            })
+            require("cyberdream").setup({})
         end,
     },
     {
@@ -65,4 +62,13 @@ mnvim.plugins.install({
         "Mofiqul/dracula.nvim",
         name = "dracula",
     },
+})
+
+-- set the foldcolumn background to match the current colorscheme
+local function set_foldcolumn_match_bg()
+    vim.api.nvim_set_hl(0, "FoldColumn", { bg = "none", fg = "none" })
+end
+set_foldcolumn_match_bg()
+vim.api.nvim_create_autocmd("ColorScheme", {
+    callback = set_foldcolumn_match_bg,
 })
