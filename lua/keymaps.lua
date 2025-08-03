@@ -152,7 +152,7 @@ map("n", "]h", mnvim.diagnostics.actions.next_hint, { desc = "Next hint" })
 --------------------------------------------------------------------------------------------
 -- LSP (on attach)
 --------------------------------------------------------------------------------------------
-mnvim.code.lsp.add_on_attach_function(function(_, bufnr)
+mnvim.code.lsp.add_on_attach_function(function (_, bufnr)
     local lsp = mnvim.code.lsp.actions
     map("n", "gD", lsp.declaration, { buffer = bufnr, desc = "Go declaration" })
     map("n", "gd", lsp.definition, { buffer = bufnr, desc = "Go definition" })
@@ -280,7 +280,7 @@ map("n", "<leader>ru", mnvim.code.runner.actions.ui_toggle, { desc = "Toggle ui"
 --- Make possible to close the quickfix window with q
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "qf", -- qf = quickfix
-    callback = function()
+    callback = function ()
         map("n", "q", "<cmd>close<cr>", { buffer = true })
     end,
 })
