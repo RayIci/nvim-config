@@ -57,6 +57,7 @@ mnvim.plugins.install({
     },
     branch = "regexp",
     event = "VeryLazy",
+    commit = "a5d407fd47744164fb3bd8382ed6d7e9c0cae8d1",
     config = function()
         require("venv-selector").setup()
         mnvim.keymaps.map_group("-p", "Python")
