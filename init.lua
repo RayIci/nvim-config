@@ -1,3 +1,8 @@
+if vim.g.vscode then
+    require("neovim-vscode")
+    return
+end
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 require("mnvim")
