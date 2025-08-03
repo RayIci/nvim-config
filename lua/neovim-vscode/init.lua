@@ -46,15 +46,20 @@ vim.g.maplocalleader = " "
 vim.opt.clipboard = "unnamedplus"
 
 -- keep history of search patterns
+-- Seems like a not doing anything
 vim.opt.history = 1000
+vim.o.undofile = true
+vim.o.undodir = vim.fn.stdpath("data") .. "/undo"
+vim.fn.mkdir(vim.o.undodir, "p")
 
 -- Ignore case in search patterns
 vim.opt.ignorecase = true
 vim.opt.smartcase = true -- Smart case: if search pattern contains uppercase letters, case-sensitive search is used
 
 -- Scroll half-page down and up centering
-keymap('n', '<C-d>', '<Cmd>normal! <C-d>zz<CR>', opts)
-keymap('n', '<C-u>', '<Cmd>normal! <C-u>zz<CR>', opts)
+-- Those are not doing anything
+keymap('n', '<C-d>', '<c-d>', opts)
+keymap('n', '<C-u>', '<c-u>', opts)
 
 -- Paste without overwriting the default register
 keymap('v', 'p', '"_dP', { noremap = true, silent = true })
