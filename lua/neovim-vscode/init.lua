@@ -142,3 +142,16 @@ end, opts)
 keymap('n', '<leader>lr', function ()
     vscode.action("editor.action.rename")
 end, opts)
+
+-- Folding
+keymap('n', 'za', function ()
+    vscode.action("editor.toggleFold")
+end, opts)
+
+keymap('n', 'zM', function ()
+    vscode.action("editor.foldAll")
+end, opts)
+
+keymap('n', 'zR', function ()
+    vscode.action("editor.unfoldAll")
+end, opts)
