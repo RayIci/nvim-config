@@ -65,12 +65,26 @@ keymap('n', '<C-u>', '<c-u>', opts)
 keymap('v', 'p', '"_dP', { noremap = true, silent = true })
 
 -- Move lines up and down
-keymap({ "v", "n" }, "J", function ()
-    vscode.action("editor.action.moveLinesDownAction")
-end, { desc = "Move line up" })
-keymap({ "v", "n" }, "K", function ()
-    vscode.action("editor.action.moveLinesUpAction")
-end, { desc = "Move line down" })
+-- keymap({ "v", "n" }, "J", function ()
+--     vscode.action("editor.action.moveLinesDownAction")
+-- end, { desc = "Move line up" })
+-- keymap({ "v", "n" }, "K", function ()
+--     vscode.action("editor.action.moveLinesUpAction")
+-- end, { desc = "Move line down" })
+
+-- Move line down
+vim.keymap.set("n", "J", ":m .+1<CR>==", opts)
+-- Move line up
+vim.keymap.set("n", "K", ":m .-2<CR>==", opts)
+
+-- Move selected lines down in visual mode
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", opts)
+-- Move selected lines up in visual mode
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", opts)
+
+-- Keep selection while indenting
+vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true })
+vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
 
 -- Show hover
 keymap('n', 'H', function ()
