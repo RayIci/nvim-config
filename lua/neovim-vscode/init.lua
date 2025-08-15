@@ -2,6 +2,9 @@ local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 local vscode = require("vscode")
 
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 -- PLUGINS ------------------------------------------------------------------
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -38,9 +41,6 @@ require('lazy').setup({
     }
 })
 
-
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
 -- Use system clipboard
 vim.opt.clipboard = "unnamedplus"
